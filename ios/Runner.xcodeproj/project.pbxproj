@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -171,6 +171,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -185,6 +186,7 @@
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -298,6 +300,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -429,6 +432,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -452,6 +456,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -530,7 +535,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.78811860911-900l87uqna9ve8sef7pctm2rs6d4jfo5";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -607,6 +612,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.78811860911-900l87uqna9ve8sef7pctm2rs6d4jfo5";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -680,6 +686,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REVERSED_CLIENT_ID = "com.googleusercontent.apps.78811860911-900l87uqna9ve8sef7pctm2rs6d4jfo5";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -758,6 +765,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -834,6 +842,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -907,6 +916,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.verygoodcore.betchya.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				// TODO: REVERSED_CLIENT_ID = "<PASTE-REVERSED-CLIENT-ID-HERE>";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
