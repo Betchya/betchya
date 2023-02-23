@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "814426537976",
+    "project_id": "betchya-staging",
+    "storage_bucket": "betchya-staging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814426537976:android:6973d0d58b18db61d0600d",
+        "android_client_info": {
+          "package_name": "com.example.verygoodcore.betchya.stg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814426537976-1v3ppn2eg1rork6pq0b3i282v2c3a6l8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD97nKx8o3G5ngljoYoNMoy95tMku_20PE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814426537976-1v3ppn2eg1rork6pq0b3i282v2c3a6l8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "814426537976-f0vqj81hr5crs2droai4srrg4j98ual9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.verygoodcore.betchya.stg"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
