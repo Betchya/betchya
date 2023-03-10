@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>582912195186-59gu5ggleid4sl4cdr1ffpiavmmq48ed.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.582912195186-59gu5ggleid4sl4cdr1ffpiavmmq48ed</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBSDHwZv4IURlkFXKV8WT22DTT6nAdRdss</string>
+	<key>GCM_SENDER_ID</key>
+	<string>582912195186</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.verygoodcore.betchya</string>
+	<key>PROJECT_ID</key>
+	<string>betchya-production</string>
+	<key>STORAGE_BUCKET</key>
+	<string>betchya-production.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:582912195186:ios:0975a28d64d618ca23e0eb</string>
+</dict>
+</plist>
