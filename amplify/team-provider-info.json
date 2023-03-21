@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-betchya-dev-140046-authRole",
+      "UnauthRoleArn": "arn:aws:iam::128288378717:role/amplify-betchya-dev-140046-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::128288378717:role/amplify-betchya-dev-140046-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-betchya-dev-140046-deployment",
+      "UnauthRoleName": "amplify-betchya-dev-140046-unauthRole",
+      "StackName": "amplify-betchya-dev-140046",
+      "StackId": "arn:aws:cloudformation:us-west-1:128288378717:stack/amplify-betchya-dev-140046/b185bc30-c81a-11ed-ba09-02c3ca4a5691",
+      "AmplifyAppId": "d2k6hhytj19xu1"
+    },
+    "categories": {
+      "api": {
+        "betchya": {}
+      }
+    }
+  }
+}
