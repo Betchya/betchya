@@ -1,4 +1,4 @@
-import 'package:betchya/counter/counter.dart';
+import 'package:betchya/bets/bets.dart';
 import 'package:betchya/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const BetsPage(title: 'Bets'),
     );
   }
 }
