@@ -29,6 +29,7 @@ class Bet extends Model {
   static const classType = const _BetModelType();
   final String id;
   final int? _amount;
+  final bool? _isPlaced;
   final String? _description;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
@@ -59,6 +60,19 @@ class Bet extends Model {
     }
   }
   
+  bool get isPlaced {
+    try {
+      return _isPlaced!;
+    } catch(e) {
+      throw new AmplifyCodeGenModelException(
+          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
+  }
+  
   String? get description {
     return _description;
   }
@@ -71,12 +85,13 @@ class Bet extends Model {
     return _updatedAt;
   }
   
-  const Bet._internal({required this.id, required amount, description, createdAt, updatedAt}): _amount = amount, _description = description, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Bet._internal({required this.id, required amount, required isPlaced, description, createdAt, updatedAt}): _amount = amount, _isPlaced = isPlaced, _description = description, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Bet({String? id, required int amount, String? description}) {
+  factory Bet({String? id, required int amount, required bool isPlaced, String? description}) {
     return Bet._internal(
       id: id == null ? UUID.getUUID() : id,
       amount: amount,
+      isPlaced: isPlaced,
       description: description);
   }
   
@@ -90,6 +105,7 @@ class Bet extends Model {
     return other is Bet &&
       id == other.id &&
       _amount == other._amount &&
+      _isPlaced == other._isPlaced &&
       _description == other._description;
   }
   
@@ -103,6 +119,7 @@ class Bet extends Model {
     buffer.write("Bet {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("amount=" + (_amount != null ? _amount!.toString() : "null") + ", ");
+    buffer.write("isPlaced=" + (_isPlaced != null ? _isPlaced!.toString() : "null") + ", ");
     buffer.write("description=" + "$_description" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
@@ -111,31 +128,34 @@ class Bet extends Model {
     return buffer.toString();
   }
   
-  Bet copyWith({int? amount, String? description}) {
+  Bet copyWith({int? amount, bool? isPlaced, String? description}) {
     return Bet._internal(
       id: id,
       amount: amount ?? this.amount,
+      isPlaced: isPlaced ?? this.isPlaced,
       description: description ?? this.description);
   }
   
   Bet.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _amount = (json['amount'] as num?)?.toInt(),
+      _isPlaced = json['isPlaced'],
       _description = json['description'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'amount': _amount, 'description': _description, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'amount': _amount, 'isPlaced': _isPlaced, 'description': _description, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
-    'id': id, 'amount': _amount, 'description': _description, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+    'id': id, 'amount': _amount, 'isPlaced': _isPlaced, 'description': _description, 'createdAt': _createdAt, 'updatedAt': _updatedAt
   };
 
   static final QueryModelIdentifier<BetModelIdentifier> MODEL_IDENTIFIER = QueryModelIdentifier<BetModelIdentifier>();
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField AMOUNT = QueryField(fieldName: "amount");
+  static final QueryField ISPLACED = QueryField(fieldName: "isPlaced");
   static final QueryField DESCRIPTION = QueryField(fieldName: "description");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Bet";
@@ -158,6 +178,12 @@ class Bet extends Model {
       key: Bet.AMOUNT,
       isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.int)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Bet.ISPLACED,
+      isRequired: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.bool)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(

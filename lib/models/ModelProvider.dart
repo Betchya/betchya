@@ -26,7 +26,7 @@ export 'Bet.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "145ad654dd1fce25a5c9b54cf20b06a7";
+  String version = "8519b93fdcea77069eb41117fd3ef464";
   @override
   List<ModelSchema> modelSchemas = [Bet.schema];
   static final ModelProvider _instance = ModelProvider();

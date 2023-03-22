@@ -38,8 +38,10 @@ class _BetsContainer extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           builder: (_) => _AddBetView(
-            onItemAdded: (name, amount, description) {
-              // Will be added later on
+            onItemAdded: (id, amount, description) {
+              context
+                  .read<BetsCubit>()
+                  .addBet(id, int.parse(amount), description);
             },
           ),
         ),
@@ -60,12 +62,31 @@ class _BetsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BetsCubit, BetsState>(
       builder: (context, state) {
-        return ListView.builder(
-          itemBuilder: (context, index) => const ListTile(
-            title: Text('Title'),
-            subtitle: Text('Description'),
-          ),
-        );
+        if (state is BetsLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (state is BetsFailed) {
+          return Center(child: Text(state.errorMessage));
+        }
+
+        if (state is BetsLoaded) {
+          final bets = state.items;
+          return ListView.builder(
+            itemCount: bets.length,
+            itemBuilder: (context, index) {
+              final listItem = bets[index];
+              return ListTile(
+                title: Text(listItem.id),
+                subtitle: listItem.description == null
+                    ? null
+                    : Text(listItem.description!),
+                trailing: Text(listItem.amount.toString()),
+              );
+            },
+          );
+        }
+
+        return const SizedBox.shrink();
       },
     );
   }
