@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 typedef ThreeValueSetter<T, S, P> = void Function(
-    T valueOne, S valueTwo, P valueThree);
+  T valueOne,
+  S valueTwo,
+  P valueThree,
+);
 
 class BetsPage extends StatelessWidget {
   const BetsPage({
