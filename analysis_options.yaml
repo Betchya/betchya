@@ -1,8 +1,8 @@
 include: package:very_good_analysis/analysis_options.yaml
 analyzer:
   exclude:
-    - "**/models/*"
-    - lib/models/*
+    - lib/models/Bet.dart
+    - lib/model/ModelProvider.dart
 linter:
   rules:
     public_member_api_docs: false
