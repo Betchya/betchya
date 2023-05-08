@@ -1,12 +1,13 @@
-import 'package:betchya/app/app.dart';
-import 'package:betchya/bets/bets.dart';
+import 'package:betchya/main_development.dart';
+import 'package:betchya/presentation/views/home_screen/home_screen.dart';
+import 'package:betchya/presentation/views/root_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-      await tester.pumpWidget(const App());
-      expect(find.byType(BetsPage), findsOneWidget);
+      await tester.pumpWidget(const MyApp());
+      expect(find.byType(RootScreen), findsOneWidget);
     });
   });
 }
