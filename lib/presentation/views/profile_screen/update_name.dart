@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
-import 'package:betchya/logic/API_calls.dart';
+import 'package:betchya/logic/api_calls.dart';
 
 class UpdateName extends StatefulWidget {
   const UpdateName({Key? key}) : super(key: key);

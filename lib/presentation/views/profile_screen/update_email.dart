@@ -7,7 +7,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
-import 'package:betchya/logic/API_calls.dart';
+import 'package:betchya/logic/api_calls.dart';
 
 class UpdateEmail extends StatefulWidget {
   const UpdateEmail({Key? key}) : super(key: key);

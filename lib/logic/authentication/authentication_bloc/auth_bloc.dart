@@ -1,4 +1,4 @@
-import 'package:betchya/logic/API_calls.dart';
+import 'package:betchya/logic/api_calls.dart';
 import 'package:betchya/logic/authentication/auth_repository/auth_repository.dart';
 import 'package:betchya/presentation/views/profile_screen/profile_screen.dart';
 import 'package:bloc/bloc.dart';
