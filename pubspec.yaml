@@ -11,12 +11,29 @@ dependencies:
   amplify_api: ^0.6.13
   amplify_flutter: ^0.6.12
   bloc: ^8.1.1
+  cached_network_image: ^3.2.3
+  carousel_slider: ^4.2.1
+  cloud_firestore: ^4.5.0
+  crypto: ^3.0.2
+  email_validator: ^2.1.17
+  equatable: ^2.0.5
+  firebase_auth: ^4.4.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
+  flutter_facebook_auth: ^5.0.8
   flutter_localizations:
     sdk: flutter
+  google_fonts: ^4.0.3
+  google_sign_in: ^6.1.0
+  http: ^0.13.5
   intl: ^0.17.0
+  line_awesome_flutter: ^2.0.0
+  marquee: ^2.2.3
+  passwordfield: ^0.1.0
+  shared_preferences: ^2.1.0
+  sign_in_with_apple: ^4.3.0
+  smooth_page_indicator: ^1.0.1
 
 dev_dependencies:
   bloc_test: ^9.1.1
