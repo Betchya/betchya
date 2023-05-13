@@ -1,12 +1,9 @@
-import 'package:betchya/presentation/views/sports_book_screen/widgets/BetsWidget.dart';
+import 'package:betchya/presentation/views/sports_book_screen/widgets/bets_widget.dart';
 import 'package:flutter/material.dart';
 
 class MyBets extends StatelessWidget {
+  const MyBets({super.key, required this.filter});
   final String filter;
-  MyBets({
-    Key? key,
-    required this.filter,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,12 @@
+import 'package:betchya/logic/games/game_category.dart';
+import 'package:betchya/presentation/custom_icons.dart';
+import 'package:betchya/presentation/views/profile_screen/widgets/my_bets.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../logic/games/game_category.dart';
-import '../../../custom_icons.dart';
-import '../../profile_screen/widgets/MyBets.dart';
-
 class UserRewardsWidget extends StatefulWidget {
-  final Function() changeCategory;
+  const UserRewardsWidget({super.key, required this.changeCategory});
 
-  const UserRewardsWidget({Key? key, required this.changeCategory})
-      : super(key: key);
+  final Function() changeCategory;
 
   @override
   State<UserRewardsWidget> createState() => _UserRewardsWidgetState();

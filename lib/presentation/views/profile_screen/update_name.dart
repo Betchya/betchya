@@ -1,12 +1,6 @@
 import 'package:betchya/logic/authentication/authentication_bloc/auth_bloc.dart';
-import 'package:betchya/presentation/views/login/signup_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:intl/intl.dart';
-import 'package:betchya/logic/api_calls.dart';
 
 class UpdateName extends StatefulWidget {
   const UpdateName({Key? key}) : super(key: key);
@@ -104,16 +98,16 @@ class _UpdateNameState extends State<UpdateName> {
                                 Color.fromARGB(255, 1, 180, 153)),
                           ),
                           onPressed: () {
-                            print(_firstNameController.text);
-                            APIWrangler()
-                                .updateName(_firstNameController.text,
-                                    _lastNameController.text)
-                                .then((user) {
-                              print(user);
-                              if (user != null) {
-                                AuthenticatedWithUserObject(user);
-                              }
-                            });
+                            // print(_firstNameController.text);
+                            // APIWrangler()
+                            //     .updateName(_firstNameController.text,
+                            //         _lastNameController.text)
+                            //     .then((user) {
+                            //   print(user);
+                            //   if (user != null) {
+                            //     AuthenticatedWithUserObject(user);
+                            //   }
+                            // });
                           },
                           child: const Text('Next'),
                         ),

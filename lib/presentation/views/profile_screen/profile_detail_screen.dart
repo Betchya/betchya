@@ -1,5 +1,5 @@
 import 'package:betchya/presentation/views/home_screen/widgets/NameWidget.dart';
-import 'package:betchya/presentation/views/profile_screen/Widgets/CurrentProfileWidget.dart';
+import 'package:betchya/presentation/views/profile_screen/widgets/current_profile_widget.dart';
 import 'package:betchya/presentation/views/profile_screen/update_email.dart';
 import 'package:betchya/presentation/views/profile_screen/update_name.dart';
 import 'package:flutter/material.dart';

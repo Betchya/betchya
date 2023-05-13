@@ -3,31 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Widget to display first name of current user.  Includes optional prefix/suffix.
-class FirstNameWidget extends StatefulWidget {
-  final String? prefix;
-  final String? suffix;
-
-  FirstNameWidget({this.prefix, this.suffix});
-
+class FormattedEmailWidget extends StatefulWidget {
   @override
-  _FirstNameWidgetState createState() => _FirstNameWidgetState();
+  _FormattedEmailWidgetState createState() => _FormattedEmailWidgetState();
+}
+
+// Widget to display first name of current user.  Includes optional prefix/suffix.
+class EmailWidget extends StatefulWidget {
+  @override
+  _EmailWidgetState createState() => _EmailWidgetState();
 }
 
 // Widget to display first and last name of current user.  Includes optional prefix/suffix.
-class WholeNameWidget extends StatefulWidget {
+class ProfileNameWidget extends StatefulWidget {
   final String? prefix;
   final String? suffix;
 
-  WholeNameWidget({this.prefix, this.suffix});
+  ProfileNameWidget({this.prefix, this.suffix});
 
   @override
-  _WholeNameWidgetState createState() => _WholeNameWidgetState();
+  _ProfileNameWidgetState createState() => _ProfileNameWidgetState();
 }
 
 // Waits for user to be authenticated, then diplays first name of current user with any prefix/suffix specified.
-class _FirstNameWidgetState extends State<FirstNameWidget> {
+class _FormattedEmailWidgetState extends State<FormattedEmailWidget> {
   Widget build(BuildContext context) {
-    return Container(child: Text('First Name Widget'));
+    return Container(child: Text('Formatted Email Widget state'));
     // return Container(
     //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
     //   if (state is AuthenticatedWithUserObject) {
@@ -36,11 +37,9 @@ class _FirstNameWidgetState extends State<FirstNameWidget> {
     // }, child: BlocBuilder<AuthBloc, AuthState>(
     //   builder: (context, state) {
     //     if (state is AuthenticatedWithUserObject) {
-    //       // final name = state.user.firstName;
-    //       final prefix = widget.prefix ?? "";
-    //       final suffix = widget.suffix ?? "";
+    //       // final email = state.user.email;
 
-    //       return Text("$prefix _name_ $suffix",
+    //       return Text('_email_',
     //           style: TextStyle(
     //               fontSize: 22,
     //               color: Colors.white,
@@ -53,10 +52,35 @@ class _FirstNameWidgetState extends State<FirstNameWidget> {
   }
 }
 
-// Waits for user to be authenticated, then diplays entire name of current user with any prefix/suffix specified.
-class _WholeNameWidgetState extends State<WholeNameWidget> {
+// Waits for user to be authenticated, then diplays first name of current user with any prefix/suffix specified.
+class _EmailWidgetState extends State<EmailWidget> {
   Widget build(BuildContext context) {
-    return Container(child: Text('First Name Widget state'));
+    return Container(child: Text('Email Widget state'));
+    // return Container(
+    //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+    //   if (state is AuthenticatedWithUserObject) {
+    //     print(context.size);
+    //   }
+    // }, child: BlocBuilder<AuthBloc, AuthState>(
+    //   builder: (context, state) {
+    //     if (state is AuthenticatedWithUserObject) {
+    //       // final email = state.user.email;
+
+    //       return Text(
+    //           // "$email",
+    //           '_email_');
+    //     } else {
+    //       return Text("Ha ha");
+    //     }
+    //   },
+    // )));
+  }
+}
+
+// Waits for user to be authenticated, then diplays entire name of current user with any prefix/suffix specified.
+class _ProfileNameWidgetState extends State<ProfileNameWidget> {
+  Widget build(BuildContext context) {
+    return Container(child: Text('Profile Name Widget state'));
     // return Container(
     //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
     //   if (state is AuthenticatedWithUserObject) {
@@ -70,11 +94,7 @@ class _WholeNameWidgetState extends State<WholeNameWidget> {
     //       final prefix = widget.prefix ?? "";
     //       final suffix = widget.suffix ?? "";
 
-    //       return Text("_prefix_firstName _lastName_suffix",
-    //           style: TextStyle(
-    //               fontSize: 22,
-    //               color: Colors.white,
-    //               fontWeight: FontWeight.w600));
+    //       return Text("_prefix_firstName _lastName$suffix");
     //     } else {
     //       return Text("Ha ha");
     //     }

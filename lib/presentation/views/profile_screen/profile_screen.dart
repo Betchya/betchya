@@ -1,10 +1,10 @@
+import 'package:betchya/presentation/views/profile_screen/widgets/my_bets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../logic/points/points_cubit.dart';
 import '../home_screen/widgets/NameWidget.dart';
 import 'profile_detail_screen.dart';
-import 'widgets/MyBets.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);

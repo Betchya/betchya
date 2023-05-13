@@ -1,4 +1,3 @@
-import 'package:betchya/logic/api/api_getBets.dart';
 import 'package:betchya/other_models/bets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,8 @@ class _BetsWidgetState extends State<BetsWidget> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return FutureBuilder<List<Bet>>(
-      future: APIGetBets().getBetList(widget.filter),
+      future: Future.delayed(const Duration(seconds: 3)),
+      // APIGetBets().getBetList(widget.filter),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(

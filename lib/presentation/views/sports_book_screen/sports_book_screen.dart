@@ -1,6 +1,6 @@
 import 'package:betchya/logic/games/game_category.dart';
-import 'package:betchya/presentation/views/sports_book_screen/widgets/GamesWidget.dart';
-import 'package:betchya/presentation/views/sports_book_screen/widgets/UserRewardsWidget.dart';
+import 'package:betchya/presentation/views/sports_book_screen/widgets/games_widget.dart';
+import 'package:betchya/presentation/views/sports_book_screen/widgets/user_rewards_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

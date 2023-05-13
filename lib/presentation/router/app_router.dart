@@ -40,8 +40,7 @@ class AppRouter {
         );
       default:
         return MaterialPageRoute(
-          // builder: (_) => RootScreen(),
-          builder: (_) => HomeScreen(),
+          builder: (_) => RootScreen(),
         );
     }
   }
