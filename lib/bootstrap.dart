@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:betchya/amplifyconfiguration.dart';
 import 'package:betchya/models/ModelProvider.dart';
@@ -26,12 +27,13 @@ Future<void> _configureAmplify() async {
   try {
     final amplifyApi = AmplifyAPI(modelProvider: ModelProvider.instance);
     await Amplify.addPlugin(amplifyApi);
+
+    final auth = AmplifyAuthCognito();
+    await Amplify.addPlugin(auth);
+
     await Amplify.configure(amplifyconfig);
-  } catch (e) {
-    // TODO(Josh-Sanford): update this
-    // error handling can be improved for sure!
-    // but this will be sufficient for the purposes of this tutorial
-    // print('An error occurred while configuring Amplify: $e');
+  } on Exception catch (e) {
+    safePrint('An error occurred configuring Amplify: $e');
   }
 }
 
