@@ -24,7 +24,7 @@ dependencies:
   flutter_facebook_auth: ^5.0.8
   flutter_localizations:
     sdk: flutter
-  google_fonts: ^4.0.3
+  google_fonts: ^4.0.4
   google_sign_in: ^6.1.0
   http: ^0.13.5
   intl: ^0.17.0
