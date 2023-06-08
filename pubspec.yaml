@@ -31,7 +31,7 @@ dependencies:
   line_awesome_flutter: ^2.0.0
   marquee: ^2.2.3
   passwordfield: ^0.1.0
-  shared_preferences: ^2.1.0
+  shared_preferences: ^2.1.2
   sign_in_with_apple: ^4.3.0
   smooth_page_indicator: ^1.0.1
 
