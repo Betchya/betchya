@@ -10,6 +10,7 @@ environment:
 dependencies:
   amplify_api: ^0.6.13
   amplify_auth_cognito: ^0.6.13
+  amplify_authenticator: ^0.2.5
   amplify_flutter: ^0.6.13
   bloc: ^8.1.1
   cached_network_image: ^3.2.3
@@ -25,6 +26,7 @@ dependencies:
   flutter_facebook_auth: ^5.0.8
   flutter_localizations:
     sdk: flutter
+  go_router: ^10.1.2
   google_fonts: ^4.0.3
   google_sign_in: ^6.1.0
   http: ^0.13.5

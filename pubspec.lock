@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.13"
+  amplify_authenticator:
+    dependency: "direct main"
+    description:
+      name: amplify_authenticator
+      sha256: bfb1b9876359497ea302e8d65fda9b7fb6423a11267ef223fca5f59ae400cef8
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.5"
   amplify_core:
     dependency: transitive
     description:
@@ -509,6 +517,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: "5668e6d3dbcb2d0dfa25f7567554b88c57e1e3f3c440b672b24d4a9477017d5b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.1.2"
   google_fonts:
     dependency: "direct main"
     description:
@@ -1180,4 +1196,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=3.0.0-0 <4.0.0"
-  flutter: ">=3.3.10"
+  flutter: ">=3.7.0"
