@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:amplify_api/amplify_api.dart';
+// import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:betchya/amplifyconfiguration.dart';
-import 'package:betchya/models/ModelProvider.dart';
+// import 'package:betchya/models/ModelProvider.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
@@ -25,8 +25,8 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> _configureAmplify() async {
   try {
-    final amplifyApi = AmplifyAPI(modelProvider: ModelProvider.instance);
-    await Amplify.addPlugin(amplifyApi);
+    // final amplifyApi = AmplifyAPI(modelProvider: ModelProvider.instance);
+    // await Amplify.addPlugin(amplifyApi);
 
     final auth = AmplifyAuthCognito();
     await Amplify.addPlugin(auth);
