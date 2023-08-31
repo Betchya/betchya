@@ -1,6 +1,4 @@
-import 'package:betchya/logic/authentication/authentication_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Widget to display first name of current user.  Includes optional prefix/suffix.
 class FirstNameWidget extends StatefulWidget {

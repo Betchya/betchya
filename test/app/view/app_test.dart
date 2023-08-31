@@ -1,5 +1,4 @@
 import 'package:betchya/main_development.dart';
-import 'package:betchya/presentation/views/home_screen/home_screen.dart';
 import 'package:betchya/presentation/views/root_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 

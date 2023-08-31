@@ -1,11 +1,5 @@
-import 'package:betchya/logic/authentication/authentication_bloc/auth_bloc.dart';
-import 'package:betchya/presentation/views/login/signup_screen.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RecoverScreen extends StatefulWidget {
