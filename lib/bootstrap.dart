@@ -38,6 +38,10 @@ Future<void> _configureAmplify() async {
 }
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await _configureAmplify();
+
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -45,11 +49,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = AppBlocObserver();
 
   await runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      await _configureAmplify();
-      runApp(await builder());
-    },
+    () async => runApp(await builder()),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
