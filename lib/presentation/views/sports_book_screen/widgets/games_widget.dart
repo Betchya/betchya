@@ -1,5 +1,4 @@
-
-import 'package:betchya/logic/api/api_addBets.dart';
+// import 'package:betchya/logic/api/api_addBets.dart';
 import 'package:betchya/logic/api/api_getGames.dart';
 import 'package:betchya/logic/games/game_category.dart';
 import 'package:betchya/other_models/games.dart';
@@ -133,14 +132,14 @@ class _GamesWidgetState extends State<GamesWidget> {
                             ),
                           ),
                           onPressed: () => {
-                            APIAddBets().addBet(
-                              game.description,
-                              game.betLine,
-                              game.teamLogo1,
-                              game.teamLogo2,
-                              amountController.text,
-                              game.date,
-                            ),
+                            // APIAddBets().addBet(
+                            //   game.description,
+                            //   game.betLine,
+                            //   game.teamLogo1,
+                            //   game.teamLogo2,
+                            //   amountController.text,
+                            //   game.date,
+                            // ),
                             setState(() {}),
                           },
                           child: const Text(
