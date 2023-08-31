@@ -62,9 +62,7 @@ class EventTabList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          DateFormat.MMMd()
-                              .format(events[index].date)
-                              .toString(),
+                          DateFormat.MMMd().format(events[index].date),
                           style: const TextStyle(
                             fontSize: 13,
                             color: Color(0xFF00B498),
