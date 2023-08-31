@@ -78,7 +78,7 @@ class EventDetails extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                         TextSpan(
-                          text: DateFormat.yMd().format(event.date).toString(),
+                          text: DateFormat.yMd().format(event.date),
                         )
                       ],
                     ),
@@ -95,7 +95,7 @@ class EventDetails extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                         TextSpan(
-                          text: DateFormat.jm().format(event.date).toString(),
+                          text: DateFormat.jm().format(event.date),
                         )
                       ],
                     ),
@@ -142,12 +142,12 @@ class EventDetails extends StatelessWidget {
               height: screenHeight * .05,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xff00B498),
+                  backgroundColor: const Color(0xff00B498),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () => {/*TODO: Ticket purchasing */},
+                onPressed: () => {},
                 child: const Text(
                   'Purchase Tickets',
                   style: TextStyle(fontSize: 15),

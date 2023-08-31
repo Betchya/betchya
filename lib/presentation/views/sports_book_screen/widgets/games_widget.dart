@@ -1,5 +1,5 @@
 // import 'package:betchya/logic/api/api_addBets.dart';
-import 'package:betchya/logic/api/api_getGames.dart';
+import 'package:betchya/logic/api/api_get_games.dart';
 import 'package:betchya/logic/games/game_category.dart';
 import 'package:betchya/other_models/games.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -126,7 +126,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                         height: screenHeight * .05,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: const Color(0xff00B498),
+                            backgroundColor: const Color(0xff00B498),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),

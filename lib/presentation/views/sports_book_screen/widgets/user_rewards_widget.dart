@@ -87,7 +87,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
               Icon(
                 Icons.arrow_forward_ios,
                 size: 15,
-              )
+              ),
             ],
           ),
           Padding(

@@ -16,13 +16,6 @@ class Reward {
     required this.imageUrl,
   });
 
-  String name;
-  String information;
-  int points;
-  String id;
-  String subtitle;
-  String imageUrl;
-
   factory Reward.fromJson(Map<String, dynamic> json) => Reward(
         name: json['name'] as String,
         information: json['information'] as String,
@@ -31,6 +24,13 @@ class Reward {
         subtitle: json['subtitle'] as String,
         imageUrl: json['imageURL'] as String,
       );
+
+  String name;
+  String information;
+  int points;
+  String id;
+  String subtitle;
+  String imageUrl;
 
   Map<String, dynamic> toJson() => {
         'name': name,

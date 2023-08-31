@@ -119,10 +119,11 @@ const pointsLabel = TextStyle(
 
 /* Marquee */
 const marqueeText = TextStyle(
-    fontFamily: defaultFont2,
-    fontStyle: FontStyle.normal,
-    fontWeight: FontWeight.bold,
-    color: Color(0xff000000));
+  fontFamily: defaultFont2,
+  fontStyle: FontStyle.normal,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff000000),
+);
 
 //**                             **//
 //**  PROMO SCREEN TEXT STYLES   **//

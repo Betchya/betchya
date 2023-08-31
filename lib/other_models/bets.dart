@@ -4,8 +4,13 @@ List<Bet> betFromJson(String str) => List<Bet>.from(
       json.decode(str) as Iterable<dynamic>,
     ); //.map(Bet.fromJson));
 
-String betToJson(List<Bet> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String betToJson(List<Bet> data) => json.encode(
+      List<dynamic>.from(
+        data.map(
+          (x) => x.toJson(),
+        ),
+      ),
+    );
 
 class Bet {
   Bet({
