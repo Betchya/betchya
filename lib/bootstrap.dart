@@ -4,7 +4,7 @@ import 'dart:developer';
 // import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:betchya/amplifyconfiguration.dart';
+import 'package:betchya/amplify_configuration.dart';
 // import 'package:betchya/models/ModelProvider.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
