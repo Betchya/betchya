@@ -12,11 +12,11 @@ class EventsInitial extends EventsState {}
 class EventsLoading extends EventsState {}
 
 class EventsLoaded extends EventsState {
-  final List<Event> events;
   const EventsLoaded(this.events);
+  final List<Event> events;
 }
 
 class EventsError extends EventsState {
-  final String? message;
   const EventsError(this.message);
+  final String? message;
 }
