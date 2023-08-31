@@ -1,10 +1,12 @@
+import 'package:betchya/presentation/views/home_screen/widgets/list_view_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'ListViewContainer.dart';
 
 class EventsHorizontalListView extends StatefulWidget {
+  const EventsHorizontalListView({super.key});
+
   @override
-  _EventsHorizontalListViewState createState() =>
+  State<EventsHorizontalListView> createState() =>
       _EventsHorizontalListViewState();
 }
 
@@ -22,20 +24,23 @@ class _EventsHorizontalListViewState extends State<EventsHorizontalListView> {
         itemCount: 3,
         itemBuilder: (context, index) {
           if (index == 0) {
-            return ListViewContainer(
-                offsetDy: 4,
-                blurRadius: 4,
-                imageUrl: 'assets/images/star-gazing-gifts.png');
+            return const ListViewContainer(
+              offsetDy: 4,
+              blurRadius: 4,
+              imageUrl: 'assets/images/star-gazing-gifts.png',
+            );
           } else if (index == 1) {
-            return ListViewContainer(
-                offsetDy: 4,
-                blurRadius: 4,
-                imageUrl: 'assets/images/star-gazing-gifts1.png');
+            return const ListViewContainer(
+              offsetDy: 4,
+              blurRadius: 4,
+              imageUrl: 'assets/images/star-gazing-gifts1.png',
+            );
           } else if (index == 2) {
-            return ListViewContainer(
-                offsetDy: 4,
-                blurRadius: 4,
-                imageUrl: 'assets/images/star-gazing-gifts2.png');
+            return const ListViewContainer(
+              offsetDy: 4,
+              blurRadius: 4,
+              imageUrl: 'assets/images/star-gazing-gifts2.png',
+            );
           }
           return Container();
         },

@@ -2,31 +2,35 @@ import 'package:flutter/material.dart';
 
 // Widget to display first name of current user.  Includes optional prefix/suffix.
 class FormattedEmailWidget extends StatefulWidget {
+  const FormattedEmailWidget({super.key});
+
   @override
-  _FormattedEmailWidgetState createState() => _FormattedEmailWidgetState();
+  State<FormattedEmailWidget> createState() => _FormattedEmailWidgetState();
 }
 
 // Widget to display first name of current user.  Includes optional prefix/suffix.
 class EmailWidget extends StatefulWidget {
+  const EmailWidget({super.key});
+
   @override
-  _EmailWidgetState createState() => _EmailWidgetState();
+  State<EmailWidget> createState() => _EmailWidgetState();
 }
 
 // Widget to display first and last name of current user.  Includes optional prefix/suffix.
 class ProfileNameWidget extends StatefulWidget {
+  const ProfileNameWidget({super.key, this.prefix, this.suffix});
   final String? prefix;
   final String? suffix;
 
-  ProfileNameWidget({this.prefix, this.suffix});
-
   @override
-  _ProfileNameWidgetState createState() => _ProfileNameWidgetState();
+  State<ProfileNameWidget> createState() => _ProfileNameWidgetState();
 }
 
 // Waits for user to be authenticated, then diplays first name of current user with any prefix/suffix specified.
 class _FormattedEmailWidgetState extends State<FormattedEmailWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(child: Text('Formatted Email Widget state'));
+    return const Text('Formatted Email Widget state');
     // return Container(
     //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
     //   if (state is AuthenticatedWithUserObject) {
@@ -52,8 +56,9 @@ class _FormattedEmailWidgetState extends State<FormattedEmailWidget> {
 
 // Waits for user to be authenticated, then diplays first name of current user with any prefix/suffix specified.
 class _EmailWidgetState extends State<EmailWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(child: Text('Email Widget state'));
+    return const Text('Email Widget state');
     // return Container(
     //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
     //   if (state is AuthenticatedWithUserObject) {
@@ -77,8 +82,9 @@ class _EmailWidgetState extends State<EmailWidget> {
 
 // Waits for user to be authenticated, then diplays entire name of current user with any prefix/suffix specified.
 class _ProfileNameWidgetState extends State<ProfileNameWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(child: Text('Profile Name Widget state'));
+    return const Text('Profile Name Widget state');
     // return Container(
     //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
     //   if (state is AuthenticatedWithUserObject) {

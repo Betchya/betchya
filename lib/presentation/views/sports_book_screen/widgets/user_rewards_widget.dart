@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class UserRewardsWidget extends StatefulWidget {
   const UserRewardsWidget({super.key, required this.changeCategory});
 
-  final Function() changeCategory;
+  final void Function() changeCategory;
 
   @override
   State<UserRewardsWidget> createState() => _UserRewardsWidgetState();
@@ -15,8 +15,8 @@ class UserRewardsWidget extends StatefulWidget {
 class _UserRewardsWidgetState extends State<UserRewardsWidget> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
       height: screenHeight * .3,
@@ -24,12 +24,10 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
       padding: const EdgeInsets.only(top: 10),
       color: const Color(0xff2C1D57),
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Stack(
             children: [
               Align(
-                alignment: Alignment.center,
                 child: SizedBox(
                   width: screenWidth * .3,
                   child: const Icon(CustomIcons.betchyalogo, size: 55),
@@ -47,39 +45,44 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                   child: TextButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyBets(filter: "All")));
+                        context,
+                        MaterialPageRoute<MyBets>(
+                          builder: (context) => const MyBets(filter: 'All'),
+                        ),
+                      );
                     },
                     child: const Text(
                       'My Bets',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
+            children: [
               Text(
                 'Popular',
                 style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               Spacer(),
               Text(
                 'All Sports ',
                 style: TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400),
+                  fontSize: 17,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               Icon(
                 Icons.arrow_forward_ios,
@@ -97,232 +100,274 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                 itemCount: 7,
                 itemBuilder: (context, index) {
                   if (index == 0) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "";
+                              gameCategory = '';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
                             child: const Icon(
                               Icons.camera,
                               color: Colors.white,
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "Live",
-                        style: TextStyle(
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'Live',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   } else if (index == 1) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "EPL";
+                              gameCategory = 'EPL';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == "EPL"
+                              backgroundColor: gameCategory == 'EPL'
                                   ? Colors.white
                                   : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
-                            child: Image.asset("assets/images/EPL.png")),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "EPL",
-                        style: TextStyle(
+                            child: Image.asset('assets/images/EPL.png'),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'EPL',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   } else if (index == 2) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "MLB";
+                              gameCategory = 'MLB';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == "MLB"
+                              backgroundColor: gameCategory == 'MLB'
                                   ? Colors.white
                                   : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
-                            child: Image.asset("assets/images/MLB.png")),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "MLB",
-                        style: TextStyle(
+                            child: Image.asset('assets/images/MLB.png'),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'MLB',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   } else if (index == 3) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "NBA";
+                              gameCategory = 'NBA';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == "NBA"
+                              backgroundColor: gameCategory == 'NBA'
                                   ? Colors.white
                                   : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
-                            child: Image.asset("assets/images/NBA.png")),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "NBA",
-                        style: TextStyle(
+                            child: Image.asset('assets/images/NBA.png'),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'NBA',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   } else if (index == 4) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "NFL";
+                              gameCategory = 'NFL';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == "NFL"
+                              backgroundColor: gameCategory == 'NFL'
                                   ? Colors.white
                                   : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
-                            child: Image.asset("assets/images/NFL.jpg")),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "NFL",
-                        style: TextStyle(
+                            child: Image.asset('assets/images/NFL.jpg'),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'NFL',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   } else if (index == 5) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "ML5";
+                              gameCategory = 'ML5';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == "ML5"
+                              backgroundColor: gameCategory == 'ML5'
                                   ? Colors.white
                                   : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
                             child: Icon(
                               Icons.sports_esports,
-                              color: gameCategory == "ML5"
+                              color: gameCategory == 'ML5'
                                   ? Colors.black
                                   : Colors.white,
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "ML5",
-                        style: TextStyle(
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'ML5',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   } else if (index == 6) {
-                    return Column(children: [
-                      SizedBox(
-                        height: screenHeight * .09,
-                        width: screenWidth * .15,
-                        child: OutlinedButton(
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: screenHeight * .09,
+                          width: screenWidth * .15,
+                          child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = "Esport";
+                              gameCategory = 'Esport';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == "Esport"
+                              backgroundColor: gameCategory == 'Esport'
                                   ? Colors.white
                                   : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
-                                  width: 2, color: Colors.white),
+                                width: 2,
+                                color: Colors.white,
+                              ),
                             ),
                             child: Icon(
                               Icons.sports_gymnastics,
-                              color: gameCategory == "Esport"
+                              color: gameCategory == 'Esport'
                                   ? Colors.black
                                   : Colors.white,
-                            )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Text(
-                        "Esport",
-                        style: TextStyle(
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        const Text(
+                          'Esport',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ]);
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ],
+                    );
                   }
                   return Container();
                 },

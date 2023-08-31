@@ -14,12 +14,11 @@ class EventTabList extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Container(
+    return ColoredBox(
       color: Colors.white,
       child: ListView.separated(
         padding: const EdgeInsets.only(top: 15),
         clipBehavior: Clip.none,
-        scrollDirection: Axis.vertical,
         itemCount: events.length,
         itemBuilder: (context, index) {
           return eventListItem(screenHeight, context, index);
@@ -39,9 +38,11 @@ class EventTabList extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => EventDetails(event: events[index])));
+            context,
+            MaterialPageRoute<EventDetails>(
+              builder: (context) => EventDetails(event: events[index]),
+            ),
+          );
         },
         child: SizedBox(
           height: screenHeight * .2,
@@ -61,27 +62,36 @@ class EventTabList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                            DateFormat.MMMd()
-                                .format(events[index].date)
-                                .toString(),
-                            style: const TextStyle(
-                                fontSize: 13,
-                                color: Color(0xFF00B498),
-                                fontWeight: FontWeight.w500)),
+                          DateFormat.MMMd()
+                              .format(events[index].date)
+                              .toString(),
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF00B498),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                         SizedBox(
                           height: screenHeight * .005,
                         ),
-                        Text(events[index].name,
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600)),
+                        Text(
+                          events[index].name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                         SizedBox(
                           height: screenHeight * .005,
                         ),
-                        Text(events[index].category,
-                            style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF595959))),
+                        Text(
+                          events[index].category,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFF595959),
+                          ),
+                        ),
                       ],
                     ),
                   ),

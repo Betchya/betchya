@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class RecentWinnersRow extends StatelessWidget {
+  const RecentWinnersRow({
+    super.key,
+    required this.nameText,
+    required this.moneyText,
+  });
   final String nameText;
   final String moneyText;
-
-  const RecentWinnersRow(
-      {Key? key, required this.nameText, required this.moneyText})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +15,14 @@ class RecentWinnersRow extends StatelessWidget {
       children: [
         Text(
           nameText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           moneyText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.bold,
             color: Colors.grey,

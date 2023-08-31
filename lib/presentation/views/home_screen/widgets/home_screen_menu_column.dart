@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:betchya/presentation/styles.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreenMenuColumn extends StatelessWidget {
-  const HomeScreenMenuColumn(
-      {Key? key,
-      required this.screenHeight,
-      required this.icon,
-      required this.text})
-      : super(key: key);
+  const HomeScreenMenuColumn({
+    super.key,
+    required this.screenHeight,
+    required this.icon,
+    required this.text,
+  });
 
   final double screenHeight;
   final IconData icon;

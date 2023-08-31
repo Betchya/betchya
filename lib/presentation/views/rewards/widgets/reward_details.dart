@@ -12,21 +12,22 @@ class RewardDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Color(0xff2C1D57),
-            statusBarIconBrightness: Brightness.light,
-          ),
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: const Color(0xFF5D2380),
-          title: const Text('Back', style: TextStyle(fontSize: 17)),
-          leading: IconButton(
-              onPressed: () => Navigator.of(context).maybePop(),
-              icon: const Icon(Icons.arrow_back_ios))),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Color(0xff2C1D57),
+          statusBarIconBrightness: Brightness.light,
+        ),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        foregroundColor: const Color(0xFF5D2380),
+        title: const Text('Back', style: TextStyle(fontSize: 17)),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).maybePop(),
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 30),
@@ -36,7 +37,9 @@ class RewardDetails extends StatelessWidget {
                   Text(
                     reward.points.toString(),
                     style: const TextStyle(
-                        fontSize: 30, fontWeight: FontWeight.w500),
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const Icon(
                     Icons.star,
@@ -70,11 +73,12 @@ class RewardDetails extends StatelessWidget {
                       height: 300,
                       width: 200,
                       fit: BoxFit.contain,
-                      progressIndicatorBuilder: ((context, url, progress) =>
+                      progressIndicatorBuilder: (context, url, progress) =>
                           Center(
-                            child: CircularProgressIndicator(
-                                value: progress.progress),
-                          )),
+                        child: CircularProgressIndicator(
+                          value: progress.progress,
+                        ),
+                      ),
                     )
                   : const Placeholder(
                       fallbackHeight: 300,
@@ -82,18 +86,22 @@ class RewardDetails extends StatelessWidget {
                     ),
             ),
             SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * .06,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: const Color(0xff00B498),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    onPressed: () => {/*TODO: Reward Redemption */},
-                    child: const Text(
-                      'Redeem Reward',
-                      style: TextStyle(fontSize: 15),
-                    ))),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * .06,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff00B498),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                onPressed: () => {},
+                child: const Text(
+                  'Redeem Reward',
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -40,7 +40,7 @@ class _BetsWidgetState extends State<BetsWidget> {
                       height: screenHeight * .01,
                     ),
                     Text(
-                      DateFormat.yMMMMd('en_US').format(bet.date).toString(),
+                      DateFormat.yMMMMd('en_US').format(bet.date),
                       style: const TextStyle(
                         fontSize: 13,
                         color: Color(0xFF00B498),

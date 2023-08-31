@@ -1,5 +1,4 @@
-// import 'package:flutter/cupertino.dart';
-import 'package:betchya/presentation/views/home_screen/widgets/HomeScreenMenuColumn.dart';
+import 'package:betchya/presentation/views/home_screen/widgets/home_screen_menu_column.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -7,15 +6,15 @@ class HomeScreenMenu extends StatefulWidget {
   const HomeScreenMenu({super.key});
 
   @override
-  _HomeScreenMenuState createState() => _HomeScreenMenuState();
+  State<HomeScreenMenu> createState() => _HomeScreenMenuState();
 }
 
 class _HomeScreenMenuState extends State<HomeScreenMenu> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
-    return Container(
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return SizedBox(
       height: screenHeight * .12,
       child: Container(
         margin:
@@ -27,21 +26,25 @@ class _HomeScreenMenuState extends State<HomeScreenMenu> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 HomeScreenMenuColumn(
-                    screenHeight: screenHeight,
-                    icon: LineAwesomeIcons.utensils,
-                    text: 'Dining'),
+                  screenHeight: screenHeight,
+                  icon: LineAwesomeIcons.utensils,
+                  text: 'Dining',
+                ),
                 HomeScreenMenuColumn(
-                    screenHeight: screenHeight,
-                    icon: LineAwesomeIcons.city,
-                    text: 'Amenities'),
+                  screenHeight: screenHeight,
+                  icon: LineAwesomeIcons.city,
+                  text: 'Amenities',
+                ),
                 HomeScreenMenuColumn(
-                    screenHeight: screenHeight,
-                    icon: LineAwesomeIcons.dice,
-                    text: 'Casino'),
+                  screenHeight: screenHeight,
+                  icon: LineAwesomeIcons.dice,
+                  text: 'Casino',
+                ),
                 HomeScreenMenuColumn(
-                    screenHeight: screenHeight,
-                    icon: LineAwesomeIcons.users,
-                    text: 'Family'),
+                  screenHeight: screenHeight,
+                  icon: LineAwesomeIcons.users,
+                  text: 'Family',
+                ),
               ],
             ),
             Row(
@@ -55,8 +58,8 @@ class _HomeScreenMenuState extends State<HomeScreenMenu> {
   }
 
   Widget dividerLine(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    return (Container(
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Container(
       height: 3,
       width: screenWidth * .91,
       decoration: BoxDecoration(
@@ -65,17 +68,17 @@ class _HomeScreenMenuState extends State<HomeScreenMenu> {
             color: Colors.black.withOpacity(.1),
             // spreadRadius: 5,
             blurRadius: 2,
-            offset: Offset(0, 1), // changes position of shadow
+            offset: const Offset(0, 1), // changes position of shadow
           ),
         ],
       ),
-      child: Divider(
+      child: const Divider(
         height: 1,
         thickness: 1,
         indent: 0,
         endIndent: 0,
         color: Color(0xffC4C4C4),
       ),
-    ));
+    );
   }
 }

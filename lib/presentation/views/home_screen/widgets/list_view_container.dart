@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ListViewContainer extends StatelessWidget {
+  const ListViewContainer({
+    super.key,
+    this.screenHeight,
+    required this.offsetDy,
+    required this.blurRadius,
+    required this.imageUrl,
+  });
   final double? screenHeight;
   final double offsetDy;
   final double blurRadius;
   final String imageUrl;
 
-  const ListViewContainer({
-    Key? key,
-    this.screenHeight,
-    required this.offsetDy,
-    required this.blurRadius,
-    required this.imageUrl,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenHeight != null ? screenHeight : null,
+      height: screenHeight,
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(

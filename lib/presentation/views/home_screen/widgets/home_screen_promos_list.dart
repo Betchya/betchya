@@ -1,18 +1,19 @@
-import 'package:betchya/presentation/views/home_screen/widgets/ListViewContainer.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:betchya/presentation/views/home_screen/widgets/list_view_container.dart';
 import 'package:flutter/material.dart';
-import 'ListViewContainer.dart';
+// import 'ListViewContainer.dart';
 
 class HomeScreenPromosList extends StatefulWidget {
+  const HomeScreenPromosList({super.key});
+
   @override
-  _HomeScreenPromosListState createState() => _HomeScreenPromosListState();
+  State<HomeScreenPromosList> createState() => _HomeScreenPromosListState();
 }
 
 class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       height: screenHeight * .25,
       margin: EdgeInsets.only(left: screenWidth * .043),
@@ -26,22 +27,24 @@ class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListViewContainer(
-                    screenHeight: screenHeight * .172,
-                    offsetDy: 6,
-                    blurRadius: 5,
-                    imageUrl: 'assets/images/promo_1.png'),
+                  screenHeight: screenHeight * .172,
+                  offsetDy: 6,
+                  blurRadius: 5,
+                  imageUrl: 'assets/images/promo_1.png',
+                ),
                 SizedBox(
                   height: screenHeight * .02,
                 ),
-                Text(
+                const Text(
                   'Host a Special Event!',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Are you in charge of planning an important \nconference, trade show meeting, or special event?',
+                const Text(
+                  'Are you in charge of planning an important \nconference, '
+                  'trade show meeting, or special event?',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
@@ -54,22 +57,24 @@ class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListViewContainer(
-                    screenHeight: screenHeight * .18,
-                    offsetDy: .5,
-                    blurRadius: 10,
-                    imageUrl: 'assets/images/promo_2.png'),
+                  screenHeight: screenHeight * .18,
+                  offsetDy: .5,
+                  blurRadius: 10,
+                  imageUrl: 'assets/images/promo_2.png',
+                ),
                 SizedBox(
                   height: screenHeight * .01,
                 ),
-                Text(
+                const Text(
                   'Gift Shop',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'This one-of-a-kind shop specializes in products \ndesigned and made in the USA.',
+                const Text(
+                  'This one-of-a-kind shop specializes in products \ndesigned '
+                  'and made in the USA.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
@@ -82,22 +87,24 @@ class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListViewContainer(
-                    screenHeight: screenHeight * .172,
-                    offsetDy: 6,
-                    blurRadius: 5,
-                    imageUrl: 'assets/images/promo_3.png'),
+                  screenHeight: screenHeight * .172,
+                  offsetDy: 6,
+                  blurRadius: 5,
+                  imageUrl: 'assets/images/promo_3.png',
+                ),
                 SizedBox(
                   height: screenHeight * .02,
                 ),
-                Text(
+                const Text(
                   'Plan a Trip to Grande Ronde, Oregon!',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'We invite you to visit Grande Ronde, only 65-mile \ndrive from Portland.',
+                const Text(
+                  'We invite you to visit Grande Ronde, only 65-mile \ndrive '
+                  'from Portland.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,

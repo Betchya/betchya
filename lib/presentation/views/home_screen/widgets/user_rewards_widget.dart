@@ -1,30 +1,28 @@
+import 'package:betchya/logic/points/points_cubit.dart';
+import 'package:betchya/presentation/views/home_screen/widgets/name_widget.dart';
+import 'package:betchya/presentation/views/rewards/rewards_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../logic/points/points_cubit.dart';
-import '../../rewards/rewards_screen.dart';
-import 'NameWidget.dart';
-
 class UserRewardsWidget extends StatelessWidget {
-  const UserRewardsWidget({Key? key}) : super(key: key);
+  const UserRewardsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       height: screenHeight * .375,
       color: const Color(0xff2C1D57),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FirstNameWidget(prefix: "Welcome, "),
+              const FirstNameWidget(prefix: 'Welcome, '),
               Container(
                 height: screenHeight * .04,
                 width: screenWidth * .23,
@@ -34,15 +32,18 @@ class UserRewardsWidget extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RewardsScreen())),
+                    context,
+                    MaterialPageRoute<RewardsScreen>(
+                      builder: (context) => const RewardsScreen(),
+                    ),
+                  ),
                   child: const Text(
                     'Redeem',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500),
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
@@ -50,7 +51,9 @@ class UserRewardsWidget extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: screenHeight * .04, bottom: screenHeight * .01),
+              top: screenHeight * .04,
+              bottom: screenHeight * .01,
+            ),
             child: const Text(
               'Points available',
               style: TextStyle(fontSize: 11, color: Color(0xffB2B2B4)),
@@ -63,9 +66,10 @@ class UserRewardsWidget extends StatelessWidget {
                   return Text(
                     '$state ',
                     style: const TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
+                      fontSize: 28,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
                   );
                 },
               ),
@@ -128,7 +132,7 @@ class UserRewardsWidget extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (context, index) {
         if (index == 0) {
-          return Container(
+          return DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(13),
               color: const Color(0xFF94A3B8).withOpacity(0.50),
@@ -154,9 +158,10 @@ class UserRewardsWidget extends StatelessWidget {
               child: const Text(
                 'Details',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           );
@@ -173,9 +178,10 @@ class UserRewardsWidget extends StatelessWidget {
               child: const Text(
                 'Dining',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           );
@@ -192,9 +198,10 @@ class UserRewardsWidget extends StatelessWidget {
               child: const Text(
                 'Casino',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           );
@@ -211,9 +218,10 @@ class UserRewardsWidget extends StatelessWidget {
               child: const Text(
                 'Events',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           );

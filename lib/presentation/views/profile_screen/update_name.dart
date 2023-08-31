@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UpdateName extends StatefulWidget {
-  const UpdateName({Key? key}) : super(key: key);
+  const UpdateName({super.key});
 
   @override
   State<UpdateName> createState() => _UpdateNameState();
@@ -25,8 +25,9 @@ class _UpdateNameState extends State<UpdateName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff2C1D57),
-        body: Column(children: [
+      backgroundColor: const Color(0xff2C1D57),
+      body: Column(
+        children: [
           Center(
             child: Form(
               key: _formKey,
@@ -37,24 +38,25 @@ class _UpdateNameState extends State<UpdateName> {
                   ),
                   // Get additional information for User needed by database
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10),
                     child: Text(
-                      "Please update your information below.",
+                      'Please update your information below.',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 24,
-                          color: Colors.white),
+                        fontWeight: FontWeight.w800,
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: _firstNameController,
                       decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        hintText: "First Name",
+                        hintText: 'First Name',
                         border: OutlineInputBorder(),
                       ),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -67,14 +69,14 @@ class _UpdateNameState extends State<UpdateName> {
                     height: 10,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: _lastNameController,
                       decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        hintText: "Last Name",
+                        hintText: 'Last Name',
                         border: OutlineInputBorder(),
                       ),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -87,34 +89,38 @@ class _UpdateNameState extends State<UpdateName> {
                     height: 10,
                   ),
                   Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: SizedBox(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 1, 180, 153)),
+                    padding: const EdgeInsets.all(10),
+                    child: SizedBox(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromARGB(255, 1, 180, 153),
                           ),
-                          onPressed: () {
-                            // print(_firstNameController.text);
-                            // APIWrangler()
-                            //     .updateName(_firstNameController.text,
-                            //         _lastNameController.text)
-                            //     .then((user) {
-                            //   print(user);
-                            //   if (user != null) {
-                            //     AuthenticatedWithUserObject(user);
-                            //   }
-                            // });
-                          },
-                          child: const Text('Next'),
                         ),
-                      )),
+                        onPressed: () {
+                          // print(_firstNameController.text);
+                          // APIWrangler()
+                          //     .updateName(_firstNameController.text,
+                          //         _lastNameController.text)
+                          //     .then((user) {
+                          //   print(user);
+                          //   if (user != null) {
+                          //     AuthenticatedWithUserObject(user);
+                          //   }
+                          // });
+                        },
+                        child: const Text('Next'),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           )
-        ]));
+        ],
+      ),
+    );
   }
 }

@@ -1,13 +1,12 @@
+import 'package:betchya/logic/points/points_cubit.dart';
+import 'package:betchya/presentation/views/home_screen/widgets/name_widget.dart';
+import 'package:betchya/presentation/views/profile_screen/profile_detail_screen.dart';
 import 'package:betchya/presentation/views/profile_screen/widgets/my_bets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../logic/points/points_cubit.dart';
-import '../home_screen/widgets/NameWidget.dart';
-import 'profile_detail_screen.dart';
-
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              WholeNameWidget(),
+              const WholeNameWidget(),
               const SizedBox(
                 height: 50,
               ),
@@ -38,9 +37,11 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) {
-                        return ProfileDetail();
-                      }),
+                      MaterialPageRoute<ProfileDetail>(
+                        builder: (context) {
+                          return const ProfileDetail();
+                        },
+                      ),
                     );
                   },
                 ),
@@ -97,9 +98,11 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyBets(filter: "Current")));
+                      context,
+                      MaterialPageRoute<MyBets>(
+                        builder: (context) => const MyBets(filter: 'Current'),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -118,9 +121,11 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyBets(filter: "Past")));
+                      context,
+                      MaterialPageRoute<MyBets>(
+                        builder: (context) => const MyBets(filter: 'Past'),
+                      ),
+                    );
                   },
                 ),
               ),

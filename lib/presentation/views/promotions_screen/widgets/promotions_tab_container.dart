@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class PromotionsTabContainer extends StatelessWidget {
   const PromotionsTabContainer({
-    Key? key,
+    super.key,
     required this.screenHeight,
     required this.imageAsset,
-  }) : super(key: key);
+  });
 
   final double screenHeight;
   final String imageAsset;
@@ -18,7 +18,7 @@ class PromotionsTabContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            offset: Offset(0, 6),
+            offset: const Offset(0, 6),
             blurRadius: 4,
             color: Colors.black.withOpacity(.25),
           ),

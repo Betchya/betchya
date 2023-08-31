@@ -15,7 +15,7 @@ class RewardCard extends StatelessWidget {
         onTap: () => {
           Navigator.push(
               context,
-              MaterialPageRoute(
+              MaterialPageRoute<RewardDetails>(
                 builder: (context) => RewardDetails(
                   reward: reward,
                 ),
@@ -29,7 +29,7 @@ class RewardCard extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
+                child: ColoredBox(
                   color: const Color(0xff00B498),
                   child: Center(
                     child: Row(

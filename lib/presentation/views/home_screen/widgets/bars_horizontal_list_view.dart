@@ -1,17 +1,18 @@
-import 'package:flutter/cupertino.dart';
+import 'package:betchya/presentation/views/home_screen/widgets/list_view_container.dart';
 import 'package:flutter/material.dart';
-import 'ListViewContainer.dart';
 
 class BarsHorizontalListView extends StatefulWidget {
+  const BarsHorizontalListView({super.key});
+
   @override
-  _BarsHorizontalListViewState createState() => _BarsHorizontalListViewState();
+  State<BarsHorizontalListView> createState() => _BarsHorizontalListViewState();
 }
 
 class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       height: screenHeight * .298,
       margin: EdgeInsets.only(left: screenWidth * .043),
@@ -24,22 +25,24 @@ class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListViewContainer(
-                    offsetDy: .5,
-                    blurRadius: 4,
-                    imageUrl: 'assets/images/north-bar.png'),
+                const ListViewContainer(
+                  offsetDy: .5,
+                  blurRadius: 4,
+                  imageUrl: 'assets/images/north-bar.png',
+                ),
                 SizedBox(
                   height: screenHeight * .02,
                 ),
-                Text(
+                const Text(
                   'North Bar',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Serving mixed drinks and beer on tap right in the \nheart of the action.',
+                const Text(
+                  'Serving mixed drinks and beer on tap right in the \nheart '
+                  'of the action.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
@@ -51,22 +54,24 @@ class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListViewContainer(
-                    offsetDy: .5,
-                    blurRadius: 4,
-                    imageUrl: 'assets/images/sips-hero.png'),
+                const ListViewContainer(
+                  offsetDy: .5,
+                  blurRadius: 4,
+                  imageUrl: 'assets/images/sips-hero.png',
+                ),
                 SizedBox(
                   height: screenHeight * .01,
                 ),
-                Text(
+                const Text(
                   'SIPS',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Enjoy your favorite glass of wine or try a new one! \nSips has a special beverage for everyone.',
+                const Text(
+                  'Enjoy your favorite glass of wine or try a new one! \nSips '
+                  'has a special beverage for everyone.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,
@@ -78,22 +83,24 @@ class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListViewContainer(
-                    offsetDy: .5,
-                    blurRadius: 4,
-                    imageUrl: 'assets/images/mountain-view-bar.png'),
+                const ListViewContainer(
+                  offsetDy: .5,
+                  blurRadius: 4,
+                  imageUrl: 'assets/images/mountain-view-bar.png',
+                ),
                 SizedBox(
                   height: screenHeight * .01,
                 ),
-                Text(
+                const Text(
                   'Mountain View Bar',
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Our great bar menu features burgers, buffalo wings, \nnachos, NW micro-brews on tap.',
+                const Text(
+                  'Our great bar menu features burgers, buffalo wings, '
+                  '\nnachos, NW micro-brews on tap.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey,

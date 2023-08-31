@@ -1,6 +1,6 @@
 import 'package:betchya/presentation/views/events_screen/events_screen.dart';
 import 'package:betchya/presentation/views/home_screen/home_screen.dart';
-import 'package:betchya/presentation/views/login/login_screen.dart';
+// import 'package:betchya/presentation/views/login/login_screen.dart';
 import 'package:betchya/presentation/views/profile_screen/profile_screen.dart';
 import 'package:betchya/presentation/views/promotions_screen/promotions_screen.dart';
 import 'package:betchya/presentation/views/root_screen.dart';
@@ -8,7 +8,7 @@ import 'package:betchya/presentation/views/sports_book_screen/sports_book_screen
 import 'package:flutter/material.dart';
 
 class AppRouter {
-  Route onGenerateRoute(RouteSettings routeSettings) {
+  Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       // case '/':
       //   return MaterialPageRoute(

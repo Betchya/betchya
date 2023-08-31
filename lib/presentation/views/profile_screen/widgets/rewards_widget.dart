@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Waits for user to be authenticated, then diplays first name of current user with any prefix/suffix specified.
 class RewardsWidget extends StatelessWidget {
@@ -9,7 +8,8 @@ class RewardsWidget extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
-    return Container(child: Text('Rewards Widget'));
+    // This used to be wrapped in a Container()
+    return const Text('Rewards Widget');
     // return FutureBuilder<UserRewards?>(
     //     future: APIWrangler().getRewards(),
     //     builder: (context, AsyncSnapshot<UserRewards?> snapshot) {

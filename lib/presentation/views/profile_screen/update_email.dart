@@ -47,7 +47,7 @@ class _UpdateEmailState extends State<UpdateEmail> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: _emailController,

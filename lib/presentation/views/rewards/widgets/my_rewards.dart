@@ -92,7 +92,6 @@ class MyRewards extends StatelessWidget {
           return ListView.builder(
             // padding: const EdgeInsets.only(top: 15),
             clipBehavior: Clip.antiAlias,
-            scrollDirection: Axis.vertical,
             itemCount: state.rewards.length,
             itemBuilder: (context, index) {
               return RewardCard(reward: state.rewards[index]);
