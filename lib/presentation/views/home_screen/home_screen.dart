@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
               automaticallyImplyLeading: false,
               floating: true,
               snap: true,
-            )
+            ),
           ];
         },
         body: SingleChildScrollView(
@@ -122,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                                                       Navigator.pop(
                                                     context,
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -238,7 +238,7 @@ class HomeScreen extends StatelessWidget {
                                                       Navigator.pop(
                                                     context,
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -354,7 +354,7 @@ class HomeScreen extends StatelessWidget {
                                                       Navigator.pop(
                                                     context,
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           ),

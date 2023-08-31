@@ -114,7 +114,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                             labelText: 'Amount',
                           ),
                           inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
+                            FilteringTextInputFormatter.digitsOnly,
                           ],
                         ),
                       ),

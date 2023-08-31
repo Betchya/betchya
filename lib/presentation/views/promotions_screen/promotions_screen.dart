@@ -47,7 +47,7 @@ class PromotionsScreen extends StatelessWidget {
                   ' engaging and interactive experience. Tap a promotion to'
                   ' view details.',
                   style: subHeader2,
-                )
+                ),
               ],
             ),
           ),

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final goRouter = GoRouter(
       routes: [
-        GoRoute(path: '/', builder: (context, state) => const RootScreen())
+        GoRoute(path: '/', builder: (context, state) => const RootScreen()),
       ],
     );
 

@@ -25,7 +25,7 @@ class RewardsScreen extends StatelessWidget {
                 Icons.close,
                 color: Color(0xFFA0A0A0),
               ),
-            )
+            ),
           ],
           bottom: const TabBar(
             labelPadding: EdgeInsets.all(10),

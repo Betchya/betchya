@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 List<Reward> rewardFromJson(String str) => List<Reward>.from(
-    json.decode(str) as Iterable<dynamic>); // .map((x) => Reward.fromJson(x)));
+      json.decode(str) as Iterable<dynamic>,
+    ); // .map((x) => Reward.fromJson(x)));
 
 String rewardToJson(List<Reward> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));

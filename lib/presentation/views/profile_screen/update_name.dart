@@ -118,7 +118,7 @@ class _UpdateNameState extends State<UpdateName> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

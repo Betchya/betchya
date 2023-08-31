@@ -33,7 +33,7 @@ class EventDetails extends StatelessWidget {
               Icons.close,
               color: Color(0xFFA0A0A0),
             ),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -79,7 +79,7 @@ class EventDetails extends StatelessWidget {
                         ),
                         TextSpan(
                           text: DateFormat.yMd().format(event.date),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -96,7 +96,7 @@ class EventDetails extends StatelessWidget {
                         ),
                         TextSpan(
                           text: DateFormat.jm().format(event.date),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -111,7 +111,7 @@ class EventDetails extends StatelessWidget {
                           text: 'Ticket Price:  ',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        TextSpan(text: '\$${event.price}+')
+                        TextSpan(text: '\$${event.price}+'),
                       ],
                     ),
                   ),
@@ -126,7 +126,7 @@ class EventDetails extends StatelessWidget {
                           text: 'Age:  ',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        TextSpan(text: '${event.minAge} and over')
+                        TextSpan(text: '${event.minAge} and over'),
                       ],
                     ),
                   ),
@@ -161,7 +161,7 @@ class EventDetails extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
               ),
             ),
-            Expanded(child: Text(event.description))
+            Expanded(child: Text(event.description)),
           ],
         ),
       ),

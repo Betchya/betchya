@@ -52,7 +52,7 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
               automaticallyImplyLeading: false,
               floating: true,
               snap: true,
-            )
+            ),
           ];
         },
         body: SingleChildScrollView(

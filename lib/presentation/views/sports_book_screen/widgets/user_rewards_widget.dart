@@ -133,7 +133,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   } else if (index == 1) {
@@ -170,7 +170,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   } else if (index == 2) {
@@ -207,7 +207,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   } else if (index == 3) {
@@ -244,7 +244,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   } else if (index == 4) {
@@ -281,7 +281,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   } else if (index == 5) {
@@ -323,7 +323,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   } else if (index == 6) {
@@ -365,7 +365,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
+                        ),
                       ],
                     );
                   }
@@ -378,7 +378,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                 },
               ),
             ),
-          )
+          ),
         ],
       ),
     );

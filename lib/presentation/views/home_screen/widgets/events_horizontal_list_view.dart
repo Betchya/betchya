@@ -13,8 +13,8 @@ class EventsHorizontalListView extends StatefulWidget {
 class _EventsHorizontalListViewState extends State<EventsHorizontalListView> {
   @override
   Widget build(BuildContext context) {
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Container(
       height: screenHeight * .17,
       margin: EdgeInsets.only(left: screenWidth * .043),

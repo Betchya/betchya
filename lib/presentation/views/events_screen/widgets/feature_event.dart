@@ -77,7 +77,7 @@ class FeatureEvent extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],

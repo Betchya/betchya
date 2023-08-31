@@ -27,7 +27,7 @@ class MyBets extends StatelessWidget {
               Icons.close,
               color: Color(0xFFA0A0A0),
             ),
-          )
+          ),
         ],
       ),
       body: Padding(

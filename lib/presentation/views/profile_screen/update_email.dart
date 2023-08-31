@@ -41,9 +41,10 @@ class _UpdateEmailState extends State<UpdateEmail> {
                     child: Text(
                       'Please update your information below.',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 24,
-                          color: Colors.white),
+                        fontWeight: FontWeight.w800,
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Padding(
@@ -96,7 +97,7 @@ class _UpdateEmailState extends State<UpdateEmail> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

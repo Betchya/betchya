@@ -104,7 +104,7 @@ class _BetsWidgetState extends State<BetsWidget> {
                           style: const TextStyle(color: Colors.deepPurple),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               );

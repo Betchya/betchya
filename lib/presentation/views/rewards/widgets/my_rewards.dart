@@ -40,7 +40,7 @@ class MyRewards extends StatelessWidget {
                   Icons.star,
                   color: Color(0xffFCCB00),
                   size: 25,
-                )
+                ),
               ],
             ),
           ),

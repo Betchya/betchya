@@ -77,7 +77,7 @@ class UserRewardsWidget extends StatelessWidget {
                 Icons.star,
                 color: Color(0xffFCCB00),
                 size: 15,
-              )
+              ),
             ],
           ),
           Padding(
@@ -117,7 +117,7 @@ class UserRewardsWidget extends StatelessWidget {
               height: screenHeight * .04,
               child: _horizontalCategoryList(screenHeight, screenWidth),
             ),
-          )
+          ),
         ],
       ),
     );

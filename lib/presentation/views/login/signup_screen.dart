@@ -1,3 +1,4 @@
+// ignore_for_file: lines_longer_than_80_chars
 // import 'package:betchya/logic/authentication/authentication_bloc/auth_bloc.dart';
 // import 'package:betchya/presentation/views/login/login_screen.dart';
 // import 'package:email_validator/email_validator.dart';

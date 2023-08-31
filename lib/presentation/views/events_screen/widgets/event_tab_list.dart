@@ -110,7 +110,7 @@ class EventTabList extends StatelessWidget {
                     height: screenHeight * .2,
                     fit: BoxFit.cover,
                   ),
-                )
+                ),
               ],
             ),
           ),
