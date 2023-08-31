@@ -1,11 +1,9 @@
-// import 'package:flutter/cupertino.dart';
+import 'package:betchya/presentation/styles.dart';
+import 'package:betchya/presentation/views/promotions_screen/widgets/promotions_tab_container.dart';
 import 'package:flutter/material.dart';
 
-import '../../../styles.dart';
-import 'PromotionsTabContainer.dart';
-
 class PromotionsTabBar extends StatefulWidget {
-  const PromotionsTabBar({Key? key}) : super(key: key);
+  const PromotionsTabBar({super.key});
 
   @override
   State<PromotionsTabBar> createState() => _PromotionsTabBarState();
@@ -43,7 +41,6 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
             alignment: Alignment.center,
             width: screenWidth * .9,
             child: TabBar(
-              isScrollable: false,
               labelPadding: EdgeInsets.zero,
               controller: _tabController,
               labelStyle: selectedTabText,
@@ -77,9 +74,7 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
               MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
-                removeBottom: false,
                 child: ListView.separated(
-                  scrollDirection: Axis.vertical,
                   itemCount: 4,
                   itemBuilder: (context, index) {
                     if (index == 0) {
@@ -89,16 +84,19 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
                       );
                     } else if (index == 1) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/casino_promo_1.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/casino_promo_1.png',
+                      );
                     } else if (index == 2) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/casino_promo_2.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/casino_promo_2.png',
+                      );
                     } else if (index == 3) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/casino_promo_3.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/casino_promo_3.png',
+                      );
                     } else {
                       return Container();
                     }
@@ -113,15 +111,14 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
               MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
-                removeBottom: false,
                 child: ListView.separated(
-                  scrollDirection: Axis.vertical,
                   itemCount: 1,
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/food_promo_1.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/food_promo_1.png',
+                      );
                     } else {
                       return Container();
                     }
@@ -136,23 +133,24 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
               MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
-                removeBottom: false,
                 child: ListView.separated(
-                  scrollDirection: Axis.vertical,
                   itemCount: 4,
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/casino_promo_1.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/casino_promo_1.png',
+                      );
                     } else if (index == 1) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/casino_promo_2.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/casino_promo_2.png',
+                      );
                     } else if (index == 2) {
                       return PromotionsTabContainer(
-                          screenHeight: screenHeight,
-                          imageAsset: 'assets/images/casino_promo_3.png');
+                        screenHeight: screenHeight,
+                        imageAsset: 'assets/images/casino_promo_3.png',
+                      );
                     } else {
                       return Container();
                     }
