@@ -1,9 +1,8 @@
+import 'package:betchya/presentation/views/events_screen/widgets/events_body.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/events_body.dart';
-
 class EventsScreen extends StatelessWidget {
-  const EventsScreen({Key? key}) : super(key: key);
+  const EventsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

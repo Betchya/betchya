@@ -12,11 +12,11 @@ class RewardsInitial extends RewardsState {}
 class RewardsLoading extends RewardsState {}
 
 class RewardsLoaded extends RewardsState {
-  final List<Reward> rewards;
   const RewardsLoaded(this.rewards);
+  final List<Reward> rewards;
 }
 
 class RewardsError extends RewardsState {
-  final String? message;
   const RewardsError(this.message);
+  final String? message;
 }

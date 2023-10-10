@@ -8,17 +8,6 @@ String eventToJson(List<Event> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Event {
-  String description;
-  String name;
-  int minAge;
-  String category;
-  String? imageUrl;
-  int price;
-  DateTime date;
-  String id;
-  String location;
-  bool featured;
-
   Event({
     required this.description,
     required this.name,
@@ -44,6 +33,16 @@ class Event {
         location: json['location'] as String,
         featured: json['featured'] as bool,
       );
+  String description;
+  String name;
+  int minAge;
+  String category;
+  String? imageUrl;
+  int price;
+  DateTime date;
+  String id;
+  String location;
+  bool featured;
 
   Map<String, dynamic> toJson() => {
         'description': description,

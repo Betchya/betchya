@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 List<Reward> rewardFromJson(String str) => List<Reward>.from(
-    json.decode(str) as Iterable<dynamic>); // .map((x) => Reward.fromJson(x)));
+      json.decode(str) as Iterable<dynamic>,
+    ); // .map((x) => Reward.fromJson(x)));
 
 String rewardToJson(List<Reward> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -16,13 +17,6 @@ class Reward {
     required this.imageUrl,
   });
 
-  String name;
-  String information;
-  int points;
-  String id;
-  String subtitle;
-  String imageUrl;
-
   factory Reward.fromJson(Map<String, dynamic> json) => Reward(
         name: json['name'] as String,
         information: json['information'] as String,
@@ -31,6 +25,13 @@ class Reward {
         subtitle: json['subtitle'] as String,
         imageUrl: json['imageURL'] as String,
       );
+
+  String name;
+  String information;
+  int points;
+  String id;
+  String subtitle;
+  String imageUrl;
 
   Map<String, dynamic> toJson() => {
         'name': name,

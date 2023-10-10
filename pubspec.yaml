@@ -8,26 +8,29 @@ environment:
   flutter: 3.3.10
 
 dependencies:
-  amplify_api: ^0.6.13
-  amplify_flutter: ^0.6.12
+  # amplify_api: ^0.6.13
+  amplify_auth_cognito: ^0.6.13
+  amplify_authenticator: ^0.2.5
+  amplify_flutter: ^0.6.13
   bloc: ^8.1.1
   cached_network_image: ^3.2.3
   carousel_slider: ^4.2.1
-  cloud_firestore: ^4.5.0
+  # cloud_firestore: ^4.5.0
   crypto: ^3.0.2
   email_validator: ^2.1.17
   equatable: ^2.0.5
-  firebase_auth: ^4.4.0
+  # firebase_auth: ^4.4.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
   flutter_facebook_auth: ^5.0.8
   flutter_localizations:
     sdk: flutter
+  go_router: ^10.1.2
   google_fonts: ^4.0.4
   google_sign_in: ^6.1.0
   http: ^0.13.5
-  intl: ^0.17.0
+  intl: ^0.18.0
   line_awesome_flutter: ^2.0.0
   marquee: ^2.2.3
   passwordfield: ^0.1.0

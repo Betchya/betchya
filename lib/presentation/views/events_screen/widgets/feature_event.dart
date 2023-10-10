@@ -17,7 +17,6 @@ class FeatureEvent extends StatelessWidget {
       height: screenHeight * .375,
       color: const Color(0xff2C1D57),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Align(
             alignment: Alignment.topLeft,
@@ -26,9 +25,10 @@ class FeatureEvent extends StatelessWidget {
               child: const Text(
                 'Featured Event',
                 style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -39,10 +39,11 @@ class FeatureEvent extends StatelessWidget {
                 height: screenHeight * .25,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.all(7.0),
+                  padding: const EdgeInsets.all(7),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: CachedNetworkImage(
@@ -54,24 +55,29 @@ class FeatureEvent extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  right: 25,
-                  bottom: 20,
-                  child: Container(
-                    width: screenWidth * .2,
-                    height: screenHeight * .04,
-                    decoration: BoxDecoration(
-                        color: const Color(0xFF00B498),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: TextButton(
-                      child: const Text('Details',
-                          style: TextStyle(color: Colors.white)),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  EventDetails(event: event))),
+                right: 25,
+                bottom: 20,
+                child: Container(
+                  width: screenWidth * .2,
+                  height: screenHeight * .04,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF00B498),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextButton(
+                    child: const Text(
+                      'Details',
+                      style: TextStyle(color: Colors.white),
                     ),
-                  ))
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<EventDetails>(
+                        builder: (context) => EventDetails(event: event),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ],

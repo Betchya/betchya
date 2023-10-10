@@ -1,1 +1,1 @@
-String gameCategory = "";
+String gameCategory = '';

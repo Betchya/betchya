@@ -1,6 +1,6 @@
 import 'package:betchya/logic/games/game_category.dart';
-import 'package:betchya/presentation/views/sports_book_screen/widgets/GamesWidget.dart';
-import 'package:betchya/presentation/views/sports_book_screen/widgets/UserRewardsWidget.dart';
+import 'package:betchya/presentation/views/sports_book_screen/widgets/games_widget.dart';
+import 'package:betchya/presentation/views/sports_book_screen/widgets/user_rewards_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -32,8 +32,8 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: NestedScrollView(
@@ -52,7 +52,7 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
               automaticallyImplyLeading: false,
               floating: true,
               snap: true,
-            )
+            ),
           ];
         },
         body: SingleChildScrollView(

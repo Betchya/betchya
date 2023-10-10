@@ -1,16 +1,9 @@
-import 'package:betchya/logic/authentication/authentication_bloc/auth_bloc.dart';
-import 'package:betchya/presentation/views/login/signup_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:intl/intl.dart';
-import 'package:betchya/logic/api_calls.dart';
 
 class UpdateEmail extends StatefulWidget {
-  const UpdateEmail({Key? key}) : super(key: key);
+  const UpdateEmail({super.key});
 
   @override
   State<UpdateEmail> createState() => _UpdateEmailState();
@@ -31,8 +24,9 @@ class _UpdateEmailState extends State<UpdateEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff2C1D57),
-        body: Column(children: [
+      backgroundColor: const Color(0xff2C1D57),
+      body: Column(
+        children: [
           Center(
             child: Form(
               key: _formKey,
@@ -43,24 +37,25 @@ class _UpdateEmailState extends State<UpdateEmail> {
                   ),
                   // Get additional information for User needed by database
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10),
                     child: Text(
-                      "Please update your information below.",
+                      'Please update your information below.',
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 24,
-                          color: Colors.white),
+                        fontWeight: FontWeight.w800,
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: _emailController,
                       decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        hintText: "email",
+                        hintText: 'email',
                         border: OutlineInputBorder(),
                       ),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -75,32 +70,36 @@ class _UpdateEmailState extends State<UpdateEmail> {
                     height: 10,
                   ),
                   Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: SizedBox(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 1, 180, 153)),
+                    padding: const EdgeInsets.all(10),
+                    child: SizedBox(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color.fromARGB(255, 1, 180, 153),
                           ),
-                          onPressed: () {
-                            APIWrangler()
-                                .updateEmail(_emailController.text)
-                                .then((user) {
-                              print(user);
-                              if (user != null) {
-                                AuthenticatedWithUserObject(user);
-                              }
-                            });
-                          },
-                          child: const Text('Next'),
                         ),
-                      )),
+                        onPressed: () {
+                          // APIWrangler()
+                          //     .updateEmail(_emailController.text)
+                          //     .then((user) {
+                          //   print(user);
+                          //   if (user != null) {
+                          //     AuthenticatedWithUserObject(user);
+                          //   }
+                          // });
+                        },
+                        child: const Text('Next'),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
-        ]));
+          ),
+        ],
+      ),
+    );
   }
 }

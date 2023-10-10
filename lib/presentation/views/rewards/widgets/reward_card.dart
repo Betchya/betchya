@@ -14,12 +14,13 @@ class RewardCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () => {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => RewardDetails(
-                  reward: reward,
-                ),
-              ))
+            context,
+            MaterialPageRoute<RewardDetails>(
+              builder: (context) => RewardDetails(
+                reward: reward,
+              ),
+            ),
+          ),
         },
         child: Card(
           elevation: 3,
@@ -29,7 +30,7 @@ class RewardCard extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
+                child: ColoredBox(
                   color: const Color(0xff00B498),
                   child: Center(
                     child: Row(
@@ -46,7 +47,7 @@ class RewardCard extends StatelessWidget {
                           Icons.star,
                           color: Color(0xffFCCB00),
                           size: 12,
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -58,11 +59,13 @@ class RewardCard extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 25),
-                    child: Text(reward.name,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        )),
+                    child: Text(
+                      reward.name,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
                 ),
               ),

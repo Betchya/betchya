@@ -12,8 +12,10 @@
       "AmplifyAppId": "d2k6hhytj19xu1"
     },
     "categories": {
-      "api": {
-        "betchya": {}
+      "auth": {
+        "betchyaa16096b0": {},
+        "betchya07b1d642": {},
+        "betchya276ff652": {}
       }
     }
   },
@@ -32,6 +34,9 @@
     "categories": {
       "api": {
         "betchya": {}
+      },
+      "auth": {
+        "betchyaa16096b0": {}
       }
     }
   },

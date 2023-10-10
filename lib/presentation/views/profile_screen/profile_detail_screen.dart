@@ -1,20 +1,19 @@
-import 'package:betchya/presentation/views/home_screen/widgets/NameWidget.dart';
-import 'package:betchya/presentation/views/profile_screen/Widgets/CurrentProfileWidget.dart';
+import 'package:betchya/presentation/views/home_screen/widgets/name_widget.dart';
 import 'package:betchya/presentation/views/profile_screen/update_email.dart';
 import 'package:betchya/presentation/views/profile_screen/update_name.dart';
+import 'package:betchya/presentation/views/profile_screen/widgets/current_profile_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDetail extends StatefulWidget {
   const ProfileDetail({super.key});
 
   @override
-  _ProfileDetailState createState() => _ProfileDetailState();
+  State<ProfileDetail> createState() => _ProfileDetailState();
 }
 
 class _ProfileDetailState extends State<ProfileDetail> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color(0xff2C1D57),
@@ -23,8 +22,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
           Padding(
             padding: EdgeInsets.only(top: screenHeight * .15),
           ),
-          WholeNameWidget(),
-          FormattedEmailWidget(),
+          const WholeNameWidget(),
+          const FormattedEmailWidget(),
           const SizedBox(
             height: 50,
           ),
@@ -34,11 +33,11 @@ class _ProfileDetailState extends State<ProfileDetail> {
                 Icons.account_box,
               ),
               title: const Text('Change name'),
-              subtitle: ProfileNameWidget(),
+              subtitle: const ProfileNameWidget(),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<UpdateName>(
                     builder: (context) {
                       return const UpdateName();
                     },
@@ -54,11 +53,11 @@ class _ProfileDetailState extends State<ProfileDetail> {
             child: ListTile(
               leading: const Icon(Icons.email),
               title: const Text('Change email'),
-              subtitle: EmailWidget(),
+              subtitle: const EmailWidget(),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<UpdateEmail>(
                     builder: (context) {
                       return const UpdateEmail();
                     },

@@ -1,10 +1,9 @@
+import 'package:betchya/presentation/styles.dart';
+import 'package:betchya/presentation/views/promotions_screen/widgets/promotions_tab_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../styles.dart';
-import 'widgets/PromotionsTabBar.dart';
-
 class PromotionsScreen extends StatelessWidget {
-  const PromotionsScreen({Key? key}) : super(key: key);
+  const PromotionsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +17,21 @@ class PromotionsScreen extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.only(
-                left: screenWidth * .056, right: screenWidth * .05, top: 10),
+              left: screenWidth * .056,
+              right: screenWidth * .05,
+              top: 10,
+            ),
             height: screenHeight * .29,
             width: screenWidth,
             color: const Color(0xff2C1D57),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Flexible(
-                    child: FractionallySizedBox(
-                  heightFactor: 0.95,
-                )),
+                  child: FractionallySizedBox(
+                    heightFactor: 0.95,
+                  ),
+                ),
                 Text(
                   'Promotions',
                   style: header2,
@@ -44,7 +47,7 @@ class PromotionsScreen extends StatelessWidget {
                   ' engaging and interactive experience. Tap a promotion to'
                   ' view details.',
                   style: subHeader2,
-                )
+                ),
               ],
             ),
           ),

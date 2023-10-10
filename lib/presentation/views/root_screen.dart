@@ -1,17 +1,16 @@
+import 'package:betchya/logic/navigation/constants/nav_bar_items.dart';
+import 'package:betchya/logic/navigation/navigation_cubit.dart';
+import 'package:betchya/presentation/custom_icons.dart';
+import 'package:betchya/presentation/views/events_screen/events_screen.dart';
+import 'package:betchya/presentation/views/home_screen/home_screen.dart';
+import 'package:betchya/presentation/views/profile_screen/profile_screen.dart';
+import 'package:betchya/presentation/views/promotions_screen/promotions_screen.dart';
+import 'package:betchya/presentation/views/sports_book_screen/sports_book_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/navigation/constants/nav_bar_items.dart';
-import '../../logic/navigation/navigation_cubit.dart';
-import '../custom_icons.dart';
-import 'events_screen/events_screen.dart';
-import 'home_screen/home_screen.dart';
-import 'profile_screen/profile_screen.dart';
-import 'promotions_screen/promotions_screen.dart';
-import 'sports_book_screen/sports_book_screen.dart';
-
 class RootScreen extends StatefulWidget {
-  const RootScreen({Key? key}) : super(key: key);
+  const RootScreen({super.key});
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -34,35 +33,35 @@ class _RootScreenState extends State<RootScreen> {
             items: const [
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0),
+                  padding: EdgeInsets.only(bottom: 4),
                   child: Icon(CustomIcons.home),
                 ),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0),
+                  padding: EdgeInsets.only(bottom: 4),
                   child: Icon(CustomIcons.coupons),
                 ),
                 label: 'Coupons',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0),
+                  padding: EdgeInsets.only(bottom: 4),
                   child: Icon(CustomIcons.sportsbook),
                 ),
                 label: 'Sports Book',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0),
+                  padding: EdgeInsets.only(bottom: 4),
                   child: Icon(CustomIcons.events),
                 ),
                 label: 'Events',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
-                  padding: EdgeInsets.only(bottom: 4.0),
+                  padding: EdgeInsets.only(bottom: 4),
                   child: Icon(CustomIcons.profile),
                 ),
                 label: 'Profile',
@@ -90,20 +89,21 @@ class _RootScreenState extends State<RootScreen> {
         },
       ),
       body: BlocBuilder<NavigationCubit, NavigationState>(
-          builder: (context, state) {
-        if (state.navbarItem == NavbarItem.home) {
-          return const HomeScreen();
-        } else if (state.navbarItem == NavbarItem.promotions) {
-          return const PromotionsScreen();
-        } else if (state.navbarItem == NavbarItem.sportsbook) {
-          return const SportsbookScreen();
-        } else if (state.navbarItem == NavbarItem.events) {
-          return const EventsScreen();
-        } else if (state.navbarItem == NavbarItem.profile) {
-          return const ProfileScreen();
-        }
-        return Container();
-      }),
+        builder: (context, state) {
+          if (state.navbarItem == NavbarItem.home) {
+            return const HomeScreen();
+          } else if (state.navbarItem == NavbarItem.promotions) {
+            return const PromotionsScreen();
+          } else if (state.navbarItem == NavbarItem.sportsbook) {
+            return const SportsbookScreen();
+          } else if (state.navbarItem == NavbarItem.events) {
+            return const EventsScreen();
+          } else if (state.navbarItem == NavbarItem.profile) {
+            return const ProfileScreen();
+          }
+          return Container();
+        },
+      ),
     );
   }
 }

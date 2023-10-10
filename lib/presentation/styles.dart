@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const String DefaultFont = 'Roboto';
-const String DefaultFont2 = 'SF Pro Display';
+const String defaultFont = 'Roboto';
+const String defaultFont2 = 'SF Pro Display';
 //**                             **//
 //**   HOME SCREEN TEXT STYLES   **//
 //**                             **//
@@ -9,77 +9,77 @@ const String DefaultFont2 = 'SF Pro Display';
 
 /* Points */
 const points = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w500,
-  fontSize: 28.0,
+  fontSize: 28,
   // height: 33.0,
   color: Color(0xffFFFFFF),
 );
 
 /* Welcome */
 const welcome = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w600,
-  fontSize: 22.0,
+  fontSize: 22,
   // height: 26.0,
   color: Color(0xffFFFFFF),
 );
 
 /* Header */
 const header = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.bold,
-  fontSize: 17.0,
+  fontSize: 17,
   // height: 18.0,
   color: Color(0xff000000),
 );
 
 /* Button */
 const buttonText = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w600,
-  fontSize: 14.0,
+  fontSize: 14,
   // height: 17.0,
   color: Color(0xffFFFFFF),
 );
 
 /* Sub Header */
 const subHeader = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w600,
-  fontSize: 14.0,
+  fontSize: 14,
   // height: 18.0,
   color: Color(0xff000000),
 );
 
 /* Gold */
 const rewardStatus = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w800,
-  fontSize: 12.0,
+  fontSize: 12,
   // height: 14.0,
   color: Color(0xffFCCB00),
 );
 
 /* Points Sub Text */
 const subText = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w500,
-  fontSize: 12.0,
+  fontSize: 12,
   // height: 18.0,
   color: Color(0xffC4C4C4),
 );
 
 /* Menu Label */
 const menuLabel = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.bold,
   // fontSize: 12.0,
@@ -89,40 +89,41 @@ const menuLabel = TextStyle(
 
 /* Body Text */
 const bodyText = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.normal,
-  fontSize: 12.0,
+  fontSize: 12,
   // height: 18.0,
   color: Color(0xffA0A0A0),
 );
 
 /* Body Text */
 const bodyText2 = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.normal,
-  fontSize: 14.0,
+  fontSize: 14,
   // height: 18.0,
   color: Color(0xffA0A0A0),
 );
 
 /* Points Label */
 const pointsLabel = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w500,
-  fontSize: 11.0,
+  fontSize: 11,
   // height: 13.0,
   color: Color(0xffB2B2B4),
 );
 
 /* Marquee */
 const marqueeText = TextStyle(
-    fontFamily: DefaultFont2,
-    fontStyle: FontStyle.normal,
-    fontWeight: FontWeight.bold,
-    color: Color(0xff000000));
+  fontFamily: defaultFont2,
+  fontStyle: FontStyle.normal,
+  fontWeight: FontWeight.bold,
+  color: Color(0xff000000),
+);
 
 //**                             **//
 //**  PROMO SCREEN TEXT STYLES   **//
@@ -130,10 +131,10 @@ const marqueeText = TextStyle(
 /*     organized by font size      */
 /*title on promo screen*/
 const header2 = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.bold,
-  fontSize: 28.0,
+  fontSize: 28,
   //height: 18.0,
   /* or 64% */
   color: Color(0xffFFFFFF),
@@ -141,18 +142,18 @@ const header2 = TextStyle(
 
 /* sub head text on promo screen*/
 const subHeader2 = TextStyle(
-  fontFamily: DefaultFont2,
+  fontFamily: defaultFont2,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w500,
-  fontSize: 14.0,
+  fontSize: 14,
   // height: 18.0,
   color: Color(0xffAEAEB2),
 );
 
 /* selected tab text for tabs on promo screen */
 const selectedTabText = TextStyle(
-  fontFamily: DefaultFont2,
-  fontSize: 15.0,
+  fontFamily: defaultFont2,
+  fontSize: 15,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w600,
   //height: 18.0,
@@ -161,8 +162,8 @@ const selectedTabText = TextStyle(
 
 /* unselected tab text for tabs on promo screen */
 const tabText = TextStyle(
-  fontFamily: DefaultFont2,
-  fontSize: 14.0,
+  fontFamily: defaultFont2,
+  fontSize: 14,
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.w500,
   //height: 18.0,

@@ -40,9 +40,9 @@ class EventsBody extends StatelessWidget {
     final comedies =
         events.where((i) => i.category.contains('Comedy')).toList();
     final concerts = events.where((i) => i.category.contains('Music')).toList();
-    final eventSet = Set.from(events);
-    final exclusionSet = Set.from(comedies + concerts);
-    final List<Event> others = List.from(eventSet.difference(exclusionSet));
+    final eventSet = Set<Event>.from(events);
+    final exclusionSet = Set<Event>.from(comedies + concerts);
+    final others = List<Event>.from(eventSet.difference(exclusionSet));
 
     return [
       EventTabList(events: events),
@@ -57,78 +57,77 @@ class EventsBody extends StatelessWidget {
     final featureEvent = events.firstWhere((i) => i.featured);
 
     return DefaultTabController(
-        length: screens.length,
-        initialIndex: 0,
-        child: Scaffold(
-            body: NestedScrollView(
-                floatHeaderSlivers: true,
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return <Widget>[
-                    SliverAppBar(
-                      forceElevated: innerBoxIsScrolled,
-                      backgroundColor: const Color(0xff2C1D57),
-                      toolbarHeight: MediaQuery.of(context).size.height * .375,
-                      title: FeatureEvent(
-                        event: featureEvent,
+      length: screens.length,
+      child: Scaffold(
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                forceElevated: innerBoxIsScrolled,
+                backgroundColor: const Color(0xff2C1D57),
+                toolbarHeight: MediaQuery.of(context).size.height * .375,
+                title: FeatureEvent(
+                  event: featureEvent,
+                ),
+                automaticallyImplyLeading: false,
+                floating: true,
+                pinned: true,
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(51),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: DecoratedBox(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                       ),
-                      automaticallyImplyLeading: false,
-                      floating: true,
-                      pinned: true,
-                      snap: false,
-                      bottom: PreferredSize(
-                        preferredSize: const Size.fromHeight(51),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: DecoratedBox(
+                      child: Column(
+                        children: <Widget>[
+                          DecoratedBox(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Color(0xffA0A0A0),
+                                  width: 2,
+                                ),
+                              ),
+                            ),
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width * .9,
+                              child: _tabBar(eventTotal: events.length),
+                            ),
+                          ),
+                          DecoratedBox(
                             decoration: const BoxDecoration(
                               color: Colors.white,
-                            ),
-                            child: Column(children: <Widget>[
-                              DecoratedBox(
-                                decoration: const BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Color(0xffA0A0A0),
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                child: Container(
-                                    alignment: Alignment.center,
-                                    width:
-                                        MediaQuery.of(context).size.width * .9,
-                                    child: _tabBar(eventTotal: events.length)),
-                              ),
-                              Container(
-                                decoration: const BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
                                   color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.white,
-                                      blurRadius: 0.0,
-                                      spreadRadius: 0.0,
-                                      offset: Offset(0, 2),
-                                    ),
-                                  ],
+                                  offset: Offset(0, 2),
                                 ),
-                                child: Container(
-                                  height: 5,
-                                ),
-                              ),
-                            ]),
+                              ],
+                            ),
+                            child: Container(
+                              height: 5,
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ];
-                },
-                body: TabBarView(children: screens))));
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: TabBarView(children: screens),
+        ),
+      ),
+    );
   }
 
   TabBar _tabBar({required int eventTotal}) {
     return TabBar(
-      isScrollable: false,
       labelPadding: EdgeInsets.zero,
       labelStyle: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900),
       unselectedLabelStyle:
@@ -153,13 +152,17 @@ class EventsBody extends StatelessWidget {
         ),
         const Padding(
           padding: EdgeInsets.fromLTRB(0, 17, 0, 7),
-          child: Text('Concerts',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+          child: Text(
+            'Concerts',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
         ),
         const Padding(
           padding: EdgeInsets.fromLTRB(0, 17, 0, 7),
-          child: Text('Other',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+          child: Text(
+            'Other',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
         ),
       ],
     );
