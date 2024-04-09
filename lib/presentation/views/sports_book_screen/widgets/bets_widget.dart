@@ -1,5 +1,5 @@
-import 'package:betchya/other_models/bets.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:betchya/other_models/bets.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -18,7 +18,7 @@ class _BetsWidgetState extends State<BetsWidget> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return FutureBuilder<List<Bet>>(
+    return FutureBuilder<List<dynamic>>(
       future: Future.delayed(const Duration(seconds: 3)),
       // APIGetBets().getBetList(widget.filter),
       builder: (context, snapshot) {
@@ -27,7 +27,7 @@ class _BetsWidgetState extends State<BetsWidget> {
             shrinkWrap: true,
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
-              final bet = snapshot.data![index];
+              // final bet = snapshot.data![index];
               return Card(
                 elevation: 5,
                 clipBehavior: Clip.antiAlias,
@@ -39,8 +39,9 @@ class _BetsWidgetState extends State<BetsWidget> {
                     SizedBox(
                       height: screenHeight * .01,
                     ),
+                    // TODO: update date
                     Text(
-                      DateFormat.yMMMMd('en_US').format(bet.date),
+                      DateFormat.yMMMMd('en_US').format(DateTime.now()),
                       style: const TextStyle(
                         fontSize: 13,
                         color: Color(0xFF00B498),
@@ -52,56 +53,58 @@ class _BetsWidgetState extends State<BetsWidget> {
                       children: [
                         SizedBox.square(
                           dimension: screenWidth * .2,
-                          child: CachedNetworkImage(
-                            imageUrl: bet.teamLogo1,
-                            progressIndicatorBuilder:
-                                (context, url, progress) => Center(
-                              child: CircularProgressIndicator(
-                                value: progress.progress,
-                              ),
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            height: screenHeight * .1,
-                            fit: BoxFit.contain,
-                          ),
+                          // child: CachedNetworkImage(
+                          //   imageUrl: '', // bet.teamLogo1,
+                          //   progressIndicatorBuilder:
+                          //       (context, url, progress) => Center(
+                          //     child: CircularProgressIndicator(
+                          //       value: progress.progress,
+                          //     ),
+                          //   ),
+                          //   errorWidget: (context, url, error) =>
+                          //       const Icon(Icons.error),
+                          //   height: screenHeight * .1,
+                          //   fit: BoxFit.contain,
+                          // ),
+                          child: const Card(color: Colors.purple,),
                         ),
                         const Text('VS'),
                         SizedBox.square(
                           dimension: screenWidth * .2,
-                          child: CachedNetworkImage(
-                            imageUrl: bet.teamLogo2,
-                            progressIndicatorBuilder:
-                                (context, url, progress) => Center(
-                              child: CircularProgressIndicator(
-                                value: progress.progress,
-                              ),
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                            height: screenHeight * .1,
-                            fit: BoxFit.contain,
-                          ),
+                          // child: CachedNetworkImage(
+                          //   imageUrl: '', // bet.teamLogo2,
+                          //   progressIndicatorBuilder:
+                          //       (context, url, progress) => Center(
+                          //     child: CircularProgressIndicator(
+                          //       value: progress.progress,
+                          //     ),
+                          //   ),
+                          //   errorWidget: (context, url, error) =>
+                          //       const Icon(Icons.error),
+                          //   height: screenHeight * .1,
+                          //   fit: BoxFit.contain,
+                          // ),
+                          child: const Card(color: Colors.purple,),
                         ),
                       ],
                     ),
                     SizedBox(
                       height: screenHeight * .01,
                     ),
-                    Text(bet.description),
+                    const Text('bet.description'),
                     SizedBox(
                       height: screenHeight * .01,
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          'Betting Line: ${bet.betLine} ',
-                          style: const TextStyle(color: Colors.deepPurple),
+                          'Betting Line: ${'bet.betLine'} ',
+                          style: TextStyle(color: Colors.deepPurple),
                         ),
                         Text(
-                          'Amount: \u0024${bet.amount}',
-                          style: const TextStyle(color: Colors.deepPurple),
+                          'Amount: \u0024${'bet.amount'}',
+                          style: TextStyle(color: Colors.deepPurple),
                         ),
                       ],
                     ),

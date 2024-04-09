@@ -1,4 +1,3 @@
-import 'package:betchya/logic/games/game_category.dart';
 import 'package:betchya/presentation/views/sports_book_screen/widgets/games_widget.dart';
 import 'package:betchya/presentation/views/sports_book_screen/widgets/user_rewards_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -14,19 +13,24 @@ class SportsbookScreen extends StatefulWidget {
 
 class _SportsbookScreenState extends State<SportsbookScreen> {
   int activeIndex = 0;
-  List<Image> urlImages = [
-    const Image(
-      image: AssetImage('assets/images/promo_3.png'),
-      fit: BoxFit.fill,
-    ),
-    const Image(
-      image: AssetImage('assets/images/promo_1.png'),
-      fit: BoxFit.fill,
-    ),
-    const Image(
-      image: AssetImage('assets/images/promo_2.png'),
-      fit: BoxFit.fill,
-    ),
+  // List<Image> urlImages = [
+  //   const Image(
+  //     image: AssetImage(''),
+  //     fit: BoxFit.fill,
+  //   ),
+  //   const Image(
+  //     image: AssetImage(''),
+  //     fit: BoxFit.fill,
+  //   ),
+  //   const Image(
+  //     image: AssetImage(''),
+  //     fit: BoxFit.fill,
+  //   ),
+  // ];
+  List<Card> placeholderCards = [
+    const Card(color: Colors.purple,),
+    const Card(color: Colors.purple,),
+    const Card(color: Colors.purple,)
   ];
   String currentCategory = '';
 
@@ -45,7 +49,7 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
               title: UserRewardsWidget(
                 changeCategory: () {
                   setState(() {
-                    currentCategory = gameCategory;
+                    currentCategory = 'gameCategory';
                   });
                 },
               ),
@@ -66,10 +70,11 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
                 width: screenWidth * .9,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: const Image(
-                    image: AssetImage('assets/images/star-gazing-gifts2.png'),
-                    fit: BoxFit.fill,
-                  ),
+                  // child: const Image(
+                  //   image: AssetImage(''),
+                  //   fit: BoxFit.fill,
+                  // ),
+                  child: const Card(color: Colors.purple),
                 ),
               ),
               SizedBox(
@@ -85,15 +90,16 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
                         onPageChanged: (index, reason) =>
                             setState(() => activeIndex = index),
                       ),
-                      itemCount: urlImages.length,
+                      itemCount: placeholderCards.length, // urlImages.length,
                       itemBuilder: (context, index, realIndex) {
-                        final urlImage = urlImages[index];
+                        // final urlImage = urlImages[index];
+                        final placeholderCard = placeholderCards[index];
                         return SizedBox(
                           width: screenWidth * .9,
                           // color: Colors.grey,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: urlImage,
+                            child: placeholderCard, // urlImage,
                           ),
                         );
                       },
@@ -103,7 +109,7 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
                     ),
                     AnimatedSmoothIndicator(
                       activeIndex: activeIndex,
-                      count: urlImages.length,
+                      count: placeholderCards.length, // urlImages.length,
                       effect: const ScrollingDotsEffect(
                         dotHeight: 9,
                         dotWidth: 9,
@@ -124,20 +130,20 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
                       screenWidth * .043,
                       0,
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '$gameCategory Games',
-                          style: const TextStyle(
+                          '${'gameCategory'} Games',
+                          style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         Text(
-                          'More $gameCategory',
-                          style: const TextStyle(
+                          'More ${'gameCategory'}',
+                          style: TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             fontWeight: FontWeight.w400,

@@ -29,7 +29,7 @@ class _RecentWinnersListViewState extends State<RecentWinnersListView> {
                 ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 10,
-                  imageUrl: 'assets/images/recent_winner_13.png',
+                  imageUrl: '',
                 ),
                 RecentWinnersRow(
                   nameText: 'Kirsten - ',
@@ -44,7 +44,7 @@ class _RecentWinnersListViewState extends State<RecentWinnersListView> {
                 ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 10,
-                  imageUrl: 'assets/images/recent_winner_12.png',
+                  imageUrl: '',
                 ),
                 RecentWinnersRow(
                   nameText: 'Bhartiben - ',
@@ -59,7 +59,7 @@ class _RecentWinnersListViewState extends State<RecentWinnersListView> {
                 ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 10,
-                  imageUrl: 'assets/images/recent_winner_11.png',
+                  imageUrl: '',
                 ),
                 RecentWinnersRow(
                   nameText: 'Ed and Sally - ',
@@ -74,7 +74,7 @@ class _RecentWinnersListViewState extends State<RecentWinnersListView> {
                 ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 10,
-                  imageUrl: 'assets/images/recent_winner_10.png',
+                  imageUrl: '',
                 ),
                 RecentWinnersRow(
                   nameText: 'Courtney - ',

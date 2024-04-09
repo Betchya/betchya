@@ -26,10 +26,10 @@ class PromotionsTabContainer extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
+        child: imageAsset.isNotEmpty ? Image.asset(
           imageAsset,
           fit: BoxFit.fill,
-        ),
+        ) : const Card(color: Colors.purple),
       ),
     );
   }

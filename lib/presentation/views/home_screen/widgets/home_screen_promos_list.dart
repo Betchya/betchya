@@ -30,7 +30,7 @@ class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
                   screenHeight: screenHeight * .172,
                   offsetDy: 6,
                   blurRadius: 5,
-                  imageUrl: 'assets/images/promo_1.png',
+                  imageUrl: '',
                 ),
                 SizedBox(
                   height: screenHeight * .02,
@@ -60,7 +60,7 @@ class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
                   screenHeight: screenHeight * .18,
                   offsetDy: .5,
                   blurRadius: 10,
-                  imageUrl: 'assets/images/promo_2.png',
+                  imageUrl: '',
                 ),
                 SizedBox(
                   height: screenHeight * .01,
@@ -90,7 +90,7 @@ class _HomeScreenPromosListState extends State<HomeScreenPromosList> {
                   screenHeight: screenHeight * .172,
                   offsetDy: 6,
                   blurRadius: 5,
-                  imageUrl: 'assets/images/promo_3.png',
+                  imageUrl: '',
                 ),
                 SizedBox(
                   height: screenHeight * .02,

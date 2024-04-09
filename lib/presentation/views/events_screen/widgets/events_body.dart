@@ -1,64 +1,66 @@
-import 'package:betchya/logic/events/events_bloc.dart';
-import 'package:betchya/other_models/event.dart';
-import 'package:betchya/presentation/views/events_screen/widgets/event_tab_list.dart';
-import 'package:betchya/presentation/views/events_screen/widgets/feature_event.dart';
+// import 'package:betchya/presentation/views/events_screen/widgets/event_tab_list.dart';
+// import 'package:betchya/presentation/views/events_screen/widgets/feature_event.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 
+// ignore: lines_longer_than_80_chars
 class EventsBody extends StatelessWidget {
   const EventsBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<EventsBloc, EventsState>(
-      listener: (context, state) {
-        if (state is EventsError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message!),
-            ),
-          );
-        }
-      },
-      builder: (context, state) {
-        if (state is EventsLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is EventsError) {
-          return const Text('Error');
-        } else if (state is EventsLoaded) {
-          return _buildSliver(events: state.events);
-        } else {
-          return Text(state.toString());
-        }
+    // return BlocConsumer<EventsBloc, EventsState>(
+    //   listener: (context, state) {
+    //     if (state is EventsError) {
+    //       ScaffoldMessenger.of(context).showSnackBar(
+    //         SnackBar(
+    //           content: Text(state.message!),
+    //         ),
+    //       );
+    //     }
+    //   },
+    return Builder(
+      builder: (context) {
+        // if (state is EventsLoading) {
+        //   return const Center(
+        //     child: CircularProgressIndicator(),
+        //   );
+        // } else if (state is EventsError) {
+        //   return const Text('Error');
+        // } else if (state is EventsLoaded) {
+          return _buildSliver(events: ['placeholder', 'placeholder', 
+          'placeholder', 'placeholder'],);// events: state.events);
+        // } else {
+        //   return Text(state.toString());
+        // }
       },
     );
   }
 
-  List<Widget> _buildScreens({required List<Event> events}) {
-    final comedies =
-        events.where((i) => i.category.contains('Comedy')).toList();
-    final concerts = events.where((i) => i.category.contains('Music')).toList();
-    final eventSet = Set<Event>.from(events);
-    final exclusionSet = Set<Event>.from(comedies + concerts);
-    final others = List<Event>.from(eventSet.difference(exclusionSet));
+  // List<Widget> _buildScreens({required List<Event> events}) {
+  //   final comedies =
+  //       events.where((i) => i.category.contains('Comedy')).toList();
+  //   final concerts = events.where((i) => i.category.contains('Music')).toList();
+  //   final eventSet = Set<Event>.from(events);
+  //   final exclusionSet = Set<Event>.from(comedies + concerts);
+  //   final others = List<Event>.from(eventSet.difference(exclusionSet));
 
-    return [
-      EventTabList(events: events),
-      EventTabList(events: comedies),
-      EventTabList(events: concerts),
-      EventTabList(events: others),
-    ];
-  }
+  //   return [
+  //     EventTabList(events: events),
+  //     EventTabList(events: comedies),
+  //     EventTabList(events: concerts),
+  //     EventTabList(events: others),
+  //   ];
+  // }
 
-  Widget _buildSliver({required List<Event> events}) {
-    final screens = _buildScreens(events: events);
-    final featureEvent = events.firstWhere((i) => i.featured);
+  Widget _buildSliver({required List<String> events}) { // List<Event> events}) {
+    // final screens = _buildScreens(events: events);
+    // final featureEvent = events.firstWhere((i) => i.featured);
 
     return DefaultTabController(
-      length: screens.length,
+      length: 2, // screens.length,
       child: Scaffold(
+        // ignore: lines_longer_than_80_chars,
         body: NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -67,9 +69,9 @@ class EventsBody extends StatelessWidget {
                 forceElevated: innerBoxIsScrolled,
                 backgroundColor: const Color(0xff2C1D57),
                 toolbarHeight: MediaQuery.of(context).size.height * .375,
-                title: FeatureEvent(
-                  event: featureEvent,
-                ),
+                // title: FeatureEvent(
+                //   event: featureEvent,
+                // ),
                 automaticallyImplyLeading: false,
                 floating: true,
                 pinned: true,
@@ -120,9 +122,12 @@ class EventsBody extends StatelessWidget {
               ),
             ];
           },
-          body: TabBarView(children: screens),
-        ),
-      ),
+          body: const TabBarView(children: [Card(color: Colors.purple,), 
+          Card(color: Colors.purple,), Card(color: Colors.purple,), 
+          Card(color: Colors.purple,),], // screens),
+          ),
+          ),
+          ),
     );
   }
 

@@ -1,13 +1,10 @@
-import 'package:betchya/other_models/event.dart';
 import 'package:betchya/presentation/views/events_screen/widgets/event_details.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EventTabList extends StatelessWidget {
-  const EventTabList({super.key, required this.events});
-
-  final List<Event> events;
+  const EventTabList({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class EventTabList extends StatelessWidget {
       child: ListView.separated(
         padding: const EdgeInsets.only(top: 15),
         clipBehavior: Clip.none,
-        itemCount: events.length,
+        itemCount: 3, //events.length,
         itemBuilder: (context, index) {
           return eventListItem(screenHeight, context, index);
         },
@@ -40,7 +37,7 @@ class EventTabList extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute<EventDetails>(
-              builder: (context) => EventDetails(event: events[index]),
+              builder: (context) => const EventDetails(),
             ),
           );
         },
@@ -62,7 +59,7 @@ class EventTabList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          DateFormat.MMMd().format(events[index].date),
+                          DateFormat.MMMd().format(DateTime.now()),
                           style: const TextStyle(
                             fontSize: 13,
                             color: Color(0xFF00B498),
@@ -72,9 +69,9 @@ class EventTabList extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * .005,
                         ),
-                        Text(
-                          events[index].name,
-                          style: const TextStyle(
+                        const Text(
+                          'events[index].name',
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -82,9 +79,9 @@ class EventTabList extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * .005,
                         ),
-                        Text(
-                          events[index].category,
-                          style: const TextStyle(
+                        const Text(
+                          'events[index].category',
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             color: Color(0xFF595959),
@@ -94,22 +91,23 @@ class EventTabList extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 3,
-                  child: CachedNetworkImage(
-                    imageUrl: events[index].imageUrl ??
-                        'https://via.placeholder.com/400x300.png?text=No+image',
-                    progressIndicatorBuilder: (context, url, progress) =>
-                        Center(
-                      child: CircularProgressIndicator(
-                        value: progress.progress,
-                      ),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    height: screenHeight * .2,
-                    fit: BoxFit.cover,
-                  ),
+                  // child: CachedNetworkImage(
+                  //   imageUrl: '', // events[index].imageUrl ??
+                  //       // 'https://via.placeholder.com/400x300.png?text=No+image',
+                  //   progressIndicatorBuilder: (context, url, progress) =>
+                  //       Center(
+                  //     child: CircularProgressIndicator(
+                  //       value: progress.progress,
+                  //     ),
+                  //   ),
+                  //   errorWidget: (context, url, error) =>
+                  //       const Icon(Icons.error),
+                  //   height: screenHeight * .2,
+                  //   fit: BoxFit.cover,
+                  // ),
+                  child: Card(color: Colors.purple),
                 ),
               ],
             ),
