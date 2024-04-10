@@ -26,9 +26,18 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> _configureAmplify() async {
   try {
+    print('attempting to connect to Amplify...');
     await Amplify.addPlugins([AmplifyAuthCognito(),AmplifyAPI()]);
     await Amplify.configure(amplifyconfig);
     print('Amplify configured successfully');
+    // Attempt to fetch the current auth session
+    try {
+      final result = await Amplify.Auth.fetchAuthSession();
+      safePrint('User is signed in: ${result.isSignedIn}');
+    } on AuthException catch (e) {
+      safePrint('Error retrieving auth session: ${e.message}');
+    }
+
   } catch (e) {
     print('An error occurred configuring Amplify: $e');
   }
@@ -37,6 +46,7 @@ Future<void> _configureAmplify() async {
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  print('configuring Amplify...');
   await _configureAmplify();
 
   FlutterError.onError = (details) {

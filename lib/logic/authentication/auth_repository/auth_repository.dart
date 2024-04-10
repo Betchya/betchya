@@ -23,15 +23,15 @@ class AmplifyCognitoAuthRepository implements AuthRepository {
     }
   }
 
-  @override
-  Future<void> signOut() async {
-    try {
-      await Amplify.Auth.signOut();
-    } on AuthException catch (e) {
-      print(e.message);
-      throw e; // Handle sign out error
+    @override
+    Future<void> signOut() async {
+      try {
+        await Amplify.Auth.signOut();
+      } on AuthException catch (e) {
+        print(e.message);
+        throw e; // Handle sign out error
+      }
     }
-  }
 
   @override
   Future<bool> isAuthenticated() async {

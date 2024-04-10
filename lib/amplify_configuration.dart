@@ -1,5 +1,14 @@
 // ignore_for_file: leading_newlines_in_multiline_strings
 
+// OG backup credentials
+// "CredentialsProvider": {
+// "CognitoIdentity": {
+// "Default": {
+// "PoolId": "us-west-1:d93a314b-5f3b-41fb-bdae-cf31f8dff637",
+// "Region": "us-west-1"
+// }
+// }
+// },
 const amplifyconfig = '''{
     "UserAgent": "aws-amplify-cli/2.0",
     "Version": "1.0",
@@ -11,19 +20,11 @@ const amplifyconfig = '''{
                 "IdentityManager": {
                     "Default": {}
                 },
-                "CredentialsProvider": {
-                    "CognitoIdentity": {
-                        "Default": {
-                            "PoolId": "us-west-1:d93a314b-5f3b-41fb-bdae-cf31f8dff637",
-                            "Region": "us-west-1"
-                        }
-                    }
-                },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "us-west-1_0nq3X9Kk8",
-                        "AppClientId": "3rsfu1969eshr1sm7epc37v3r1",
-                        "Region": "us-west-1"
+                        "PoolId": "us-west-2_g04egrUNs",
+                        "AppClientId": "18fc7rbs7vfsuv0qb3bhnsdqpg",
+                        "Region": "us-west-2"
                     }
                 },
                 "Auth": {

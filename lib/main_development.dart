@@ -18,23 +18,24 @@ import 'package:betchya/amplify_configuration.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await configureAmplify();
+  print('Setting up Amplify Bootstrap...');
   bootstrap(() => const MyApp());
 }
 
-Future<void> configureAmplify() async
-{
-  final authPlugin = AmplifyAuthCognito();
-  final apiPlugin = AmplifyAPI();
-
-  try
-  {
-    Amplify.addPlugins([authPlugin, apiPlugin]);
-    await Amplify.configure(amplifyconfig);
-  } catch (e)
-  {
-    print("--ERROR: Amplify could not be configured at \($e)");
-  }
-}
+// Future<void> configureAmplify() async
+// {
+//   final authPlugin = AmplifyAuthCognito();
+//   final apiPlugin = AmplifyAPI();
+//   print('Trying to configure Amplify from dart dev file');
+//   try
+//   {
+//     //Amplify.addPlugins([authPlugin, apiPlugin]);
+//     await Amplify.configure(amplifyconfig);
+//   } catch (e)
+//   {
+//     print("--ERROR: Amplify could not be configured at \($e)");
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
