@@ -7,6 +7,7 @@ import 'package:betchya/amplify_configuration.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:betchya/amplify_configuration.dart';
 // import 'package:betchya/models/ModelProvider.dart';
+import 'package:betchya/cognito_manager.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
