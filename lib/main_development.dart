@@ -15,6 +15,12 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:betchya/amplify_configuration.dart';
 
+/*
+  TODO:
+    1. migrate main_auth functionalities to main_development
+    2. connect sign in to presentation/views/login
+ */
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await configureAmplify();
