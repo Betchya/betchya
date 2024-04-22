@@ -48,7 +48,8 @@ class SignUpView extends StatefulWidget {
   _SignUpViewState createState() => _SignUpViewState();
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class _SignUpViewState extends State<SignUpView>
+{
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   late final CognitoManager _cognitoManager;

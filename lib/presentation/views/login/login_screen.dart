@@ -8,14 +8,14 @@
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:intl/intl.dart';
 // import 'package:passwordfield/passwordfield.dart';
-
+//
 // class LoginScreen extends StatefulWidget {
 //   const LoginScreen({Key? key}) : super(key: key);
-
+//
 //   @override
 //   State<LoginScreen> createState() => _LoginScreenState();
 // }
-
+//
 // class _LoginScreenState extends State<LoginScreen> {
 //   final _formKey = GlobalKey<FormState>();
 //   final _emailController = TextEditingController();
@@ -25,7 +25,7 @@
 //   final _birthdateController = TextEditingController();
 //   String? userName;
 //   bool checked = true;
-
+//
 //   @override
 //   void dispose() {
 //     _emailController.dispose();
@@ -35,7 +35,7 @@
 //     _birthdateController.dispose();
 //     super.dispose();
 //   }
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -431,13 +431,13 @@
 //       ),
 //     );
 //   }
-
+//
 //   void _getUser(BuildContext context) {
 //     BlocProvider.of<AuthBloc>(context).add(
 //       UserObjectWasRequested(),
 //     );
 //   }
-
+//
 //   void _authenticateWithEmailAndPassword(BuildContext context) {
 //     if (_formKey.currentState!.validate()) {
 //       BlocProvider.of<AuthBloc>(context).add(
@@ -445,25 +445,25 @@
 //       );
 //     }
 //   }
-
+//
 //   void _authenticateWithGoogle(BuildContext context) {
 //     BlocProvider.of<AuthBloc>(context).add(
 //       GoogleSignInRequested(),
 //     );
 //   }
-
+//
 //   void _authenticateWithApple(BuildContext context) {
 //     BlocProvider.of<AuthBloc>(context).add(
 //       AppleSignInRequested(),
 //     );
 //   }
-
+//
 //   void _authenticateWithFacebook(BuildContext context) {
 //     BlocProvider.of<AuthBloc>(context).add(
 //       FacebookSignInRequested(),
 //     );
 //   }
-
+//
 // // Create User on database
 //   void _registerName(BuildContext context) {
 //     if (_formKey.currentState!.validate()) {
@@ -476,7 +476,7 @@
 //       );
 //     }
 //   }
-
+//
 // // Validate over 21 as of today
 //   bool _checkBirthdate() {
 //     const datePattern = 'mm/dd/yyyy';
