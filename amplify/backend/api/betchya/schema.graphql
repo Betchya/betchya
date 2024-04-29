@@ -1,0 +1,201 @@
+input CreateNBAPregameOddsInput {
+	GameId: Int!
+	Season: Int
+	SeasonType: Int
+	Day: String
+	DateTime: String
+	Status: String
+	AwayTeamId: Int
+	HomeTeamId: Int
+	AwayTeamName: String
+	HomeTeamName: String
+	GlobalGameId: Int
+	GlobalAwayTeamId: Int
+	GlobalHomeTeamId: Int
+	HomeTeamScore: Int
+	AwayTeamScore: Int
+	TotalScore: Int
+	HomeRotationNumber: Int
+	AwayRotationNumber: Int
+	PregameOdds: [AWSJSON]
+}
+
+input DeleteNBAPregameOddsInput {
+	GameId: Int!
+}
+
+input ModelSizeInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+}
+
+type NBAPregameOdds {
+	GameId: Int!
+	Season: Int
+	SeasonType: Int
+	Day: String
+	DateTime: String
+	Status: String
+	AwayTeamId: Int
+	HomeTeamId: Int
+	AwayTeamName: String
+	HomeTeamName: String
+	GlobalGameId: Int
+	GlobalAwayTeamId: Int
+	GlobalHomeTeamId: Int
+	HomeTeamScore: Int
+	AwayTeamScore: Int
+	TotalScore: Int
+	HomeRotationNumber: Int
+	AwayRotationNumber: Int
+	PregameOdds: [AWSJSON]
+}
+
+type NBAPregameOddsConnection {
+	items: [NBAPregameOdds]
+	nextToken: String
+}
+
+input TableBooleanFilterInput {
+	ne: Boolean
+	eq: Boolean
+	attributeExists: Boolean
+}
+
+input TableFloatFilterInput {
+	ne: Float
+	eq: Float
+	le: Float
+	lt: Float
+	ge: Float
+	gt: Float
+	between: [Float]
+	attributeExists: Boolean
+}
+
+input TableIDFilterInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+	attributeExists: Boolean
+	size: ModelSizeInput
+}
+
+input TableIntFilterInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	between: [Int]
+	attributeExists: Boolean
+}
+
+input TableNBAPregameOddsFilterInput {
+	GameId: TableIntFilterInput
+	Season: TableIntFilterInput
+	SeasonType: TableIntFilterInput
+	Day: TableStringFilterInput
+	DateTime: TableStringFilterInput
+	Status: TableStringFilterInput
+	AwayTeamId: TableIntFilterInput
+	HomeTeamId: TableIntFilterInput
+	AwayTeamName: TableStringFilterInput
+	HomeTeamName: TableStringFilterInput
+	GlobalGameId: TableIntFilterInput
+	GlobalAwayTeamId: TableIntFilterInput
+	GlobalHomeTeamId: TableIntFilterInput
+	HomeTeamScore: TableIntFilterInput
+	AwayTeamScore: TableIntFilterInput
+	TotalScore: TableIntFilterInput
+	HomeRotationNumber: TableIntFilterInput
+	AwayRotationNumber: TableIntFilterInput
+}
+
+input TableStringFilterInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+	attributeExists: Boolean
+	size: ModelSizeInput
+}
+
+input UpdateNBAPregameOddsInput {
+	GameId: Int!
+	Season: Int
+	SeasonType: Int
+	Day: String
+	DateTime: String
+	Status: String
+	AwayTeamId: Int
+	HomeTeamId: Int
+	AwayTeamName: String
+	HomeTeamName: String
+	GlobalGameId: Int
+	GlobalAwayTeamId: Int
+	GlobalHomeTeamId: Int
+	HomeTeamScore: Int
+	AwayTeamScore: Int
+	TotalScore: Int
+	HomeRotationNumber: Int
+	AwayRotationNumber: Int
+	PregameOdds: [AWSJSON]
+}
+
+type Mutation {
+	createNBAPregameOdds(input: CreateNBAPregameOddsInput!): NBAPregameOdds
+	updateNBAPregameOdds(input: UpdateNBAPregameOddsInput!): NBAPregameOdds
+	deleteNBAPregameOdds(input: DeleteNBAPregameOddsInput!): NBAPregameOdds
+}
+
+type Query {
+	getNBAPregameOdds(GameId: Int!): NBAPregameOdds
+	listNBAPregameOdds(filter: TableNBAPregameOddsFilterInput, limit: Int, nextToken: String): NBAPregameOddsConnection
+}
+
+type Subscription {
+	onCreateNBAPregameOdds(
+		GameId: Int,
+		Season: Int,
+		SeasonType: Int,
+		Day: String,
+		DateTime: String
+	): NBAPregameOdds
+		@aws_subscribe(mutations: ["createNBAPregameOdds"])
+	onUpdateNBAPregameOdds(
+		GameId: Int,
+		Season: Int,
+		SeasonType: Int,
+		Day: String,
+		DateTime: String
+	): NBAPregameOdds
+		@aws_subscribe(mutations: ["updateNBAPregameOdds"])
+	onDeleteNBAPregameOdds(
+		GameId: Int,
+		Season: Int,
+		SeasonType: Int,
+		Day: String,
+		DateTime: String
+	): NBAPregameOdds
+		@aws_subscribe(mutations: ["deleteNBAPregameOdds"])
+}
