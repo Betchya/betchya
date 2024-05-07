@@ -4,7 +4,6 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:betchya/amplifyconfiguration.dart';
 import 'package:betchya/logic/api/api_get_games.dart';
 import 'package:betchya/logic/games/game_category.dart';
-import 'package:betchya/models/ModelProvider.dart';
 import 'package:betchya/other_models/games.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -21,23 +20,6 @@ class _GamesWidgetState extends State<GamesWidget> {
   final amountController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _configureAmplify();
-  }
-
-  Future<void> _configureAmplify() async {
-    final api = AmplifyAPI(modelProvider: ModelProvider.instance);
-    await Amplify.addPlugin(api);
-
-    try {
-      await Amplify.configure(amplifyconfig);
-    } on Exception catch (e) {
-      safePrint('An error occurred configuring Amplify: $e');
-    }
-  }
-
-  @override
   void dispose() {
     amountController.dispose();
     super.dispose();
@@ -47,9 +29,11 @@ class _GamesWidgetState extends State<GamesWidget> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    APIGetGames().getGameList();
 
     return FutureBuilder<List<Game>>(
-      future: APIGetGames().getGameList(gameCategory),
+      //future: APIGetGames().getGameList(gameCategory),
+      future: APIGetGames().getGameList(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
@@ -75,8 +59,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          
                           SizedBox.square(
                             dimension: screenWidth * .2,
+                            /*
                             child: CachedNetworkImage(
                               imageUrl: game.teamLogo1,
                               progressIndicatorBuilder:
@@ -89,10 +75,13 @@ class _GamesWidgetState extends State<GamesWidget> {
                                   const Icon(Icons.error),
                               fit: BoxFit.cover,
                             ),
+                            */
+                            child: Text(game.homeTeamName ?? 'Unknown'),
                           ),
                           const Text('VS'),
                           SizedBox.square(
                             dimension: screenWidth * .2,
+                            /*
                             child: CachedNetworkImage(
                               imageUrl: game.teamLogo2,
                               progressIndicatorBuilder:
@@ -105,19 +94,120 @@ class _GamesWidgetState extends State<GamesWidget> {
                                   const Icon(Icons.error),
                               fit: BoxFit.cover,
                             ),
+                            */
+                            child: Text(game.awayTeamName ?? 'Unknown'),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text(game.description),
+                      Text('${game.oddType}'),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text(
-                        'Betting Line: ${game.betLine} ',
-                        style: const TextStyle(color: Colors.deepPurple),
+                      Text('Point Spread'),
+                      SizedBox(
+                        height: screenHeight * .01,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    '${game.homePointSpread ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  Text(
+                                    '${game.homePointSpreadPayout ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                          SizedBox(width: 20), // Adjust the spacing between the two Text widgets
+                          Expanded(
+                            child: OutlinedButton(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    '${game.awayPointSpread ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  Text(
+                                    '${game.awayPointSpreadPayout ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: screenHeight * .01,
+                      ),
+                      Text('Money Line'),
+                      SizedBox(
+                        height: screenHeight * .01,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              child: Text(
+                                    '${game.homeMoneyLine ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                              onPressed: () {},
+                            ),
+                          ),
+                          SizedBox(width: 20), // Adjust the spacing between the two Text widgets
+                          Expanded(
+                            child: OutlinedButton(
+                              child: Text(
+                                    '${game.awayMoneyLine ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: screenHeight * .01,
+                      ),
+                      Text('Money Line'),
+                      SizedBox(
+                        height: screenHeight * .01,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              child: Text(
+                                    '${game.overUnder ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                              onPressed: () {},
+                            ),
+                          ),
+                          SizedBox(width: 20), // Adjust the spacing between the two Text widgets
+                          Expanded(
+                            child: OutlinedButton(
+                              child: Text(
+                                    '${game.overUnder ?? 'N/A'}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: screenHeight * .01,
