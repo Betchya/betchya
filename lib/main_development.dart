@@ -1,4 +1,4 @@
-import 'package:amplify_authenticator/amplify_authenticator.dart';
+// import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:betchya/bootstrap.dart';
 import 'package:betchya/logic/events/events_bloc.dart';
 import 'package:betchya/logic/navigation/navigation_cubit.dart';
@@ -40,20 +40,20 @@ class MyApp extends StatelessWidget {
           create: (context) => PointsCubit()..update(),
         ),
       ],
-      child: Authenticator(
-        child: MaterialApp.router(
-          builder: Authenticator.builder(),
-          routerConfig: goRouter,
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(
-              systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: Color(0xff2C1D57),
-                statusBarIconBrightness: Brightness.light,
-              ),
+      // child: Authenticator(
+      child: MaterialApp.router(
+        // builder: Authenticator.builder(),
+        routerConfig: goRouter,
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Color(0xff2C1D57),
+              statusBarIconBrightness: Brightness.light,
             ),
           ),
         ),
       ),
+      // ),
     );
   }
 }
