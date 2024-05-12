@@ -1,21 +1,19 @@
-import 'package:amplify_authenticator/amplify_authenticator.dart';
-import 'package:betchya/logic/authentication/auth_repository/auth_repository.dart';
-import 'package:betchya/bootstrap.dart';
-import 'package:betchya/logic/events/events_bloc.dart';
-import 'package:betchya/logic/navigation/navigation_cubit.dart';
-import 'package:betchya/logic/points/points_cubit.dart';
-import 'package:betchya/logic/rewards/rewards_bloc.dart';
+import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as AmplifyCognito;
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:betchya/presentation/views/root_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:betchya/amplify_configuration.dart';
+import 'amplify_configuration.dart';
+import 'amplifyconfiguration.dart';
 import 'cognito_manager.dart';
-
+import 'logic/events/events_bloc.dart';
+import 'logic/navigation/navigation_cubit.dart';
+import 'logic/points/points_cubit.dart';
+import 'logic/rewards/rewards_bloc.dart';
 /*
   TODO:
     1. Flesh out Custom Authenticator to include sign-up page
@@ -35,20 +33,51 @@ import 'cognito_manager.dart';
  */
 bool isUserSignedIn = false;
 
+// Future<void> fetchCognitoAuthSession() async {
+//
+//   try {
+//     // final cognitoPlugin = Amplify.Auth.getPlugin(AmplifyAuthCognito.pluginKey);
+//     // final result = await cognitoPlugin.fetchAuthSession();
+//     // final identityId = result.identityIdResult.value;
+//     // safePrint("Current user's identity ID: $identityId");
+//   } on AuthException catch (e) {
+//     safePrint('Error retrieving auth session: ${e.message}');
+//   }
+// }
+
 Future<void> checkUserStatus() async {
   try {
     final session = await Amplify.Auth.fetchAuthSession();
     isUserSignedIn = session.isSignedIn;
+    print("isUserSignedIN: $isUserSignedIn");
   } catch (e) {
     print("Error checking sign in status: $e");
   }
 }
 
+Future<void> _configureAmplify() async {
+  try {
+    await Amplify.addPlugin(AmplifyCognito.AmplifyAuthCognito());
+    await Amplify.configure(amplifyconfig);
+    safePrint('Successfully configured');
+  } on Exception catch (e) {
+    safePrint('Error configuring Amplify: $e');
+  }
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
- // await configureAmplify();
-  await checkUserStatus();
-  bootstrap(() => const MyApp());
+  // await _configureAmplify();
+  // await checkUserStatus();
+  // await bootstrap(() => const MyApp());
+  // runApp(const MyApp());
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await _configureAmplify();
+    runApp(const MyApp());
+  } on AmplifyException catch (e) {
+    runApp(Text("Error configuring Amplify: ${e.message}"));
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -60,14 +89,12 @@ class MyApp extends StatelessWidget {
       routes: [
         GoRoute(
           path: '/',
-          //LUCAS: check if user is signed in here, then redirect to signup if not
           redirect: (context, state) => isUserSignedIn ? null : '/signup',
         ),
         GoRoute(
           path: '/signup',
           builder: (context, state) => CustomAuthenticator(),
         ),
-        // You might want to add the /root path only if necessary, ensure the correct path is used in redirects
         GoRoute(
           path: '/root',
           builder: (context, state) => const RootScreen(),
@@ -133,7 +160,10 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
 
     try {
       await _cognitoManager.signIn(email, password);
-      CognitoAuthSession session = await Amplify.Auth.fetchAuthSession() as CognitoAuthSession;
+
+      AmplifyCognito.CognitoAuthSession session = await Amplify.Auth.fetchAuthSession() as AmplifyCognito.CognitoAuthSession;
+      final result = await Amplify.Auth.fetchAuthSession();
+      safePrint('Is User Signed in: ${result.isSignedIn}');
 
       if (session.isSignedIn) {
         print("User is signed in!");
