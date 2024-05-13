@@ -67,13 +67,10 @@ Future<void> _configureAmplify() async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await _configureAmplify();
-  // await checkUserStatus();
-  // await bootstrap(() => const MyApp());
-  // runApp(const MyApp());
   try {
     WidgetsFlutterBinding.ensureInitialized();
     await _configureAmplify();
+    await checkUserStatus();
     runApp(const MyApp());
   } on AmplifyException catch (e) {
     runApp(Text("Error configuring Amplify: ${e.message}"));
@@ -89,7 +86,7 @@ class MyApp extends StatelessWidget {
       routes: [
         GoRoute(
           path: '/',
-          redirect: (context, state) => isUserSignedIn ? null : '/signup',
+          redirect: (context, state) => isUserSignedIn ? '/root' : '/signup',
         ),
         GoRoute(
           path: '/signup',
@@ -97,7 +94,7 @@ class MyApp extends StatelessWidget {
         ),
         GoRoute(
           path: '/root',
-          builder: (context, state) => const RootScreen(),
+          builder: (context, state) => const HomeScreen(),
         ),
       ],
     );
@@ -159,11 +156,12 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
     final password = _passwordController.text;
 
     try {
-      await _cognitoManager.signIn(email, password);
-
+      final result = await Amplify.Auth.signIn(
+        username: email,
+        password: password,
+      );
       AmplifyCognito.CognitoAuthSession session = await Amplify.Auth.fetchAuthSession() as AmplifyCognito.CognitoAuthSession;
-      final result = await Amplify.Auth.fetchAuthSession();
-      safePrint('Is User Signed in: ${result.isSignedIn}');
+      safePrint('Is User Signed in: ${session.isSignedIn}');
 
       if (session.isSignedIn) {
         print("User is signed in!");
@@ -171,15 +169,14 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
         //LUCAS: Accessing and printing the ID and Access Tokens
         print("ID Token: ${session.userPoolTokens?.idToken}");
         print("Access Token: ${session.userPoolTokens?.accessToken}");
-      }
 
-      //DefaultTabController.of(context).animateTo(1);
-    } on CognitoServiceException catch (e) {
+        context.go('/root');
+      }
+    } on AuthException catch (e) {
+      safePrint('Error signing in: ${e.message}');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.message)),
       );
-    } catch (e) {
-      print('An error occurred fetching auth session: $e');
     }
   }
 
@@ -225,6 +222,78 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
     );
   }
 }
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: fetchUserData(), // Fetch username asynchronously
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Show loading indicator while fetching username
+          return CircularProgressIndicator();
+        } else {
+          // Once username is fetched, build the UI
+          // final username = snapshot.data as String?;
+          final userData = snapshot.data as Map<String, dynamic>;
+          final username = userData['username'] as String?;
+          final userId = userData['userId'] as String?;
+          return Scaffold(
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Welcome, $username!'),
+                      Text("User ID: $userId"),
+                      ElevatedButton(
+                        onPressed: () => _signOut(context),
+                        child: Text('Sign Out'),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+          }
+      },
+    );
+  }
+
+  void _signOut(BuildContext context) async {
+    try {
+      // Perform sign-out operation
+      await Amplify.Auth.signOut();
+
+      // Navigate back to the sign-in page
+      context.go('/signup');
+    } on AuthException catch (e) {
+      // Handle sign-out error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message)),
+      );
+    } catch (e) {
+      // Handle other errors
+      print('An error occurred during sign out: $e');
+    }
+  }
+}
+
+Future<Map<String, dynamic>> fetchUserData() async {
+  try {
+    final user = await Amplify.Auth.getCurrentUser();
+    final username = user.username;
+    final userId = user.userId; // Assuming client ID is the user ID
+    return {
+      'username': username,
+      'userId': userId,
+    };
+  } on AuthException catch (e) {
+    safePrint('Error fetching user data: ${e.message}');
+    throw 'Error fetching user data: ${e.message}';
+  }
+}
+
 
 //
 //  OLD CODE FOR AWS DEFAULT AUTHENTICATOR (left for reference / just in case)
