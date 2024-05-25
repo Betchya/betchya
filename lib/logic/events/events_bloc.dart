@@ -1,4 +1,4 @@
-import 'package:betchya/other_models/event.dart';
+import 'package:betchya/models/event.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

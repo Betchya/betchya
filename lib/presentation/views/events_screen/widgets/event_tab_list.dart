@@ -1,4 +1,4 @@
-import 'package:betchya/other_models/event.dart';
+import 'package:betchya/models/event.dart';
 import 'package:betchya/presentation/views/events_screen/widgets/event_details.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

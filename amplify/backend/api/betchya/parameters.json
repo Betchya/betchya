@@ -1,5 +1,0 @@
-{
-  "AppSyncApiName": "betchya",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
-}

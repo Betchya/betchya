@@ -1,0 +1,43 @@
+type NBAPregameOdds @model @auth(rules: [{ allow: public }]) {
+  GameId:	Int!
+  Season:	Int
+  SeasonType:	Int
+  Day: String
+  DateTime:	String
+  Status:	String
+  AwayTeamId: Int
+  HomeTeamId:	Int
+  AwayTeamName:	String
+  HomeTeamName:	String
+  GlobalGameId: Int
+  GlobalAwayTeamId:	Int
+  GlobalHomeTeamId:	Int
+  HomeTeamScore: Int
+  AwayTeamScore: Int
+  TotalScore: Int
+  HomeRotationNumber: Int
+  AwayRotationNumber:	Int
+  PregameOdds: [AWSJSON]
+}
+
+type MLBPregameOdds @model @auth(rules: [{ allow: public }]) {
+  GameId: Int!
+  Season: Int
+  SeasonType: Int
+  Day: String
+  DateTime: String
+  Status: String
+  AwayTeamId: Int
+  HomeTeamId: Int
+  AwayTeamName: String
+  HomeTeamName: String
+  GlobalGameId: Int
+  GlobalAwayTeamId: Int
+  GlobalHomeTeamId: Int
+  HomeTeamScore: Int
+  AwayTeamScore: Int
+  TotalScore: Int
+  HomeRotationNumber: Int
+  AwayRotationNumber: Int
+  PregameOdds: [AWSJSON]
+}

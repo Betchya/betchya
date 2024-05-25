@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-betchya-dev-96923-authRole",
-      "UnauthRoleArn": "arn:aws:iam::128288378717:role/amplify-betchya-dev-96923-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::128288378717:role/amplify-betchya-dev-96923-authRole",
-      "Region": "us-west-1",
-      "DeploymentBucketName": "amplify-betchya-dev-96923-deployment",
-      "UnauthRoleName": "amplify-betchya-dev-96923-unauthRole",
-      "StackName": "amplify-betchya-dev-96923",
-      "StackId": "arn:aws:cloudformation:us-west-1:128288378717:stack/amplify-betchya-dev-96923/347bb2b0-006a-11ef-9d89-062ba99020a9",
-      "AmplifyAppId": "d3be8kjr995jhn"
+      "AuthRoleName": "amplify-betchya-dev-7f527-authRole",
+      "UnauthRoleArn": "arn:aws:iam::901195418002:role/amplify-betchya-dev-7f527-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::901195418002:role/amplify-betchya-dev-7f527-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-betchya-dev-7f527-deployment",
+      "UnauthRoleName": "amplify-betchya-dev-7f527-unauthRole",
+      "StackName": "amplify-betchya-dev-7f527",
+      "StackId": "arn:aws:cloudformation:us-west-2:901195418002:stack/amplify-betchya-dev-7f527/35f29c70-140c-11ef-819e-0a3d1ad3a3bd",
+      "AmplifyAppId": "dg1uazydvnxlp"
     },
     "categories": {
       "api": {
-        "betchya": {}
+        "SportsDataIOBettingEvents": {}
       }
     }
   }

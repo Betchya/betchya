@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "SportsDataIOBettingEvents",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-05-24T23:24:57.708Z"
+}

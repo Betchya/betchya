@@ -1,34 +1,31 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:betchya/other_models/games.dart';
-import 'package:http/http.dart' as http;
-
-// TODO: change SportsData.io API call to AppSync call
+import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:betchya/models/ModelProvider.dart';
+import 'package:betchya/models/NBAPregameOdds.dart';
+import 'package:betchya/logic/games/game_category.dart';
 
 class APIGetGames {
-  //Future<List<Game>> getGameList(String gameCategory) async {
-  Future<List<Game>> getGameList() async {
-    final response = await http.get(
-      //Uri.parse('https://betcha-api-tirbceqy5q-uw.a.run.app/generic_bets'),
-      Uri.parse('https://api.sportsdata.io/v3/nba/odds/json/GameOddsByDate/2024-04-26?key=469421ea871a488eb5f670116668a83d'),
-    );
-
-    final responseJason = jsonDecode(response.body) as List<dynamic>;
-    
-    final gameList = <Game>[];
-    if (responseJason.isNotEmpty) {
-      for (var i = 0; i < responseJason.length; i++) {
-        if (responseJason[i] != null) {
-          final map = responseJason[i] as Map<String, dynamic>;
-          //if (map['betCategory'] == gameCategory || gameCategory == '') {
-          if (true) {
-            gameList.add(Game.fromJson(map));
-          }
-        }
-      }
+  Future<List<dynamic>>? getGameList(String gameCategory) async {
+    loading = true;
+    final GraphQLRequest<dynamic> request;
+    if(gameCategory == 'NBA'){
+      request = ModelQueries.list(NBAPregameOdds.classType);
+    }
+    else if(gameCategory == 'MLB'){
+      request = ModelQueries.list(MLBPregameOdds.classType);
+    }
+    else{
+      request = ModelQueries.list(NBAPregameOdds.classType);
     }
 
-    return gameList;
+    final res = await Amplify.API.query(request: request).response;
+
+    final games = res.data?.items as List<Model?>;
+
+    loading = false;
+    return games;
   }
 }

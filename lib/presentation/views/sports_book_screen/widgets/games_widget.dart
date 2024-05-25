@@ -1,13 +1,14 @@
 // import 'package:betchya/logic/api/api_addBets.dart';
-import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:betchya/amplifyconfiguration.dart';
+import 'dart:convert';
+import 'dart:ffi';
+
 import 'package:betchya/logic/api/api_get_games.dart';
 import 'package:betchya/logic/games/game_category.dart';
-import 'package:betchya/other_models/games.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:betchya/logic/teams/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class GamesWidget extends StatefulWidget {
   const GamesWidget({super.key});
@@ -17,7 +18,26 @@ class GamesWidget extends StatefulWidget {
 }
 
 class _GamesWidgetState extends State<GamesWidget> {
-  final amountController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+
+  String formattedDateTime(String dateTimeString) {
+    final dateTime = DateTime.parse(dateTimeString);
+    final dateFormat = DateFormat('E h:mm a');
+    final formattedDate = dateFormat.format(dateTime);
+    return '$formattedDate ET';
+  }
+
+  String calculatePayout(String amount, String odds) {
+    final parsedAmount = int.parse(amount);
+    final parsedOdds = int.parse(odds);
+
+    if (parsedOdds >= 0) {
+      return (parsedAmount * (parsedOdds/100) + parsedAmount).round().toString();
+    }
+    else {
+      return (parsedAmount / (parsedOdds.abs()/100) + parsedAmount).round().toString();
+    }
+  }
 
   @override
   void dispose() {
@@ -29,19 +49,18 @@ class _GamesWidgetState extends State<GamesWidget> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    APIGetGames().getGameList();
+    var payout = '';
 
-    return FutureBuilder<List<Game>>(
-      //future: APIGetGames().getGameList(gameCategory),
-      future: APIGetGames().getGameList(),
+    return FutureBuilder<List<dynamic>>(
+      future: APIGetGames().getGameList(gameCategory),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.hasData ) {
           return ListView.builder(
             padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
             shrinkWrap: true,
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
-              final game = snapshot.data![index];
+              final game = snapshot.data?[index];
 
               return Card(
                 elevation: 5,
@@ -59,54 +78,97 @@ class _GamesWidgetState extends State<GamesWidget> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          
-                          SizedBox.square(
-                            dimension: screenWidth * .2,
-                            /*
-                            child: CachedNetworkImage(
-                              imageUrl: game.teamLogo1,
-                              progressIndicatorBuilder:
-                                  (context, url, progress) => Center(
-                                child: CircularProgressIndicator(
-                                  value: progress.progress,
+                          Expanded(
+                            flex: 4,
+                            child: Column(
+                              children: [
+                                const Center(
+                                  child: Text(
+                                    'Home',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    overflow: TextOverflow.visible,
+                                  ),
                                 ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              fit: BoxFit.cover,
+                                SizedBox(
+                                  height: screenHeight * .01,
+                                ),
+                                SizedBox.square(
+                                  dimension: screenWidth * .2,
+                                  child: !loading
+                                  ? SvgPicture.asset(
+                                      'assets/logos/${gameCategory.toLowerCase()}/${game.HomeTeamName.toLowerCase()}.svg',
+                                    )
+                                  : const CircularProgressIndicator(),
+                                ),
+                                Center(
+                                  child: Text(
+                                    getTeamName(gameCategory, game.HomeTeamName as String?)!,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
                             ),
-                            */
-                            child: Text(game.homeTeamName ?? 'Unknown'),
                           ),
-                          const Text('VS'),
-                          SizedBox.square(
-                            dimension: screenWidth * .2,
-                            /*
-                            child: CachedNetworkImage(
-                              imageUrl: game.teamLogo2,
-                              progressIndicatorBuilder:
-                                  (context, url, progress) => Center(
-                                child: CircularProgressIndicator(
-                                  value: progress.progress,
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              fit: BoxFit.cover,
+                          const Expanded(
+                            flex: 2,
+                            child: Center(
+                              child: Text('VS'),
                             ),
-                            */
-                            child: Text(game.awayTeamName ?? 'Unknown'),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: Column(
+                              children: [
+                                const Center(
+                                  child: Text(
+                                    'Away',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: screenHeight * .01,
+                                ),
+                                SizedBox.square(
+                                  dimension: screenWidth * .2,
+                                  child: !loading
+                                  ? SvgPicture.asset(
+                                      'assets/logos/${gameCategory.toLowerCase()}/${game.AwayTeamName.toLowerCase()}.svg',
+                                    )
+                                  : const CircularProgressIndicator(),
+                                ),
+                                Center(
+                                  child: Text(
+                                    getTeamName(gameCategory, game.AwayTeamName as String?)!,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text('${game.oddType}'),
+                      Text(
+                        formattedDateTime(game.DateTime as String),
+                        style: const TextStyle(fontWeight: FontWeight.bold)
+                      ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text('Point Spread'),
+                      const Divider(),
+                      const Text(
+                        'Spread',
+                        style: TextStyle(fontWeight: FontWeight.bold)
+                      ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
@@ -114,37 +176,239 @@ class _GamesWidgetState extends State<GamesWidget> {
                         children: [
                           Expanded(
                             child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Adjust border radius for squared corners
+                                ),
+                              ),
                               child: Column(
                                 children: [
+                                  SizedBox(
+                                    height: screenHeight * .01,
+                                  ),
                                   Text(
-                                    '${game.homePointSpread ?? 'N/A'}',
+                                    '${json.decode(game?.PregameOdds?[0] as String)['HomePointSpread']}',
                                     style: const TextStyle(color: Colors.deepPurple),
                                   ),
                                   Text(
-                                    '${game.homePointSpreadPayout ?? 'N/A'}',
+                                    '${json.decode(game?.PregameOdds?[0] as String)['HomePointSpreadPayout']}',
                                     style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  SizedBox(
+                                    height: screenHeight * .01,
                                   ),
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                // When the button is pressed, show the dialog
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (context) {
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  'Home Point Spread: ${json.decode(game?.PregameOdds?[0] as String)['HomePointSpread']}',
+                                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                                  ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                Text(
+                                                  'Odds: ${json.decode(game?.PregameOdds?[0] as String)['HomePointSpreadPayout']}',
+                                                  style: const TextStyle(color: Colors.deepPurple),
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                SizedBox(
+                                                  width: screenWidth * 0.8,
+                                                  child: TextFormField(
+                                                    controller: amountController,
+                                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                                    decoration: const InputDecoration(
+                                                      prefixIcon: Icon(Icons.attach_money),
+                                                      border: OutlineInputBorder(),
+                                                      labelText: 'Amount',
+                                                    ),
+                                                    onChanged: (value) {
+                                                      setState((){});
+                                                      payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['HomePointSpreadPayout'].toString());
+                                                    },
+                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  ),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                Text(
+                                                  'Payout: $payout',
+                                                  style: const TextStyle(color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                SizedBox(
+                                                  width: screenWidth * .8,
+                                                  height: screenHeight * .05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xff00B498),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                    ),
+                                                    onPressed: () => {
+                                                      // TODO: do something with user's account and their money
+                                                      setState(() {}),
+                                                    },
+                                                    child: const Text(
+                                                      'Place Bet',
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16.0),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    // Close the dialog
+                                                    payout = '';
+                                                    amountController.clear();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Close'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then((value){ // unsure what "value" is looking at but it allows it to work when user clicks outside of dialog to clear
+                                  payout = '';
+                                  amountController.clear();
+                                });
+                              },
                             ),
                           ),
-                          SizedBox(width: 20), // Adjust the spacing between the two Text widgets
+                          const SizedBox(width: 20), // Adjust the spacing between the two Text widgets
                           Expanded(
                             child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Adjust border radius for squared corners
+                                ),
+                              ),
                               child: Column(
                                 children: [
+                                  SizedBox(
+                                    height: screenHeight * .01,
+                                  ),
                                   Text(
-                                    '${game.awayPointSpread ?? 'N/A'}',
+                                    '${json.decode(game?.PregameOdds?[0] as String)['AwayPointSpread']}',
                                     style: const TextStyle(color: Colors.deepPurple),
                                   ),
                                   Text(
-                                    '${game.awayPointSpreadPayout ?? 'N/A'}',
+                                    '${json.decode(game?.PregameOdds?[0] as String)['AwayPointSpreadPayout']}',
                                     style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  SizedBox(
+                                    height: screenHeight * .01,
                                   ),
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (context) {
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  'Away Point Spread: ${json.decode(game?.PregameOdds?[0] as String)['AwayPointSpread']}',
+                                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                                  ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                Text(
+                                                  'Odds: ${json.decode(game?.PregameOdds?[0] as String)['AwayPointSpreadPayout']}',
+                                                  style: const TextStyle(color: Colors.deepPurple),
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                SizedBox(
+                                                  width: screenWidth * 0.8,
+                                                  child: TextFormField(
+                                                    controller: amountController,
+                                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                                    decoration: const InputDecoration(
+                                                      prefixIcon: Icon(Icons.attach_money),
+                                                      border: OutlineInputBorder(),
+                                                      labelText: 'Amount',
+                                                    ),
+                                                    onChanged: (value) {
+                                                      setState((){});
+                                                      payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['AwayPointSpreadPayout'].toString());
+                                                    },
+                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  ),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                Text(
+                                                  'Payout: $payout',
+                                                  style: const TextStyle(color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                SizedBox(
+                                                  width: screenWidth * .8,
+                                                  height: screenHeight * .05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xff00B498),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                    ),
+                                                    onPressed: () => {
+                                                      setState(() {}),
+                                                    },
+                                                    child: const Text(
+                                                      'Place Bet',
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16.0),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    // Close the dialog
+                                                    payout = '';
+                                                    amountController.clear();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Close'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then((value){ // unsure what "value" is looking at but it allows it to work when user clicks outside of dialog to clear
+                                  payout = '';
+                                  amountController.clear();
+                                });
+                              },
                             ),
                           ),
                         ],
@@ -152,7 +416,11 @@ class _GamesWidgetState extends State<GamesWidget> {
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text('Money Line'),
+                      const Divider(),
+                      const Text(
+                        'Money',
+                        style: TextStyle(fontWeight: FontWeight.bold)
+                        ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
@@ -160,21 +428,209 @@ class _GamesWidgetState extends State<GamesWidget> {
                         children: [
                           Expanded(
                             child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Adjust border radius for squared corners
+                                ),
+                              ),
                               child: Text(
-                                    '${game.homeMoneyLine ?? 'N/A'}',
+                                    '${json.decode(game?.PregameOdds?[0] as String)['HomeMoneyLine']}',
                                     style: const TextStyle(color: Colors.deepPurple),
                                   ),
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (context) {
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Text(
+                                                  'Home Wins',
+                                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                                  ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                Text(
+                                                  'Odds: ${json.decode(game?.PregameOdds?[0] as String)['HomeMoneyLine']}',
+                                                  style: const TextStyle(color: Colors.deepPurple),
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                SizedBox(
+                                                  width: screenWidth * 0.8,
+                                                  child: TextFormField(
+                                                    controller: amountController,
+                                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                                    decoration: const InputDecoration(
+                                                      prefixIcon: Icon(Icons.attach_money),
+                                                      border: OutlineInputBorder(),
+                                                      labelText: 'Amount',
+                                                    ),
+                                                    onChanged: (value) {
+                                                      setState((){});
+                                                      payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['HomeMoneyLine'].toString());
+                                                    },
+                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  ),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                Text(
+                                                  'Payout: $payout',
+                                                  style: const TextStyle(color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                SizedBox(
+                                                  width: screenWidth * .8,
+                                                  height: screenHeight * .05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xff00B498),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                    ),
+                                                    onPressed: () => {
+                                                      setState(() {}),
+                                                    },
+                                                    child: const Text(
+                                                      'Place Bet',
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16.0),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    // Close the dialog
+                                                    payout = '';
+                                                    amountController.clear();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Close'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then((value){ // unsure what "value" is looking at but it allows it to work when user clicks outside of dialog to clear
+                                  payout = '';
+                                  amountController.clear();
+                                });
+                              },
                             ),
                           ),
-                          SizedBox(width: 20), // Adjust the spacing between the two Text widgets
+                          const SizedBox(width: 20), // Adjust the spacing between the two Text widgets
                           Expanded(
                             child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Adjust border radius for squared corners
+                                ),
+                              ),
                               child: Text(
-                                    '${game.awayMoneyLine ?? 'N/A'}',
+                                    '${json.decode(game?.PregameOdds?[0] as String)['AwayMoneyLine']}',
                                     style: const TextStyle(color: Colors.deepPurple),
                                   ),
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (context) {
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Text(
+                                                  'Away Wins',
+                                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                                  ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                Text(
+                                                  'Odds: ${json.decode(game?.PregameOdds?[0] as String)['AwayMoneyLine']}',
+                                                  style: const TextStyle(color: Colors.deepPurple),
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                SizedBox(
+                                                  width: screenWidth * 0.8,
+                                                  child: TextFormField(
+                                                    controller: amountController,
+                                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                                    decoration: const InputDecoration(
+                                                      prefixIcon: Icon(Icons.attach_money),
+                                                      border: OutlineInputBorder(),
+                                                      labelText: 'Amount',
+                                                    ),
+                                                    onChanged: (value) {
+                                                      setState((){});
+                                                      payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['AwayMoneyLine'].toString());
+                                                    },
+                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  ),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                Text(
+                                                  'Payout: $payout',
+                                                  style: const TextStyle(color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                SizedBox(
+                                                  width: screenWidth * .8,
+                                                  height: screenHeight * .05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xff00B498),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                    ),
+                                                    onPressed: () => {
+                                                      setState(() {}),
+                                                    },
+                                                    child: const Text(
+                                                      'Place Bet',
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16.0),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    // Close the dialog
+                                                    payout = '';
+                                                    amountController.clear();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Close'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then((value){ // unsure what "value" is looking at but it allows it to work when user clicks outside of dialog to clear
+                                  payout = '';
+                                  amountController.clear();
+                                });
+                              },
                             ),
                           ),
                         ],
@@ -182,7 +638,11 @@ class _GamesWidgetState extends State<GamesWidget> {
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text('Money Line'),
+                      const Divider(),
+                      const Text(
+                        'Total',
+                        style: TextStyle(fontWeight: FontWeight.bold)
+                        ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
@@ -190,74 +650,243 @@ class _GamesWidgetState extends State<GamesWidget> {
                         children: [
                           Expanded(
                             child: OutlinedButton(
-                              child: Text(
-                                    '${game.overUnder ?? 'N/A'}',
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Adjust border radius for squared corners
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: screenHeight * .01,
+                                  ),
+                                  Text(
+                                    'O ${json.decode(game?.PregameOdds?[0] as String)['OverUnder']}',
                                     style: const TextStyle(color: Colors.deepPurple),
                                   ),
-                              onPressed: () {},
+                                  Text(
+                                    '${json.decode(game?.PregameOdds?[0] as String)['OverPayout']}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  SizedBox(
+                                    height: screenHeight * .01,
+                                  ),
+                                ],
+                              ),
+                              onPressed: () {
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (context) {
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  'Over ${json.decode(game?.PregameOdds?[0] as String)['OverUnder']} Total Points',
+                                                  style: const TextStyle(fontWeight: FontWeight.bold)
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                Text(
+                                                  '${json.decode(game?.PregameOdds?[0] as String)['OverPayout']}',
+                                                  style: const TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                SizedBox(
+                                                  width: screenWidth * 0.8,
+                                                  child: TextFormField(
+                                                    controller: amountController,
+                                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                                    decoration: const InputDecoration(
+                                                      prefixIcon: Icon(Icons.attach_money),
+                                                      border: OutlineInputBorder(),
+                                                      labelText: 'Amount',
+                                                    ),
+                                                    onChanged: (value) {
+                                                      setState((){});
+                                                      payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['OverPayout'].toString());
+                                                    },
+                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  ),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                Text(
+                                                  'Payout: $payout',
+                                                  style: const TextStyle(color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                SizedBox(
+                                                  width: screenWidth * .8,
+                                                  height: screenHeight * .05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xff00B498),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                    ),
+                                                    onPressed: () => {
+                                                      setState(() {}),
+                                                    },
+                                                    child: const Text(
+                                                      'Place Bet',
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16.0),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    // Close the dialog
+                                                    payout = '';
+                                                    amountController.clear();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Close'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then((value){ // unsure what "value" is looking at but it allows it to work when user clicks outside of dialog to clear
+                                  payout = '';
+                                  amountController.clear();
+                                });
+                              },
                             ),
                           ),
-                          SizedBox(width: 20), // Adjust the spacing between the two Text widgets
+                          const SizedBox(width: 20), // Adjust the spacing between the two Text widgets
                           Expanded(
                             child: OutlinedButton(
-                              child: Text(
-                                    '${game.overUnder ?? 'N/A'}',
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5), // Adjust border radius for squared corners
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: screenHeight * .01,
+                                  ),
+                                  Text(
+                                    'U ${json.decode(game?.PregameOdds?[0] as String)['OverUnder']}',
                                     style: const TextStyle(color: Colors.deepPurple),
                                   ),
-                              onPressed: () {},
+                                  Text(
+                                    '${json.decode(game?.PregameOdds?[0] as String)['UnderPayout']}',
+                                    style: const TextStyle(color: Colors.deepPurple),
+                                  ),
+                                  SizedBox(
+                                    height: screenHeight * .01,
+                                  ),
+                                ],
+                              ),
+                              onPressed: () {
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (context) {
+                                    return StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Dialog(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  'Under ${json.decode(game?.PregameOdds?[0] as String)['OverUnder']} Total Points',
+                                                  style: const TextStyle(fontWeight: FontWeight.bold)
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                Text(
+                                                  '${json.decode(game?.PregameOdds?[0] as String)['UnderPayout']}',
+                                                  style: const TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox(
+                                                  height: screenHeight * .01,
+                                                ),
+                                                SizedBox(
+                                                  width: screenWidth * 0.8,
+                                                  child: TextFormField(
+                                                    controller: amountController,
+                                                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                                    decoration: const InputDecoration(
+                                                      prefixIcon: Icon(Icons.attach_money),
+                                                      border: OutlineInputBorder(),
+                                                      labelText: 'Amount',
+                                                    ),
+                                                    onChanged: (value) {
+                                                      setState((){});
+                                                      payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['UnderPayout'].toString());
+                                                    },
+                                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                                  ),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                Text(
+                                                  'Payout: $payout',
+                                                  style: const TextStyle(color: Colors.deepPurpleAccent, fontWeight: FontWeight.bold),
+                                                ),
+                                                SizedBox( height: screenHeight * .01,),
+                                                SizedBox(
+                                                  width: screenWidth * .8,
+                                                  height: screenHeight * .05,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: const Color(0xff00B498),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                      ),
+                                                    ),
+                                                    onPressed: () => {
+                                                      setState(() {}),
+                                                    },
+                                                    child: const Text(
+                                                      'Place Bet',
+                                                      style: TextStyle(fontSize: 15),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 16.0),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    // Close the dialog
+                                                    payout = '';
+                                                    amountController.clear();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Close'),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ).then((value){ // unsure what "value" is looking at but it allows it to work when user clicks outside of dialog to clear
+                                  payout = '';
+                                  amountController.clear();
+                                });
+                              },
                             ),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: screenHeight * .01,
-                      ),
-                      SizedBox(
-                        width: screenWidth * 0.8,
-                        child: TextFormField(
-                          controller: amountController,
-                          keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true,
-                          ),
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.attach_money),
-                            border: OutlineInputBorder(),
-                            labelText: 'Amount',
-                          ),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: screenHeight * .01,
-                      ),
-                      SizedBox(
-                        width: screenWidth * .8,
-                        height: screenHeight * .05,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff00B498),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () => {
-                            // APIAddBets().addBet(
-                            //   game.description,
-                            //   game.betLine,
-                            //   game.teamLogo1,
-                            //   game.teamLogo2,
-                            //   amountController.text,
-                            //   game.date,
-                            // ),
-                            setState(() {}),
-                          },
-                          child: const Text(
-                            'Place Bet',
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -265,7 +894,8 @@ class _GamesWidgetState extends State<GamesWidget> {
               );
             },
           );
-        } else {
+        }
+        else {
           return const CircularProgressIndicator();
         }
       },

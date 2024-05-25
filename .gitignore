@@ -126,6 +126,12 @@ app.*.map.json
 !.idea/dictionaries/
 !.idea/runConfigurations/
 
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
+
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -147,8 +153,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-
-# amplify
-.amplify
-amplify_outputs*
-amplifyconfiguration*

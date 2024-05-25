@@ -1,4 +1,4 @@
-import 'package:betchya/other_models/reward.dart';
+import 'package:betchya/models/reward.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

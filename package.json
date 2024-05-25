@@ -8,6 +8,7 @@
     "test": "test"
   },
   "dependencies": {
+    "@parcel/watcher": "^2.4.1",
     "ansi-escapes": "^4.3.2",
     "ansi-regex": "^5.0.1",
     "ansi-styles": "^4.3.0",
@@ -18,7 +19,7 @@
     "asap": "^2.0.6",
     "auto-bind": "^4.0.0",
     "available-typed-arrays": "^1.0.7",
-    "aws-amplify": "^6.2.0",
+    "aws-amplify": "^6.3.2",
     "babel-generator": "^6.26.1",
     "babel-messages": "^6.23.0",
     "babel-plugin-syntax-trailing-function-commas": "^7.0.0-beta.0",
@@ -403,13 +404,13 @@
     "zod": "^3.23.6"
   },
   "devDependencies": {
-    "@aws-amplify/backend": "^1.0.0",
-    "@aws-amplify/backend-cli": "^1.0.1",
-    "aws-cdk": "^2.140.0",
-    "aws-cdk-lib": "^2.140.0",
+    "@aws-amplify/backend": "^1.0.1",
+    "@aws-amplify/backend-cli": "^1.0.2",
+    "aws-cdk": "^2.141.0",
+    "aws-cdk-lib": "^2.141.0",
     "constructs": "^10.3.0",
     "esbuild": "^0.20.2",
-    "tsx": "^4.9.1",
+    "tsx": "^4.10.0",
     "typescript": "^5.4.5"
   },
   "scripts": {

@@ -150,7 +150,9 @@ class _SportsbookScreenState extends State<SportsbookScreen> {
               ),
               SizedBox(
                 height: screenHeight * .75,
-                child: const GamesWidget(),
+                // allows widget to actually change based on gameCategory
+                // ignore: prefer_const_constructors
+                child: GamesWidget(),
               ),
             ],
           ),

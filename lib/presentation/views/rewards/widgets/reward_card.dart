@@ -1,4 +1,4 @@
-import 'package:betchya/other_models/reward.dart';
+import 'package:betchya/models/reward.dart';
 import 'package:betchya/presentation/views/rewards/widgets/reward_details.dart';
 import 'package:flutter/material.dart';
 
