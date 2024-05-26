@@ -19,36 +19,12 @@ import 'logic/points/points_cubit.dart';
 import 'logic/rewards/rewards_bloc.dart';
 
 /*
-  TODO:
-    1. Flesh out Custom Authenticator to include sign-up page
-    2. Add functionality to redirect user to home page after signing in
+    This page connects the AWS authentication backend to the frontend and handles the sign-up and sign-in logic for the user.
+*/
 
-  COMPLETE
-    1. migrate main_auth functionalities to main_development
-    2. connect sign in to presentation/views/login
-
-  LUCAS:
-    1. Migrated the code from main_auth into a new class (CustomAuthenticator) within main_development
-    (should make Custom Authenticator a view later on)
-    2. Removed AWS default authenticator screen and made a new one that's for more customizable
-    3. Made router redirect to sign-in page if the user is signed out
-    4. I think presentation/views/login is too deprecated (in terms of current codebase) to functionally
-       use anymore- we should just build a new one from Custom Authenticator
- */
 bool isUserSignedIn = false;
 
-// Future<void> fetchCognitoAuthSession() async {
-//
-//   try {
-//     // final cognitoPlugin = Amplify.Auth.getPlugin(AmplifyAuthCognito.pluginKey);
-//     // final result = await cognitoPlugin.fetchAuthSession();
-//     // final identityId = result.identityIdResult.value;
-//     // safePrint("Current user's identity ID: $identityId");
-//   } on AuthException catch (e) {
-//     safePrint('Error retrieving auth session: ${e.message}');
-//   }
-// }
-
+// Check if the user is signed in or not, set global variable
 Future<void> checkUserStatus() async {
   try {
     final session = await Amplify.Auth.fetchAuthSession();
@@ -59,6 +35,9 @@ Future<void> checkUserStatus() async {
   }
 }
 
+/* Configures Amplify for the app per Flutter docs
+Uses the imported amplifyconfig object to connect to our user pool
+*/
 Future<void> _configureAmplify() async {
   try {
     await Amplify.addPlugin(AmplifyCognito.AmplifyAuthCognito());
@@ -69,6 +48,7 @@ Future<void> _configureAmplify() async {
   }
 }
 
+// Check if the user is currently signed in and go to the homepage if true
 Future<void> _isSignedIn(BuildContext context) async {
   try {
     final session = await Amplify.Auth.fetchAuthSession();
@@ -84,6 +64,7 @@ Future<void> _isSignedIn(BuildContext context) async {
   }
 }
 
+// Main function that runs the application after initializing Amplify
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
@@ -96,6 +77,7 @@ Future<void> main() async {
   }
 }
 
+// Main page of the app that has tabs for signing in and signing up
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -133,62 +115,16 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   final goRouter = GoRouter(
-  //     routes: [
-  //       GoRoute(
-  //         path: '/',
-  //         redirect: (context, state) => isUserSignedIn ? '/root' : '/signup',
-  //       ),
-  //       GoRoute(
-  //         path: '/signup',
-  //         builder: (context, state) => CustomAuthenticator(),
-  //       ),
-  //       GoRoute(
-  //         path: '/root',
-  //         builder: (context, state) => const HomeScreen(),
-  //       ),
-  //     ],
-  //   );
-  //
-  //   return MultiBlocProvider(
-  //     providers: [
-  //       BlocProvider<NavigationCubit>(
-  //         create: (context) => NavigationCubit(),
-  //       ),
-  //       BlocProvider<EventsBloc>(
-  //         create: (context) => EventsBloc()..add(GetEventsList()),
-  //       ),
-  //       BlocProvider<RewardsBloc>(
-  //         create: (context) => RewardsBloc()..add(GetRewardsList()),
-  //       ),
-  //       BlocProvider<PointsCubit>(
-  //         create: (context) => PointsCubit()..update(),
-  //       ),
-  //     ],
-  //     child: MaterialApp.router(
-  //       routerConfig: goRouter,
-  //       theme: ThemeData(
-  //         appBarTheme: const AppBarTheme(
-  //           systemOverlayStyle: SystemUiOverlayStyle(
-  //             statusBarColor: Color(0xff2C1D57),
-  //             statusBarIconBrightness: Brightness.light,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }
 
+// These two classes contain the logic for the sign in page
 class CustomAuthenticator extends StatefulWidget {
   @override
   _CustomAuthenticatorState createState() => _CustomAuthenticatorState();
 }
 
 class _CustomAuthenticatorState extends State<CustomAuthenticator> {
+  // Set up text fields for the user to enter credentials
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   late final CognitoManager _cognitoManager;
@@ -198,6 +134,7 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
     super.initState();
     _cognitoManager = CognitoManager();
     _initCognitoManager();
+    // check if user is signed in already
     _isSignedIn(context);
   }
 
@@ -205,6 +142,7 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
     await _cognitoManager.init();
   }
 
+  // This will be called when the user clicks the sign-in button and calls the Amplify signIn method
   void _signIn() async {
     final email = _emailController.text;
     final password = _passwordController.text;
@@ -222,11 +160,12 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
       if (session.isSignedIn) {
         print("User is signed in!");
 
-        //LUCAS: Accessing and printing the ID and Access Tokens
+        // Accessing and printing the ID and Access Tokens
         print("ID Token: ${session.userPoolTokens?.idToken}");
         print("Access Token: ${session.userPoolTokens?.accessToken}");
 
         // context.go('/root');
+        // Once the user is signed in, take them to the homepage
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -240,26 +179,7 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
     }
   }
 
-  // void _signUp() async {
-  //   final email = _emailController.text;
-  //   final password = _passwordController.text;
-  //
-  //   final result = await Amplify.Auth.signUp(
-  //     username: email,
-  //     password: password,
-  //     birthday
-  //   );
-  //
-  //   try {
-  //     await _cognitoManager.signUp(email, password);
-  //     //LUCAS: add stuff for the router here
-  //   } on CognitoServiceException catch (e) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(content: Text(e.message)),
-  //     );
-  //   }
-  // }
-
+  // Frontend widget to display the sign in fields to the user
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -288,12 +208,14 @@ class _CustomAuthenticatorState extends State<CustomAuthenticator> {
   }
 }
 
+// These two classes contain the logic for the sign up page
 class SignUpView extends StatefulWidget {
   @override
   _SignUpViewState createState() => _SignUpViewState();
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  // Define all of the fields the user will need to enter
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -306,6 +228,7 @@ class _SignUpViewState extends State<SignUpView> {
     super.initState();
     _cognitoManager = CognitoManager();
     _initCognitoManager();
+    // Make sure the user isn’t already signed in
     _isSignedIn(context);
   }
 
@@ -313,6 +236,7 @@ class _SignUpViewState extends State<SignUpView> {
     await _cognitoManager.init();
   }
 
+// Returns the age of the user based on the date that they entered
   int _getAge(DateTime birthdate) {
     DateTime today = DateTime.now();
     int age = today.year - birthdate.year;
@@ -323,6 +247,7 @@ class _SignUpViewState extends State<SignUpView> {
     return age;
   }
 
+// This will be called when the user clicks the sign-up button and calls the Amplify signUp method
   Future<void> signUpUser() async {
     final username = _usernameController.text;
     final password = _passwordController.text;
@@ -337,6 +262,7 @@ class _SignUpViewState extends State<SignUpView> {
       return;
     }
 
+// Make sure the user enters all of the required fields
     if (username.isEmpty ||
         password.isEmpty ||
         confirmPassword.isEmpty ||
@@ -348,6 +274,7 @@ class _SignUpViewState extends State<SignUpView> {
       return;
     }
 
+// Make sure that the user is 21 or older
     if (_getAge(birthdate) < 21) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You must be at least 21 years old to sign up')),
@@ -355,19 +282,21 @@ class _SignUpViewState extends State<SignUpView> {
       return;
     }
 
+// Make sure that the two passwords match
     if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Passwords do not match')),
       );
       return;
     }
-
+    //commit user input attributes to Amplify server
     try {
       final userAttributes = {
         AuthUserAttributeKey.email: email,
         AuthUserAttributeKey.birthdate:
             DateFormat('yyyy-MM-dd').format(birthdate!),
       };
+      //asynchronously check if user was able to successfully sign up
       final result = await Amplify.Auth.signUp(
         username: username,
         password: password,
@@ -381,14 +310,20 @@ class _SignUpViewState extends State<SignUpView> {
     }
   }
 
+//handles whether signup will require authentication or not
   Future<void> _handleSignUpResult(SignUpResult result, String password) async {
+//check if there are additional signup steps (verifications)
     switch (result.nextStep.signUpStep) {
       case AuthSignUpStep.confirmSignUp:
         final codeDeliveryDetails = result.nextStep.codeDeliveryDetails!;
         _handleCodeDelivery(codeDeliveryDetails);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ConfirmationScreen(username: _usernameController.text, password: password,)),
+          MaterialPageRoute(
+              builder: (context) => ConfirmationScreen(
+                    username: _usernameController.text,
+                    password: password,
+                  )),
         );
         break;
       case AuthSignUpStep.done:
@@ -397,6 +332,7 @@ class _SignUpViewState extends State<SignUpView> {
     }
   }
 
+//intended to inform the user about further signup verification
   void _handleCodeDelivery(AuthCodeDeliveryDetails codeDeliveryDetails) {
     safePrint(
       'A confirmation code has been sent to ${codeDeliveryDetails.destination}. '
@@ -404,11 +340,11 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-
+// Date-picker for age verification aspect of sign-up page
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: DateTime.now(), // Set initial times
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
@@ -419,6 +355,7 @@ class _SignUpViewState extends State<SignUpView> {
     }
   }
 
+// UI for the signup screen including input form
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -426,6 +363,7 @@ class _SignUpViewState extends State<SignUpView> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          //sign-up form input fields
           children: [
             TextField(
               controller: _usernameController,
@@ -446,7 +384,9 @@ class _SignUpViewState extends State<SignUpView> {
               decoration: const InputDecoration(labelText: 'Email'),
             ),
             Row(
+              //date-picker for age verification in UI
               children: [
+                //ensure date is chosen, otherwise state date
                 Text(
                   _selectedBirthdate == null
                       ? 'No date chosen!'
@@ -469,8 +409,7 @@ class _SignUpViewState extends State<SignUpView> {
   }
 }
 
-
-
+// Handles the user-confirmation step of the signup process with AWS
 class ConfirmationScreen extends StatefulWidget {
   final String username;
   final String password;
@@ -481,6 +420,7 @@ class ConfirmationScreen extends StatefulWidget {
   _ConfirmationScreenState createState() => _ConfirmationScreenState();
 }
 
+// Handles logic on whether or not confirmation is necessary in signup process
 class _ConfirmationScreenState extends State<ConfirmationScreen> {
   final _confirmationCodeController = TextEditingController();
 
@@ -488,6 +428,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
     final confirmationCode = _confirmationCodeController.text.trim();
 
     try {
+//asynchronously check if signup has been completed
       final result = await Amplify.Auth.confirmSignUp(
         username: widget.username,
         confirmationCode: confirmationCode,
@@ -510,14 +451,17 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
     }
   }
 
+// Handle signin with Amplify
   Future<void> _signIn(String username, String password) async {
     try {
+//asynchronously grab signin information from server
       final result = await Amplify.Auth.signIn(
         username: username,
         password: password,
       );
 
       if (result.isSignedIn) {
+//navigate to main page if user has been successfully signed in
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -534,6 +478,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
     }
   }
 
+// Widget for a signup confirmation screen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -557,6 +502,9 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   }
 }
 
+// Home screen for demo purposes to show that a user has successfully
+// logged into the app through the server. To be hooked up to a root
+// page at a later date.
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key});
 
@@ -594,6 +542,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+//signout functionalities with Amplify
   void _signOut(BuildContext context) async {
     try {
       // Perform sign-out operation
@@ -617,8 +566,10 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// Function to grab user data from an Amplify server
 Future<Map<String, dynamic>> fetchUserData() async {
   try {
+// Asynchronously grab user data from server
     final user = await Amplify.Auth.getCurrentUser();
     final username = user.username;
     final userId = user.userId; // Assuming client ID is the user ID
@@ -631,86 +582,3 @@ Future<Map<String, dynamic>> fetchUserData() async {
     throw 'Error fetching user data: ${e.message}';
   }
 }
-
-// void _signUp() async {
-//   final username = _usernameController.text;
-//   final password = _passwordController.text;
-//   final email = _emailController.text;
-//   final birthdate = _birthdateController.text;
-//
-//   final userAttributes = {
-//     AuthUserAttributeKey.email: email,
-//     AuthUserAttributeKey.birthdate: birthdate,
-//
-//   };
-//
-//   try {
-//     // await _cognitoManager.signUp(email, password);
-//     final result = await Amplify.Auth.signUp(
-//       username: username,
-//       password: password,
-//       options: SignUpOptions(
-//         userAttributes: userAttributes,
-//       ),
-//     );
-//     DefaultTabController.of(context).animateTo(1);
-//   } on CognitoServiceException catch (e) {
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text(e.message)),
-//     );
-//   }
-// }
-
-//
-//  OLD CODE FOR AWS DEFAULT AUTHENTICATOR (left for reference / just in case)
-//
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   //await configureAmplify();
-//   print('Setting up Amplify Bootstrap...');
-//   bootstrap(() => const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final goRouter = GoRouter(
-//       routes: [
-//         GoRoute(path: '/', builder: (context, state) => const RootScreen()),
-//       ],
-//     );
-//
-//     return MultiBlocProvider(
-//       providers: [
-//         BlocProvider<NavigationCubit>(
-//           create: (context) => NavigationCubit(),
-//         ),
-//         BlocProvider<EventsBloc>(
-//           create: (context) => EventsBloc()..add(GetEventsList()),
-//         ),
-//         BlocProvider<RewardsBloc>(
-//           create: (context) => RewardsBloc()..add(GetRewardsList()),
-//         ),
-//         BlocProvider<PointsCubit>(
-//           create: (context) => PointsCubit()..update(),
-//         ),
-//       ],
-//       child: Authenticator(
-//         child: MaterialApp.router(
-//           builder: Authenticator.builder(),
-//           routerConfig: goRouter,
-//           theme: ThemeData(
-//             appBarTheme: const AppBarTheme(
-//               systemOverlayStyle: SystemUiOverlayStyle(
-//                 statusBarColor: Color(0xff2C1D57),
-//                 statusBarIconBrightness: Brightness.light,
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
