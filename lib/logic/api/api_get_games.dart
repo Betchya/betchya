@@ -1,15 +1,14 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:betchya/models/ModelProvider.dart';
-import 'package:betchya/models/NBAPregameOdds.dart';
 import 'package:betchya/logic/games/game_category.dart';
+import 'package:betchya/models/ModelProvider.dart';
+
+// TODO(jsrockett): Connect to other sport conferences/types when there are more SportsData.io subscriptions
 
 class APIGetGames {
-  Future<List<dynamic>>? getGameList(String gameCategory) async {
-    loading = true;
+  Future<List<dynamic>?> getGameList(String gameCategory) async {
+    loading = true; // Allows loading of team names/logos to sync with fetching of games
+
     final GraphQLRequest<dynamic> request;
     if(gameCategory == 'NBA'){
       request = ModelQueries.list(NBAPregameOdds.classType);
@@ -18,14 +17,13 @@ class APIGetGames {
       request = ModelQueries.list(MLBPregameOdds.classType);
     }
     else{
-      request = ModelQueries.list(NBAPregameOdds.classType);
+      return null;
     }
 
     final res = await Amplify.API.query(request: request).response;
-
     final games = res.data?.items as List<Model?>;
 
-    loading = false;
+    loading = false; // Allows loading of team names/logos to sync with fetching of games
     return games;
   }
 }

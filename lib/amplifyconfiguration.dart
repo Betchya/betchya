@@ -1,3 +1,4 @@
+// Amplify configurement for GraphQL/AppSync, automatically generated through Amplify CLI
 const amplifyconfig = '''
 {
     "UserAgent": "aws-amplify-cli/2.0",

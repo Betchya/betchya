@@ -1,6 +1,5 @@
 // import 'package:betchya/logic/api/api_addBets.dart';
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:betchya/logic/api/api_get_games.dart';
 import 'package:betchya/logic/games/game_category.dart';
@@ -9,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+
+// TODO(jsrockett): Connect bets with users and their transaction history
+// TODO(jsrockett): Connect to other sport conferences/types when there are more SportsData.io subscriptions
 
 class GamesWidget extends StatefulWidget {
   const GamesWidget({super.key});
@@ -20,6 +22,7 @@ class GamesWidget extends StatefulWidget {
 class _GamesWidgetState extends State<GamesWidget> {
   TextEditingController amountController = TextEditingController();
 
+  // Format DateTime type into a more readable String
   String formattedDateTime(String dateTimeString) {
     final dateTime = DateTime.parse(dateTimeString);
     final dateFormat = DateFormat('E h:mm a');
@@ -27,10 +30,12 @@ class _GamesWidgetState extends State<GamesWidget> {
     return '$formattedDate ET';
   }
 
+  // Calculate the payout shown to the user based on their betting amount and the odds
   String calculatePayout(String amount, String odds) {
     final parsedAmount = int.parse(amount);
     final parsedOdds = int.parse(odds);
 
+    // Formula used to calculate payout is dependent on whether odds are negative or positive
     if (parsedOdds >= 0) {
       return (parsedAmount * (parsedOdds/100) + parsedAmount).round().toString();
     }
@@ -49,9 +54,10 @@ class _GamesWidgetState extends State<GamesWidget> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    var payout = '';
+    var payout = ''; // Payout is initally nothing until user puts in betting amount
 
-    return FutureBuilder<List<dynamic>>(
+    // Async widget to get the games for the specific sport based on gameCategory
+    return FutureBuilder<List<dynamic>?>(
       future: APIGetGames().getGameList(gameCategory),
       builder: (context, snapshot) {
         if (snapshot.hasData ) {
@@ -75,6 +81,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                       SizedBox(
                         height: screenHeight * .01,
                       ),
+                      // Shows team names and logos
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -95,7 +102,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                 ),
                                 SizedBox.square(
                                   dimension: screenWidth * .2,
-                                  child: !loading
+                                  child: !loading // Won't show logo if in the middle of loading
                                   ? SvgPicture.asset(
                                       'assets/logos/${gameCategory.toLowerCase()}/${game.HomeTeamName.toLowerCase()}.svg',
                                     )
@@ -135,7 +142,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                 ),
                                 SizedBox.square(
                                   dimension: screenWidth * .2,
-                                  child: !loading
+                                  child: !loading // Won't show logo if in the middle of loading
                                   ? SvgPicture.asset(
                                       'assets/logos/${gameCategory.toLowerCase()}/${game.AwayTeamName.toLowerCase()}.svg',
                                     )
@@ -172,6 +179,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                       SizedBox(
                         height: screenHeight * .01,
                       ),
+                      // Betting point spread information and buttons
                       Row(
                         children: [
                           Expanded(
@@ -236,6 +244,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                       border: OutlineInputBorder(),
                                                       labelText: 'Amount',
                                                     ),
+                                                    // When user enters text, will callbakc with onChanged to display payout information
                                                     onChanged: (value) {
                                                       setState((){});
                                                       payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['HomePointSpreadPayout'].toString());
@@ -260,7 +269,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                       ),
                                                     ),
                                                     onPressed: () => {
-                                                      // TODO: do something with user's account and their money
+                                                      // TODO(jsrockett): do something with user's account and their money
                                                       setState(() {}),
                                                     },
                                                     child: const Text(
@@ -272,7 +281,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                 const SizedBox(height: 16.0),
                                                 ElevatedButton(
                                                   onPressed: () {
-                                                    // Close the dialog
+                                                    // Close the dialog, clear payout, and clear text in TextFormField
                                                     payout = '';
                                                     amountController.clear();
                                                     Navigator.of(context).pop();
@@ -320,6 +329,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                 ],
                               ),
                               onPressed: () {
+                                // When the button is pressed, show the dialog
                                 showDialog<void>(
                                   context: context,
                                   builder: (context) {
@@ -424,6 +434,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                       SizedBox(
                         height: screenHeight * .01,
                       ),
+                      // Betting moneyline information and buttons
                       Row(
                         children: [
                           Expanded(
@@ -646,6 +657,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                       SizedBox(
                         height: screenHeight * .01,
                       ),
+                      // Betting over/under information and buttons
                       Row(
                         children: [
                           Expanded(
@@ -895,6 +907,7 @@ class _GamesWidgetState extends State<GamesWidget> {
             },
           );
         }
+        // If no games are returned
         else {
           return const CircularProgressIndicator();
         }

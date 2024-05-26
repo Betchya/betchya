@@ -1,5 +1,6 @@
 import 'package:betchya/logic/games/game_category.dart';
 
+// Dictionary-like type to look up NBA teams from abbreviations
 final Map<String, String> nbaTeamsAbbreviations = {
   'ATL': 'Atlanta Hawks',
   'BOS': 'Boston Celtics',
@@ -33,6 +34,7 @@ final Map<String, String> nbaTeamsAbbreviations = {
   'WAS': 'Washington Wizards',
 };
 
+// Dictionary-like type to look up MLB teams from abbreviations
 final Map<String, String> mlbTeamsAbbreviations = {
   'ARI': 'Arizona Diamondbacks',
   'ATL': 'Atlanta Braves',
@@ -66,11 +68,20 @@ final Map<String, String> mlbTeamsAbbreviations = {
   'WSH': 'Washington Nationals',
 };
 
+// Function to look up team names
+// Allows to separate based on sport type if there is the same abbreviation
 String? getTeamName(String? gameCategory, String? teamAbbreviation) {
-  if (gameCategory == 'NBA' && nbaTeamsAbbreviations[teamAbbreviation] != null && !loading) {
-    return nbaTeamsAbbreviations[teamAbbreviation];
-  } else if (gameCategory == 'MLB' && mlbTeamsAbbreviations[teamAbbreviation] != null && !loading) {
-    return mlbTeamsAbbreviations[teamAbbreviation];
+  // Stops from wrong team name to be displayed when in the middle of switching to another sport
+  if (!loading) {
+    if (gameCategory == 'NBA') {
+      return nbaTeamsAbbreviations[teamAbbreviation];
+    } else if (gameCategory == 'MLB') {
+      return mlbTeamsAbbreviations[teamAbbreviation];
+    // No existing gameCategory exists
+    } else {
+      return 'Loading';
+    }
+  // In the middle of loading
   } else {
     return 'Loading';
   }
