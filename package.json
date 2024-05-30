@@ -237,7 +237,7 @@
     "minipass": "^7.1.0",
     "ms": "^2.1.2",
     "mute-stream": "^1.0.0",
-    "mysql2": "^3.9.7",
+    "mysql2": "^3.9.8",
     "named-placeholders": "^1.1.3",
     "nanoclone": "^0.2.1",
     "neo-async": "^2.6.2",
