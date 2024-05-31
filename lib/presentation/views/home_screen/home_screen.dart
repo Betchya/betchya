@@ -62,12 +62,12 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * .29,
                           width: screenWidth * .8997,
-                          child: const Image(
-                            image: AssetImage(
-                              'assets/images/star-gazing-gifts1.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                          ),
+                          // child: const Image(
+                          //   image: AssetImage(
+                          //     '',
+                          //   ),
+                            // fit: BoxFit.fitWidth,
+                          // ),
                         ),
                         Padding(
                           padding: EdgeInsets.zero,
@@ -178,12 +178,12 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * .29,
                           width: screenWidth * .8997,
-                          child: const Image(
-                            image: AssetImage(
-                              'assets/images/star-gazing-gifts1.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                          ),
+                          // child: const Image(
+                          //   image: AssetImage(
+                          //     '',
+                          //   ),
+                          //   fit: BoxFit.fitWidth,
+                          // ),
                         ),
                         Padding(
                           padding: EdgeInsets.zero,
@@ -294,12 +294,12 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * .29,
                           width: screenWidth * .8997,
-                          child: const Image(
-                            image: AssetImage(
-                              'assets/images/star-gazing-gifts1.png',
-                            ),
-                            fit: BoxFit.fitWidth,
-                          ),
+                          // child: const Image(
+                          //   image: AssetImage(
+                          //     '',
+                          //   ),
+                          //   fit: BoxFit.fitWidth,
+                          // ),
                         ),
                         Padding(
                           padding: EdgeInsets.zero,

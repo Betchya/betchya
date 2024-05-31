@@ -1,8 +1,8 @@
 // import 'package:betchya/logic/api/api_addBets.dart';
-import 'package:betchya/logic/api/api_get_games.dart';
-import 'package:betchya/logic/games/game_category.dart';
-import 'package:betchya/other_models/games.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:betchya/logic/api/api_get_games.dart';
+// import 'package:betchya/logic/games/game_category.dart';
+// import 'package:betchya/other_models/games.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,8 +27,8 @@ class _GamesWidgetState extends State<GamesWidget> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return FutureBuilder<List<Game>>(
-      future: APIGetGames().getGameList(gameCategory),
+    return FutureBuilder<List<dynamic>>(
+      // future: APIGetGames().getGameList(gameCategory),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
@@ -36,7 +36,7 @@ class _GamesWidgetState extends State<GamesWidget> {
             shrinkWrap: true,
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
-              final game = snapshot.data![index];
+              // final game = snapshot.data![index];
 
               return Card(
                 elevation: 5,
@@ -56,47 +56,49 @@ class _GamesWidgetState extends State<GamesWidget> {
                         children: [
                           SizedBox.square(
                             dimension: screenWidth * .2,
-                            child: CachedNetworkImage(
-                              imageUrl: game.teamLogo1,
-                              progressIndicatorBuilder:
-                                  (context, url, progress) => Center(
-                                child: CircularProgressIndicator(
-                                  value: progress.progress,
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              fit: BoxFit.cover,
-                            ),
+                            // child: CachedNetworkImage(
+                            //   imageUrl: '', // game.teamLogo1,
+                            //   progressIndicatorBuilder:
+                            //       (context, url, progress) => Center(
+                            //     child: CircularProgressIndicator(
+                            //       value: progress.progress,
+                            //     ),
+                            //   ),
+                            //   errorWidget: (context, url, error) =>
+                            //       const Icon(Icons.error),
+                            //   fit: BoxFit.cover,
+                            // ),
+                            child: const Card(color: Colors.purple,),
                           ),
                           const Text('VS'),
                           SizedBox.square(
                             dimension: screenWidth * .2,
-                            child: CachedNetworkImage(
-                              imageUrl: game.teamLogo2,
-                              progressIndicatorBuilder:
-                                  (context, url, progress) => Center(
-                                child: CircularProgressIndicator(
-                                  value: progress.progress,
-                                ),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              fit: BoxFit.cover,
-                            ),
+                            // child: CachedNetworkImage(
+                            //   imageUrl: '', //game.teamLogo2,
+                            //   progressIndicatorBuilder:
+                            //       (context, url, progress) => Center(
+                            //     child: CircularProgressIndicator(
+                            //       value: progress.progress,
+                            //     ),
+                            //   ),
+                            //   errorWidget: (context, url, error) =>
+                            //       const Icon(Icons.error),
+                            //   fit: BoxFit.cover,
+                            // ),
+                            child: const Card(color: Colors.purple,),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text(game.description),
+                      const Text('game.description'),
                       SizedBox(
                         height: screenHeight * .01,
                       ),
-                      Text(
-                        'Betting Line: ${game.betLine} ',
-                        style: const TextStyle(color: Colors.deepPurple),
+                      const Text(
+                        'Betting Line: ${'game.betLine'} ',
+                        style: TextStyle(color: Colors.deepPurple),
                       ),
                       SizedBox(
                         height: screenHeight * .01,

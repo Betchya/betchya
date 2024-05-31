@@ -28,10 +28,10 @@ class ListViewContainer extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
+        child: imageUrl.isNotEmpty ? Image.asset(
           imageUrl,
           fit: BoxFit.fill,
-        ),
+        ) : const Card(color: Colors.purple),
       ),
     );
   }

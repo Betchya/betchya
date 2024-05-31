@@ -28,7 +28,7 @@ class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
                 const ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 4,
-                  imageUrl: 'assets/images/north-bar.png',
+                  imageUrl: '',
                 ),
                 SizedBox(
                   height: screenHeight * .02,
@@ -57,7 +57,7 @@ class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
                 const ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 4,
-                  imageUrl: 'assets/images/sips-hero.png',
+                  imageUrl: '',
                 ),
                 SizedBox(
                   height: screenHeight * .01,
@@ -86,7 +86,7 @@ class _BarsHorizontalListViewState extends State<BarsHorizontalListView> {
                 const ListViewContainer(
                   offsetDy: .5,
                   blurRadius: 4,
-                  imageUrl: 'assets/images/mountain-view-bar.png',
+                  imageUrl: '',
                 ),
                 SizedBox(
                   height: screenHeight * .01,

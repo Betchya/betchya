@@ -1,12 +1,9 @@
-import 'package:betchya/other_models/event.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class EventDetails extends StatelessWidget {
-  const EventDetails({super.key, required this.event});
-
-  final Event event;
+  const EventDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +15,9 @@ class EventDetails extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text(
-          event.name,
-          style: const TextStyle(
+        title: const Text(
+          'event.name',
+          style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w700,
           ),
@@ -45,10 +42,11 @@ class EventDetails extends StatelessWidget {
               child: SizedBox(
                 height: screenHeight * .25,
                 width: screenWidth,
-                child: CachedNetworkImage(
-                  imageUrl: event.imageUrl ?? '',
-                  fit: BoxFit.cover,
-                ),
+                // child: CachedNetworkImage(
+                //   imageUrl: '',
+                //   fit: BoxFit.cover,
+                // ),
+                child: const Card(),
               ),
             ),
             Padding(
@@ -77,8 +75,9 @@ class EventDetails extends StatelessWidget {
                           text: 'Date:  ',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
+                        // TODO: update date
                         TextSpan(
-                          text: DateFormat.yMd().format(event.date),
+                          text: DateFormat.yMd().format(DateTime.now()),
                         ),
                       ],
                     ),
@@ -94,8 +93,9 @@ class EventDetails extends StatelessWidget {
                           text: 'Time:  ',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
+                        // TODO: update date
                         TextSpan(
-                          text: DateFormat.jm().format(event.date),
+                          text: DateFormat.jm().format(DateTime.now()),
                         ),
                       ],
                     ),
@@ -104,14 +104,14 @@ class EventDetails extends StatelessWidget {
                     thickness: 1,
                     height: 12,
                   ),
-                  Text.rich(
+                  const Text.rich(
                     TextSpan(
                       children: <TextSpan>[
-                        const TextSpan(
+                        TextSpan(
                           text: 'Ticket Price:  ',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        TextSpan(text: '\$${event.price}+'),
+                        TextSpan(text: '\$${0}+'),
                       ],
                     ),
                   ),
@@ -119,14 +119,14 @@ class EventDetails extends StatelessWidget {
                     thickness: 1,
                     height: 12,
                   ),
-                  Text.rich(
+                  const Text.rich(
                     TextSpan(
                       children: <TextSpan>[
-                        const TextSpan(
+                        TextSpan(
                           text: 'Age:  ',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        TextSpan(text: '${event.minAge} and over'),
+                        TextSpan(text: '${0} and over'),
                       ],
                     ),
                   ),
@@ -161,7 +161,7 @@ class EventDetails extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
               ),
             ),
-            Expanded(child: Text(event.description)),
+            const Expanded(child: Text('placeholder')),
           ],
         ),
       ),

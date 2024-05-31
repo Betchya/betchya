@@ -1,4 +1,3 @@
-import 'package:betchya/logic/games/game_category.dart';
 import 'package:betchya/presentation/custom_icons.dart';
 import 'package:betchya/presentation/views/profile_screen/widgets/my_bets.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +106,7 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = '';
+                              // gameCategory = '';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
@@ -144,20 +143,21 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = 'EPL';
+                              // gameCategory = 'EPL';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == 'EPL'
-                                  ? Colors.white
-                                  : const Color(0xff2C1D57),
+                              // backgroundColor: gameCategory == 'EPL'
+                              //     ? Colors.white
+                              //     : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
                                 width: 2,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Image.asset('assets/images/EPL.png'),
+                            // child: Image.asset(''),
+                            child: const Card(color: Colors.purple,),
                           ),
                         ),
                         const SizedBox(
@@ -181,20 +181,21 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = 'MLB';
+                              // gameCategory = 'MLB';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == 'MLB'
-                                  ? Colors.white
-                                  : const Color(0xff2C1D57),
+                              // backgroundColor: gameCategory == 'MLB'
+                              //     ? Colors.white
+                              //     : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
                                 width: 2,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Image.asset('assets/images/MLB.png'),
+                            // child: Image.asset(''),
+                            child: const Card(color: Colors.purple,),
                           ),
                         ),
                         const SizedBox(
@@ -218,20 +219,21 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = 'NBA';
+                              // gameCategory = 'NBA';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == 'NBA'
-                                  ? Colors.white
-                                  : const Color(0xff2C1D57),
+                              // backgroundColor: gameCategory == 'NBA'
+                              //     ? Colors.white
+                              //     : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
                                 width: 2,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Image.asset('assets/images/NBA.png'),
+                            // child: Image.asset(''),
+                            child: const Card(color: Colors.purple,),
                           ),
                         ),
                         const SizedBox(
@@ -255,20 +257,21 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = 'NFL';
+                              //  gameCategory = 'NFL';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == 'NFL'
-                                  ? Colors.white
-                                  : const Color(0xff2C1D57),
+                              // backgroundColor: gameCategory == 'NFL'
+                              //     ? Colors.white
+                              //     : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
                                 width: 2,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Image.asset('assets/images/NFL.jpg'),
+                            // child: Image.asset(''),
+                            child: const Card(color: Colors.purple,),
                           ),
                         ),
                         const SizedBox(
@@ -292,24 +295,24 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = 'ML5';
+                              // gameCategory = 'ML5';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == 'ML5'
-                                  ? Colors.white
-                                  : const Color(0xff2C1D57),
+                              // backgroundColor: gameCategory == 'ML5'
+                              //     ? Colors.white
+                              //     : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
                                 width: 2,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.sports_esports,
-                              color: gameCategory == 'ML5'
-                                  ? Colors.black
-                                  : Colors.white,
+                              // color: gameCategory == 'ML5'
+                              //     ? Colors.black
+                              //     : Colors.white,
                             ),
                           ),
                         ),
@@ -334,24 +337,24 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                           width: screenWidth * .15,
                           child: OutlinedButton(
                             onPressed: () {
-                              gameCategory = 'Esport';
+                              // gameCategory = 'Esport';
                               widget.changeCategory();
                             },
                             style: OutlinedButton.styleFrom(
-                              backgroundColor: gameCategory == 'Esport'
-                                  ? Colors.white
-                                  : const Color(0xff2C1D57),
+                              // backgroundColor: gameCategory == 'Esport'
+                              //     ? Colors.white
+                              //     : const Color(0xff2C1D57),
                               shape: const CircleBorder(),
                               side: const BorderSide(
                                 width: 2,
                                 color: Colors.white,
                               ),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.sports_gymnastics,
-                              color: gameCategory == 'Esport'
-                                  ? Colors.black
-                                  : Colors.white,
+                              // color: gameCategory == 'Esport'
+                              //     ? Colors.black
+                              //     : Colors.white,
                             ),
                           ),
                         ),

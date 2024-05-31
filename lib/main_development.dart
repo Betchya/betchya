@@ -1,9 +1,7 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:betchya/bootstrap.dart';
-import 'package:betchya/logic/events/events_bloc.dart';
 import 'package:betchya/logic/navigation/navigation_cubit.dart';
 import 'package:betchya/logic/points/points_cubit.dart';
-import 'package:betchya/logic/rewards/rewards_bloc.dart';
 import 'package:betchya/presentation/views/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,12 +27,6 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<NavigationCubit>(
           create: (context) => NavigationCubit(),
-        ),
-        BlocProvider<EventsBloc>(
-          create: (context) => EventsBloc()..add(GetEventsList()),
-        ),
-        BlocProvider<RewardsBloc>(
-          create: (context) => RewardsBloc()..add(GetRewardsList()),
         ),
         BlocProvider<PointsCubit>(
           create: (context) => PointsCubit()..update(),

@@ -1,11 +1,11 @@
-import 'package:betchya/other_models/reward.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:betchya/other_models/reward.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class RewardDetails extends StatelessWidget {
-  const RewardDetails({super.key, required this.reward});
-  final Reward reward;
+  const RewardDetails({super.key,}); //required this.reward});
+  // final Reward reward;
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,19 @@ class RewardDetails extends StatelessWidget {
         padding: const EdgeInsets.all(25),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 30),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    reward.points.toString(),
-                    style: const TextStyle(
+                    'placeholder', // reward.points.toString(),
+                    style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const Icon(
+                  Icon(
                     Icons.star,
                     color: Color(0xffFCCB00),
                     size: 23,
@@ -49,38 +49,39 @@ class RewardDetails extends StatelessWidget {
                 ],
               ),
             ),
-            Text(
-              reward.subtitle,
-              style: const TextStyle(
+            const Text(
+              'reward.subtitle',
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
               textAlign: TextAlign.center,
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 20),
+            const Padding(
+              padding: EdgeInsets.only(top: 15, bottom: 20),
               child: Text(
-                reward.information,
-                style: const TextStyle(fontSize: 14),
+                'reward.information',
+                style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 25),
-              child: reward.imageUrl.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: reward.imageUrl,
-                      height: 300,
-                      width: 200,
-                      fit: BoxFit.contain,
-                      progressIndicatorBuilder: (context, url, progress) =>
-                          Center(
-                        child: CircularProgressIndicator(
-                          value: progress.progress,
-                        ),
-                      ),
-                    )
-                  : const Placeholder(
+            const Padding(
+              padding: EdgeInsets.only(bottom: 25),
+              // child: reward.imageUrl.isNotEmpty
+              //     ? CachedNetworkImage(
+              //         imageUrl: reward.imageUrl,
+              //         height: 300,
+              //         width: 200,
+              //         fit: BoxFit.contain,
+              //         progressIndicatorBuilder: (context, url, progress) =>
+              //             Center(
+              //           child: CircularProgressIndicator(
+              //             value: progress.progress,
+              //           ),
+              //         ),
+              //       ) :
+              child: 
+                  Placeholder(
                       fallbackHeight: 300,
                       fallbackWidth: 200,
                     ),

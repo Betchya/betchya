@@ -27,19 +27,19 @@ class _EventsHorizontalListViewState extends State<EventsHorizontalListView> {
             return const ListViewContainer(
               offsetDy: 4,
               blurRadius: 4,
-              imageUrl: 'assets/images/star-gazing-gifts.png',
+              imageUrl: '',
             );
           } else if (index == 1) {
             return const ListViewContainer(
               offsetDy: 4,
               blurRadius: 4,
-              imageUrl: 'assets/images/star-gazing-gifts1.png',
+              imageUrl: '',
             );
           } else if (index == 2) {
             return const ListViewContainer(
               offsetDy: 4,
               blurRadius: 4,
-              imageUrl: 'assets/images/star-gazing-gifts2.png',
+              imageUrl: '',
             );
           }
           return Container();

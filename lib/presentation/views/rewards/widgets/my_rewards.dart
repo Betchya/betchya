@@ -1,6 +1,6 @@
 import 'package:betchya/logic/points/points_cubit.dart';
-import 'package:betchya/logic/rewards/rewards_bloc.dart';
-import 'package:betchya/presentation/views/rewards/widgets/reward_card.dart';
+// import 'package:betchya/logic/rewards/rewards_bloc.dart';
+// import 'package:betchya/presentation/views/rewards/widgets/reward_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -62,45 +62,45 @@ class MyRewards extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: _buildRewardList(),
+          const Expanded(
+            child: Placeholder() // _buildRewardList(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildRewardList() {
-    return BlocConsumer<RewardsBloc, RewardsState>(
-      listener: (context, state) {
-        if (state is RewardsError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message!),
-            ),
-          );
-        }
-      },
-      builder: (context, state) {
-        if (state is RewardsLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is RewardsError) {
-          return const Text('Error');
-        } else if (state is RewardsLoaded) {
-          return ListView.builder(
-            // padding: const EdgeInsets.only(top: 15),
-            clipBehavior: Clip.antiAlias,
-            itemCount: state.rewards.length,
-            itemBuilder: (context, index) {
-              return RewardCard(reward: state.rewards[index]);
-            },
-          );
-        } else {
-          return Text(state.toString());
-        }
-      },
-    );
-  }
+  // Widget _buildRewardList() {
+  //   return BlocConsumer<RewardsBloc, RewardsState>(
+  //     listener: (context, state) {
+  //       if (state is RewardsError) {
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           SnackBar(
+  //             content: Text(state.message!),
+  //           ),
+  //         );
+  //       }
+  //     },
+  //     builder: (context, state) {
+  //       if (state is RewardsLoading) {
+  //         return const Center(
+  //           child: CircularProgressIndicator(),
+  //         );
+  //       } else if (state is RewardsError) {
+  //         return const Text('Error');
+  //       } else if (state is RewardsLoaded) {
+  //         return ListView.builder(
+  //           // padding: const EdgeInsets.only(top: 15),
+  //           clipBehavior: Clip.antiAlias,
+  //           itemCount: state.rewards.length,
+  //           itemBuilder: (context, index) {
+  //             return RewardCard(reward: state.rewards[index]);
+  //           },
+  //         );
+  //       } else {
+  //         return Text(state.toString());
+  //       }
+  //     },
+  //   );
+  // }
 }

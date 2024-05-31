@@ -80,22 +80,22 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
                     if (index == 0) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/food_promo_1.png',
+                        imageAsset: '',
                       );
                     } else if (index == 1) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/casino_promo_1.png',
+                        imageAsset: '',
                       );
                     } else if (index == 2) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/casino_promo_2.png',
+                        imageAsset: '',
                       );
                     } else if (index == 3) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/casino_promo_3.png',
+                        imageAsset: '',
                       );
                     } else {
                       return Container();
@@ -117,7 +117,7 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
                     if (index == 0) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/food_promo_1.png',
+                        imageAsset: '',
                       );
                     } else {
                       return Container();
@@ -139,17 +139,17 @@ class _PromotionsTabBarState extends State<PromotionsTabBar>
                     if (index == 0) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/casino_promo_1.png',
+                        imageAsset: '',
                       );
                     } else if (index == 1) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/casino_promo_2.png',
+                        imageAsset: '',
                       );
                     } else if (index == 2) {
                       return PromotionsTabContainer(
                         screenHeight: screenHeight,
-                        imageAsset: 'assets/images/casino_promo_3.png',
+                        imageAsset: '',
                       );
                     } else {
                       return Container();
