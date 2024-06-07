@@ -158,7 +158,9 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                                 color: Colors.white,
                               ),
                             ),
-                            child: Image.asset('assets/images/EPL.png'),
+                            child: SvgPicture.asset(
+                              'assets/logos/epl/epl_logo.svg',
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -273,7 +275,9 @@ class _UserRewardsWidgetState extends State<UserRewardsWidget> {
                                 color: Colors.white,
                               ),
                             ),
-                            child: Image.asset('assets/images/NFL.jpg'),
+                            child: SvgPicture.asset(
+                              'assets/logos/nfl/nfl_logo.svg',
+                            ),
                           ),
                         ),
                         const SizedBox(

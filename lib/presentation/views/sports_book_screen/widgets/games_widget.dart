@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:betchya/logic/api/api_get_games.dart';
 import 'package:betchya/logic/games/game_category.dart';
+import 'package:betchya/logic/games/game_list.dart';
 import 'package:betchya/logic/teams/teams.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,7 +67,7 @@ class _GamesWidgetState extends State<GamesWidget> {
             shrinkWrap: true,
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
-              final game = snapshot.data?[index];
+              final game = snapshot.data?[index];    
 
               return Card(
                 elevation: 5,
@@ -244,7 +245,7 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                       border: OutlineInputBorder(),
                                                       labelText: 'Amount',
                                                     ),
-                                                    // When user enters text, will callbakc with onChanged to display payout information
+                                                    // When user enters text, will callback with onChanged to display payout information
                                                     onChanged: (value) {
                                                       setState((){});
                                                       payout = calculatePayout(value, json.decode(game?.PregameOdds?[0] as String)['HomePointSpreadPayout'].toString());
@@ -271,6 +272,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                     onPressed: () => {
                                                       // TODO(jsrockett): do something with user's account and their money
                                                       setState(() {}),
+                                                      addBet(game, amountController.text, payout, 'Home Point Spread', gameCategory),
+                                                      payout = '',
+                                                      amountController.clear(),
+                                                      Navigator.of(context).pop(),
                                                     },
                                                     child: const Text(
                                                       'Place Bet',
@@ -390,6 +395,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                     ),
                                                     onPressed: () => {
                                                       setState(() {}),
+                                                      addBet(game, amountController.text, payout, 'Away Point Spread', gameCategory),
+                                                      payout = '',
+                                                      amountController.clear(),
+                                                      Navigator.of(context).pop(),
                                                     },
                                                     child: const Text(
                                                       'Place Bet',
@@ -509,6 +518,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                     ),
                                                     onPressed: () => {
                                                       setState(() {}),
+                                                      addBet(game, amountController.text, payout, 'Home Money Line', gameCategory),
+                                                      payout = '',
+                                                      amountController.clear(),
+                                                      Navigator.of(context).pop(),
                                                     },
                                                     child: const Text(
                                                       'Place Bet',
@@ -613,6 +626,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                     ),
                                                     onPressed: () => {
                                                       setState(() {}),
+                                                      addBet(game, amountController.text, payout, 'Away Money Line', gameCategory),
+                                                      payout = '',
+                                                      amountController.clear(),
+                                                      Navigator.of(context).pop(),
                                                     },
                                                     child: const Text(
                                                       'Place Bet',
@@ -746,6 +763,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                     ),
                                                     onPressed: () => {
                                                       setState(() {}),
+                                                      addBet(game, amountController.text, payout, 'Total Over', gameCategory),
+                                                      payout = '',
+                                                      amountController.clear(),
+                                                      Navigator.of(context).pop(),
                                                     },
                                                     child: const Text(
                                                       'Place Bet',
@@ -864,6 +885,10 @@ class _GamesWidgetState extends State<GamesWidget> {
                                                     ),
                                                     onPressed: () => {
                                                       setState(() {}),
+                                                      addBet(game, amountController.text, payout, 'Total Under', gameCategory),
+                                                      payout = '',
+                                                      amountController.clear(),
+                                                      Navigator.of(context).pop(),
                                                     },
                                                     child: const Text(
                                                       'Place Bet',

@@ -50,3 +50,5 @@ flutter:
   assets:
     - assets/logos/nba/
     - assets/logos/mlb/
+    - assets/logos/epl/
+    - assets/logos/nfl/

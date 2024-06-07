@@ -24,7 +24,7 @@ class WholeNameWidget extends StatefulWidget {
 class _FirstNameWidgetState extends State<FirstNameWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Text('First Name Widget');
+    return const Text('Welcome, First Name!');
     // return Container(
     //     child: BlocListener<AuthBloc, AuthState>(listener: (context, state) {
     //   if (state is AuthenticatedWithUserObject) {
