@@ -108,7 +108,7 @@
     "fast-decode-uri-component": "^1.0.1",
     "fast-glob": "^3.3.2",
     "fast-querystring": "^1.1.2",
-    "fast-xml-parser": "^4.1.2",
+    "fast-xml-parser": "^4.4.1",
     "fastq": "^1.17.1",
     "fb-watchman": "^2.0.2",
     "fbjs": "^3.0.5",
